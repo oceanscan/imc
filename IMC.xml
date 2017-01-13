@@ -9070,6 +9070,7 @@
     <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="UTF">
       <value abbrev="ACK" name="Acknowledgement" id="0x01"/>
       <value abbrev="DELAYED" name="Delayed" id="0x02"/>
+      <value abbrev="PING" name="Ping" id="0x04"/>
     </field>
     <field name="Data" abbrev="data" type="rawdata"/>
   </message>
