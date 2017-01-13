@@ -9070,7 +9070,6 @@
     <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="UTF">
       <value abbrev="ACK" name="Acknowledgement" id="0x01"/>
       <value abbrev="DELAYED" name="Delayed" id="0x02"/>
-      <value abbrev="PING" name="Ping" id="0x04"/>
     </field>
     <field name="Data" abbrev="data" type="rawdata"/>
   </message>
@@ -9102,6 +9101,11 @@
     <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
     <field name="System" abbrev="sys" type="plaintext"/>
     <field name="Value" abbrev="value" type="fp32_t"/>
+  </message>
+
+  <message id="818" name="UamTxRange" abbrev="UamTxRange" source="ccu,vehicle">
+    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
   </message>
 
   <message id="820" name="Formation Control Parameters" abbrev="FormCtrlParam" source="ccu,vehicle">
