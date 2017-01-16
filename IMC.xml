@@ -9110,6 +9110,7 @@
       <description>
         Maximum amount of time to wait for a reply.
       </description>
+    </field>
   </message>
 
   <message id="820" name="Formation Control Parameters" abbrev="FormCtrlParam" source="ccu,vehicle">
