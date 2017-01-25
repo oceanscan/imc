@@ -9103,6 +9103,16 @@
     <field name="Value" abbrev="value" type="fp32_t"/>
   </message>
 
+  <message id="818" name="UamTxRange" abbrev="UamTxRange" source="ccu,vehicle">
+    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
+    <field name="Timeout" abbrev="timeout" type="fp32_t" unit="s">
+      <description>
+        Maximum amount of time to wait for a reply.
+      </description>
+    </field>
+  </message>
+
   <message id="820" name="Formation Control Parameters" abbrev="FormCtrlParam" source="ccu,vehicle">
     <description>
       Formation controller paramenters, as: trajectory gains, control boundary layer thickness, and formation shape gains.
