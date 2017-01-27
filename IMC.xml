@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.14">
+          version="5.4.13">
 
   <description>
     This document describes the communications protocol associated
@@ -3457,12 +3457,6 @@
           it's devices at the time given in the field 'sched_time'. If
           the destination entity is the special entity '0' the whole
           system will power up.
-        </description>
-      </value>
-      <value id="7" name="Power Down Sequence Completed" abbrev="PWR_DOWN_DONE">
-        <description>
-          The power down request was completed and the system will power
-          down in the next few seconds.
         </description>
       </value>
     </field>
