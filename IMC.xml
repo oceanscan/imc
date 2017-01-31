@@ -9094,6 +9094,7 @@
       <value abbrev="INV_ADDR" name="Invalid address" id="4"/>
       <value abbrev="IP" name="In Progress" id="5"/>
       <value abbrev="UNSUPPORTED" name="Unsupported operation" id="6"/>
+      <value abbrev="INV_SIZE" name="Invalid transmission size" id="7"/>
     </field>
     <field name="Error Message" abbrev="error" type="plaintext"/>
   </message>
