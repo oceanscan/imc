@@ -4802,6 +4802,11 @@
           Start braking procedures.
         </description>
       </value>
+      <value id="2" abbrev="REVERT" name="Revert Actuation">
+        <description>
+          Revert Actuation.
+        </description>
+      </value>
     </field>
   </message>
 
@@ -7211,10 +7216,10 @@
 
     <!-- limits -->
     <field name="Enforced Limits" abbrev="limits" type="uint8_t" unit="Bitfield" prefix="ENFORCE">
-    	<value abbrev="DEPTH" name="Maximum Depth Limit" id="0x01"/>
-    	<value abbrev="ALTITUDE" name="Minimum Altitude Limit" id="0x02"/>
-    	<value abbrev="TIMEOUT" name="Time Limit" id="0x04"/>
-    	<value abbrev="AREA2D" name="Polygonal Area Limits" id="0x08"/>
+        <value abbrev="DEPTH" name="Maximum Depth Limit" id="0x01"/>
+        <value abbrev="ALTITUDE" name="Minimum Altitude Limit" id="0x02"/>
+        <value abbrev="TIMEOUT" name="Time Limit" id="0x04"/>
+        <value abbrev="AREA2D" name="Polygonal Area Limits" id="0x08"/>
     </field>
     <field name="Maximum depth" abbrev="max_depth" type="fp64_t" unit="m">
       <description>
@@ -7251,23 +7256,23 @@
   </message>
 
   <message id="494" name="Follow Point Maneuver" abbrev="FollowPoint">
-  	<description>This maneuver behaves by following a point.</description>
-  	<field name="Source To Follow" abbrev="target" type="plaintext">
-  	  <description>
-  	    The identifier of the point source to follow (via RemoteSensorInfo or EstimatedState).
-  	  </description>
-  	</field>
-  	<field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0">
-  	  <description>
-  	    Use this speed when travelling from afar.
-  	  </description>
-  	</field>
-  	<field name="Speed Units" abbrev="speed_units" type="uint8_t" unit="Enumerated" enum-def="SpeedUnits">
+        <description>This maneuver behaves by following a point.</description>
+        <field name="Source To Follow" abbrev="target" type="plaintext">
+          <description>
+            The identifier of the point source to follow (via RemoteSensorInfo or EstimatedState).
+          </description>
+        </field>
+        <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0">
+          <description>
+            Use this speed when travelling from afar.
+          </description>
+        </field>
+        <field name="Speed Units" abbrev="speed_units" type="uint8_t" unit="Enumerated" enum-def="SpeedUnits">
       <description>
         Indicates the units used for the maximum speed value.
       </description>
     </field>
-	<field name="Latitude WGS-84" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+        <field name="Latitude WGS-84" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
       <description>
         WGS-84 Latitude of maneuver in the map. Ignored during execution.
       </description>
@@ -7287,7 +7292,7 @@
         Units of the z reference.
       </description>
     </field>
-	<field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
+        <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
         Custom settings for maneuver.
       </description>
