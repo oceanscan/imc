@@ -355,11 +355,6 @@
       <message-type abbrev="DesiredPath"/>
       <message-type abbrev="DesiredThrottle"/>
     </message-group>
-
-    <message-group name="RemoteData" abbrev="RemoteData">
-      <message-type abbrev="RemoteCommand"/>
-      <message-type abbrev="HistoricSample"/>
-    </message-group>
   </message-groups>
 
   <flags>
