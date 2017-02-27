@@ -586,93 +586,6 @@
     </description>
   </message>
 
-  <message id="12" name="Device Calibration Control" abbrev="DevCalibrationControl" source="vehicle,ccu">
-    <description>
-      This message controls the calibration procedure of a given
-      device. The destination device is selected using the destination
-      entity identification number.
-    </description>
-    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="DCAL">
-      <description>
-        Operation to perform.
-      </description>
-      <value id="0" name="Start" abbrev="START">
-        <description>
-          Start calibration procedure.
-        </description>
-      </value>
-      <value id="1" name="Stop" abbrev="STOP">
-        <description>
-          Stop calibration procedure.
-        </description>
-      </value>
-      <value id="2" name="Perform Next Calibration Step" abbrev="STEP_NEXT">
-        <description>
-          Perform next step of the calibration procedure.
-        </description>
-      </value>
-      <value id="3" name="Perform Previous Calibration Step" abbrev="STEP_PREVIOUS">
-        <description>
-          Perform previous step of the calibration procedure.
-        </description>
-      </value>
-    </field>
-  </message>
-
-  <message id="13" name="Device Calibration State" abbrev="DevCalibrationState" source="vehicle,ccu">
-    <description>
-      State of the calibration procedure.
-    </description>
-    <field name="Total Steps" abbrev="total_steps" type="uint8_t">
-      <description>
-        Total number of steps of the calibration procedure.
-      </description>
-    </field>
-    <field name="Current Step Number" abbrev="step_number" type="uint8_t">
-      <description>
-        Number of the current step being performed.
-      </description>
-    </field>
-    <field name="Description" abbrev="step" type="plaintext">
-      <description>
-        Human-readable description of the current step.
-      </description>
-    </field>
-    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="DCS">
-      <description>
-        Additional flags.
-      </description>
-      <value id="0x01" abbrev="PREVIOUS_NOT_SUPPORTED" name="Previous Step Not Supported">
-        <description>
-          Jumping to the previous calibration step is not supported.
-        </description>
-      </value>
-      <value id="0x02" abbrev="NEXT_NOT_SUPPORTED" name="Next Step Not Supported">
-        <description>
-          Jumping to the next calibration step is not supported.
-        </description>
-      </value>
-      <value id="0x04" abbrev="WAITING_CONTROL" name="Waiting Device Calibration Control">
-        <description>
-          The calibration procedure was suspended and must be resumed or
-          cancelled with a DeviceCalibrationControl message.
-        </description>
-      </value>
-      <value id="0x08" abbrev="ERROR" name="Calibration Error">
-        <description>
-          Calibration was interrupted due to an error and must be
-          restarted or cancelled with a DeviceCalibrationControl
-          message.
-        </description>
-      </value>
-      <value id="0x10" abbrev="COMPLETED" name="Calibration Procedure Completed">
-        <description>
-          The calibration procedure was completed.
-        </description>
-      </value>
-    </field>
-  </message>
-
   <message id="14" name="Entity Activation State" abbrev="EntityActivationState" source="vehicle,ccu">
     <description>
       State of entity activation/deactivation.
@@ -940,25 +853,6 @@
     <field name="Stream Velocity Z (Down)" abbrev="svz" type="fp32_t" unit="m/s">
       <description>
         Stream Velocity zz axis velocity component.
-      </description>
-    </field>
-  </message>
-
-  <message id="51" name="Leak Simulation" abbrev="LeakSimulation">
-    <description>
-      Simulate leak behavior.
-    </description>
-    <field name="Operation" abbrev="op" type="uint8_t" prefix="LSIM" unit="Enumerated">
-      <description>
-        Indicates whether leaks have been detected or not.
-      </description>
-      <value id="0" abbrev="OFF" name="Leaks Off"/>
-      <value id="1" abbrev="ON" name="Leaks On"/>
-    </field>
-    <field name="Leak Entities" abbrev="entities" type="plaintext">
-      <description>
-        Comma separated list of leak entities (empty for all leaks
-        configured).
       </description>
     </field>
   </message>
@@ -1468,23 +1362,6 @@
       <value abbrev="EXPIRED" name="Message's TTL has expired. Transmition cancelled." id="5"/>
     </field>
     <field name="Status Text" abbrev="text" type="plaintext"/>
-  </message>
-
-  <message id="180" name="Group Membership State" abbrev="GroupMembershipState" source="ccu,vehicle" flags="periodic">
-    <description>
-      Group communication link assertion.
-    </description>
-    <field name="Group Name" abbrev="group_name" type="plaintext">
-      <description>
-        Name of the group of systems.
-      </description>
-    </field>
-    <field name="Communication Links Assertion" abbrev="links" type="uint32_t">
-      <description>
-        Communication link assertion for each group member.
-        One bit to assert each system communication link state.
-      </description>
-    </field>
   </message>
 
   <!-- Acoustic Networking -->
