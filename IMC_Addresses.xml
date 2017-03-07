@@ -48,8 +48,8 @@
   <address id="0x6011" name="lauv-dmo-1-aux"/>
   <address id="0x2011" name="lauv-tno-1"/>
   <address id="0x6012" name="lauv-tno-1-aux"/>
-  <address id="0x2012" name="lauv-spectra-1"/>
-  <address id="0x6013" name="lauv-spectra-1-aux"/>
+  <address id="0x2012" name="lauv-pub-1"/>
+  <address id="0x6013" name="lauv-pub-1-aux"/>
   <address id="0x2013" name="lauv-oceaneco-4"/>
   <address id="0x6014" name="lauv-oceaneco-4-aux"/>
 
@@ -66,7 +66,7 @@
   <address id="0x8070" name="manta-ntnu-1"/>
   <address id="0x8071" name="manta-oceaneco-3"/>
   <address id="0x8073" name="manta-tno-1"/>
-  <address id="0x8074" name="manta-spectra-1"/>
+  <address id="0x8074" name="manta-pub-1"/>
   <address id="0x8075" name="manta-oceaneco-4"/>
 
   <!-- Special IDs -->
