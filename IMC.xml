@@ -344,6 +344,7 @@
       <message-type abbrev="Land"/>
       <message-type abbrev="AutonomousSection"/>
       <message-type abbrev="FollowPoint"/>
+      <message-type abbrev="Alignment"/>
     </message-group>
 
     <message-group name="Control Command" abbrev="ControlCommand">
@@ -7213,7 +7214,6 @@
         Speed units.
       </description>
     </field>
-
     <!-- limits -->
     <field name="Enforced Limits" abbrev="limits" type="uint8_t" unit="Bitfield" prefix="ENFORCE">
         <value abbrev="DEPTH" name="Maximum Depth Limit" id="0x01"/>
@@ -7252,7 +7252,6 @@
         Custom settings for maneuver.
       </description>
     </field>
-
   </message>
 
   <message id="494" name="Follow Point Maneuver" abbrev="FollowPoint">
@@ -7293,6 +7292,57 @@
       </description>
     </field>
         <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
+      <description>
+        Custom settings for maneuver.
+      </description>
+    </field>
+  </message>
+
+  <message id="495" name="Alignment Maneuver" abbrev="Alignment" source="ccu">
+      <description>
+      An "Alignment" is a maneuver specifying a movement of the vehicle to a
+      target waypoint intended to control activation of an IMU/INS in order
+      to start aligning navigation for more precise dead reckoning operation.
+
+      Mandatory parameters defined for a "Launch" are
+      timeout, speed and speed units.
+    </description>
+    <field name="Timeout" abbrev="timeout" type="uint16_t" unit="s">
+      <description>
+        The amount of time the maneuver is allowed to run.
+      </description>
+    </field>
+    <field name="Start Latitude WGS-84" abbrev="start_lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        WGS-84 Latitude of start waypoint.
+      </description>
+    </field>
+    <field name="Start Longitude WGS-84" abbrev="start_lon" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        WGS-84 Longitude of start waypoint.
+      </description>
+    </field>
+    <field name="End Latitude WGS-84" abbrev="end_lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        WGS-84 Latitude of end waypoint.
+      </description>
+    </field>
+    <field name="End Longitude WGS-84" abbrev="end_lon" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        WGS-84 Longitude of end waypoint.
+      </description>
+    </field>
+    <field name="Speed" abbrev="speed" type="fp32_t">
+      <description>
+        Maneuver speed reference.
+      </description>
+    </field>
+    <field name="Speed Units" abbrev="speed_units" type="uint8_t" value="0" unit="Enumerated" enum-def="SpeedUnits">
+      <description>
+        Speed units.
+      </description>
+    </field>
+    <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
         Custom settings for maneuver.
       </description>
