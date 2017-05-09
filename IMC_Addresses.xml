@@ -68,6 +68,7 @@
   <address id="0x8073" name="manta-tno-1"/>
   <address id="0x8074" name="manta-pub-1"/>
   <address id="0x8075" name="manta-oceaneco-4"/>
+  <address id="0x8076" name="manta-omst-2"/>
 
   <!-- Special IDs -->
   <address id="0xFFF0" name="broadcast"/>
