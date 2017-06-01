@@ -7534,49 +7534,6 @@
     <field name="Custom Data" abbrev="data" type="plaintext" unit="TupleList"/>
   </message>
 
-  <!-- messages used to send maps to the Android Command and Control Unit (ACCU) -->
-  <message id="603" name="Map Feature" abbrev="MapFeature" source="ccu">
-    <description>A feature to appear on the map</description>
-    <field name="Identifier" abbrev="id" type="plaintext">
-      <description>The unique identifier for this feature (used as the name for points of interest)</description>
-    </field>
-    <field name="FeatureType" abbrev="feature_type" type="uint8_t" unit="Enumerated" prefix="FTYPE">
-      <description>The type of feature</description>
-      <value id="0" name="Point of Interest" abbrev="POI">
-        <description>These features should appear as a point with a label in the map</description>
-      </value>
-      <value id="1" name="Filled Polygon" abbrev="FILLEDPOLY">
-        <description>These features should be represented as a filled polygon (no label)</description>
-      </value>
-      <value id="2" name="Countoured Polygon" abbrev="CONTOUREDPOLY">
-        <description>These features should be represented as a countoured closed polygon (no fill and no label)</description>
-      </value>
-      <value id="3" name="Line" abbrev="LINE">
-        <description>These features should be represented as an open polygon (no label)</description>
-      </value>
-      <value id="4" name="Transponder" abbrev="TRANSPONDER">
-        <description>A transponder location in the map</description>
-      </value>
-      <value id="5" name="Start Location" abbrev="STARTLOC">
-        <description>Intended vehicle's starting location</description>
-      </value>
-      <value id="6" name="Home Reference" abbrev="HOMEREF">
-        <description>The offsets reference for this map</description>
-      </value>
-    </field>
-    <field name="RedComponent" abbrev="rgb_red" type="uint8_t">
-      <description>The red component of the color for this point</description>
-    </field>
-    <field name="GreenComponent" abbrev="rgb_green" type="uint8_t">
-      <description>The green component of the color for this point</description>
-    </field>
-    <field name="BlueComponent" abbrev="rgb_blue" type="uint8_t">
-      <description>The blue component of the color for this point</description>
-    </field>
-    <field name="Feature" abbrev="feature" type="message-list" message-type="MapPoint">
-      <description>The enclosing feature definition.</description>
-    </field>
-  </message>
 
   <message id="604" name="MapPoint" abbrev="MapPoint" source="ccu">
     <description>This message represents a point in the world.</description>
