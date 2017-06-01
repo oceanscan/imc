@@ -6705,50 +6705,6 @@
     </field>
   </message>
 
-  <message id="510" name="Formation Tracking State" abbrev="FormState" source="vehicle">
-    <description>
-      Monitoring variables to assert the formation tracking state, i.e., the mismatch between the real and the simulated aircraft position, the convergence state, etc.
-    </description>
-    <field name="Position Mismatch" abbrev="PosSimErr" type="fp32_t" unit="m">
-      <description>
-        Mismatch between the real and the simulated aircraft position.
-      </description>
-    </field>
-    <field name="Convergence" abbrev="Converg" type="fp32_t" unit="m">
-      <description>
-        Convergence evalution variable.
-        Value indicates the position error to which the system is converging, tacking into account the aircraft current position error and velocity.
-      </description>
-    </field>
-    <field name="Stream Turbulence" abbrev="Turbulence" type="fp32_t" unit="m/s/s">
-      <description>
-        Evaluation of the stream turbulence level, through the stream acceleration.
-      </description>
-    </field>
-    <field name="Position Mismatch Monitor" abbrev="PosSimMon" type="uint8_t" unit="Enumerated" prefix="POS">
-      <description>
-        Position mismatch monitoring flag.
-      </description>
-      <value id="0" name="Ok" abbrev="OK"/>
-      <value id="1" name="Warning threshold" abbrev="WRN"/>
-      <value id="2" name="Limit threshold" abbrev="LIM"/>
-    </field>
-    <field name="Communications Monitor" abbrev="CommMon" type="uint8_t" unit="Enumerated" prefix="COMMS">
-      <description>
-        Communications monitoring flag.
-      </description>
-      <value id="0" name="Ok" abbrev="OK"/>
-      <value id="1" name="Timeout" abbrev="TIMEOUT"/>
-    </field>
-    <field name="Convergence" abbrev="ConvergMon" type="uint8_t" unit="Enumerated" prefix="CONV">
-      <description>
-        Convergence monitoring flag.
-      </description>
-      <value id="0" name="Ok" abbrev="OK"/>
-      <value id="1" name="Timeout" abbrev="TIMEOUT"/>
-    </field>
-  </message>
-
   <message id="511" name="Autopilot Mode" abbrev="AutopilotMode" source="vehicle">
     <description>
       Reports autopilot mode.
