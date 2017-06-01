@@ -1508,33 +1508,6 @@
     <field name="Status Text" abbrev="text" type="plaintext"/>
   </message>
 
-  <message id="181" name="System Group" abbrev="SystemGroup">
-    <description>
-      Group of systems configuration.
-    </description>
-    <field name="Group Name" abbrev="GroupName" type="plaintext">
-      <description>
-        Name of the group of systems.
-      </description>
-    </field>
-    <field name="Group List Action" abbrev="Action" type="uint8_t" unit="Enumerated" prefix="OP">
-      <description>
-        Actions on the group list.
-      </description>
-      <value id="0" name="Disband" abbrev="Dis"/>
-      <value id="1" name="Set" abbrev="Set"/>
-      <value id="2" name="Request" abbrev="Req"/>
-      <value id="3" name="Change" abbrev="Chg"/>
-      <value id="4" name="Report" abbrev="Rep"/>
-      <value id="5" name="Force" abbrev="Frc"/>
-    </field>
-    <field name="Systems Name List" abbrev="GroupList" type="plaintext">
-      <description>
-        List of names of system in the group, separated by commas.
-      </description>
-    </field>
-  </message>
-
   <message id="182" name="Link Latency" abbrev="LinkLatency">
     <description>
       Communications latency between two systems.
