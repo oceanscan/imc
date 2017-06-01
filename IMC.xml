@@ -7775,16 +7775,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="808" name="Session Subscription" abbrev="SessionSubscription" source="ccu,vehicle">
-    <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
-    <field name="Messages to subscribe" abbrev="messages" type="plaintext">
-      <description>
-        Comma-separated list of messages to subscribe. Example:
-        "EstimatedState,EulerAngles,Temperature"
-      </description>
-    </field>
-  </message>
-
   <message id="809" name="Session Keep-Alive" abbrev="SessionKeepAlive" source="ccu,vehicle">
     <description>Message exchanged to prevent a session from timing out</description>
     <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
