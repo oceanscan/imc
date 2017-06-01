@@ -7775,15 +7775,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="810" name="Session Status" abbrev="SessionStatus" source="ccu,vehicle" flags="periodic">
-    <description>Message transmitted periodically to inform the state of a communication session</description>
-    <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
-    <field name="Status" abbrev="status" type="uint8_t" unit="Enumerated" prefix="STATUS">
-      <value abbrev="ESTABLISHED" name="Established" id="1"/>
-      <value abbrev="CLOSED" name="Closed" id="2"/>
-    </field>
-  </message>
-
   <message id="811" name="Push Entity Parameters" abbrev="PushEntityParameters" source="ccu,vehicle">
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
