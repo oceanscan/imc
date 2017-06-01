@@ -7775,13 +7775,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="807" name="Close Session" abbrev="CloseSession" source="ccu,vehicle">
-    <description>
-      Request closing of an ongoing session
-    </description>
-    <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
-  </message>
-
   <message id="808" name="Session Subscription" abbrev="SessionSubscription" source="ccu,vehicle">
     <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
     <field name="Messages to subscribe" abbrev="messages" type="plaintext">
