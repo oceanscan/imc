@@ -7859,11 +7859,6 @@
     <field name="Fragment Data" abbrev="data" type="rawdata"/>
   </message>
 
-  <message id="888" abbrev="NeptusBlob" name="Neptus Blob">
-    <field name="ContentType" abbrev="content_type" type="plaintext"/>
-    <field name="Content" abbrev="content" type="rawdata"/>
-  </message>
-
   <message id="889" abbrev="Aborted" name="Aborted">
     <description>
       This message signals that an :ref:`Abort` message was received and acted upon.
