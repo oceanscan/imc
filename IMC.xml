@@ -1656,17 +1656,6 @@
     </field>
   </message>
 
-  <message id="206" name="Acoustic Message" abbrev="AcousticMessage" source="vehicle">
-    <description>
-      Send an acoustic message.
-    </description>
-    <field name="Message to send" abbrev="message" type="message">
-      <description>
-        Message to send.
-      </description>
-    </field>
-  </message>
-
   <message id="211" name="Acoustic Operation" abbrev="AcousticOperation">
     <description>
       Acoustic operation.
