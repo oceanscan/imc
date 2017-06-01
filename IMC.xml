@@ -2971,31 +2971,6 @@
   </message>
 
   <!-- Actuation -->
-  <message id="300" name="Camera Zoom" abbrev="CameraZoom" source="vehicle">
-    <description>
-      Camera Zoom.
-    </description>
-    <field name="Camera Number" abbrev="id" type="uint8_t">
-      <description>
-        The identification number of the destination camera.
-      </description>
-    </field>
-    <field name="Absolute Zoom Level" abbrev="zoom" type="uint8_t">
-      <description>
-        Absolute zoom level.
-      </description>
-    </field>
-    <field name="Action" abbrev="action" type="uint8_t" unit="Enumerated" prefix="ACTION">
-      <description>
-        The zoom action to perform.
-      </description>
-      <value id="0" name="Reset Zoom" abbrev="ZOOM_RESET"/>
-      <value id="1" name="Zoom In" abbrev="ZOOM_IN"/>
-      <value id="2" name="Zoom Out" abbrev="ZOOM_OUT"/>
-      <value id="3" name="Stop Zooming" abbrev="ZOOM_STOP"/>
-    </field>
-  </message>
-
   <message id="301" name="Set Thruster Actuation" abbrev="SetThrusterActuation" source="vehicle">
     <description>
       Actuate directly on a thruster.
