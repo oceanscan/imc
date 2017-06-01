@@ -7665,15 +7665,6 @@
     </field>
   </message>
 
-  <!-- Vision -->
-  <message id="703" name="Image Transmission Settings" abbrev="ImageTxSettings" source="ccu, vehicle">
-    <description/>
-    <field name="Frames Per Second" abbrev="fps" type="uint8_t"/>
-    <field name="Quality" abbrev="quality" type="uint8_t"/>
-    <field name="Repetitions" abbrev="reps" type="uint8_t"/>
-    <field name="Target Size" abbrev="tsize" type="uint8_t"/>
-  </message>
-
   <!-- External -->
   <message id="750" name="Remote State" abbrev="RemoteState" source="vehicle">
     <description>State summary for a remote vehicle.</description>
