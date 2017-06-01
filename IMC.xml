@@ -7947,27 +7947,6 @@
     </field>
   </message>
 
-  <message id="895" abbrev="SetImageCoords" name="Set Image Coordinates">
-    <description>
-      Message containing the x and y coordinates of object to track in remote peer.
-    </description>
-    <field name="Camera Identifier" abbrev="camId" type="uint8_t">
-      <description>
-        Camera identifier.
-      </description>
-    </field>
-    <field name="X" abbrev="x" type="uint16_t" unit="px">
-      <description>
-        X coordinate of the target in the image frame.
-      </description>
-    </field>
-    <field name="Y" abbrev="y" type="uint16_t" unit="px">
-      <description>
-        Y coordinate of the target in the image frame.
-      </description>
-    </field>
-  </message>
-
   <message id="896" abbrev="GetImageCoords" name="Get Image Coordinates">
     <description>
       Message containing the x and y coordinates of object to track in image slave.
