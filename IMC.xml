@@ -7947,13 +7947,6 @@
     </field>
   </message>
 
-  <message id="894" name="Get Parameters XML" abbrev="GetParametersXml">
-    <description>
-      Request the destination system to send its parameters XML file via a
-      :ref:`ParametersXml` message.
-    </description>
-  </message>
-
   <message id="895" abbrev="SetImageCoords" name="Set Image Coordinates">
     <description>
       Message containing the x and y coordinates of object to track in remote peer.
