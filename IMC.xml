@@ -7535,16 +7535,6 @@
   </message>
 
   <!-- messages used to send maps to the Android Command and Control Unit (ACCU) -->
-  <message id="602" name="Map" abbrev="Map" source="ccu">
-    <description>This message represents a simple map that is transferred between CCU consoles (from Neptus to ACCU)</description>
-    <field name="Identifier" abbrev="id" type="plaintext">
-      <description>The id of the map</description>
-    </field>
-    <field name="Features" abbrev="features" type="message-list" message-type="MapFeature">
-      <description>A list of map features.</description>
-    </field>
-  </message>
-
   <message id="603" name="Map Feature" abbrev="MapFeature" source="ccu">
     <description>A feature to appear on the map</description>
     <field name="Identifier" abbrev="id" type="plaintext">
