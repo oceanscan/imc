@@ -7775,11 +7775,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="809" name="Session Keep-Alive" abbrev="SessionKeepAlive" source="ccu,vehicle">
-    <description>Message exchanged to prevent a session from timing out</description>
-    <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
-  </message>
-
   <message id="810" name="Session Status" abbrev="SessionStatus" source="ccu,vehicle" flags="periodic">
     <description>Message transmitted periodically to inform the state of a communication session</description>
     <field name="Session Identifier" abbrev="sessid" type="uint32_t"/>
