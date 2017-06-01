@@ -1253,32 +1253,6 @@
     </field>
   </message>
 
-  <message id="109" name="Historic Sonar Data" abbrev="HistoricSonarData" used-by="vehicle">
-    <description>
-      This message is used to store historic (transmitted afterwards) sonar data.
-    </description>
-    <field name="Altitude" abbrev="altitude" type="fp32_t" unit="m"/>
-    <field name="Width" abbrev="width" type="fp32_t" unit="m"/>
-    <field name="Length" abbrev="length" type="fp32_t" unit="m"/>
-    <field name="Bearing" abbrev="bearing" type="fp32_t"/>
-    <field name="Pixels Per Line" abbrev="pxl" type="int16_t">
-      <description>
-        The number of pixels per line as the data in 'sonar_data' may
-        correspond to more than one sequential sidescan lines.
-      </description>
-    </field>
-    <field name="Encoding" abbrev="encoding" type="uint8_t" unit="Enumerated" prefix="ENC">
-      <value abbrev="ONE_BYTE_PER_PIXEL" name="One Byte Per Pixel" id="0"/>
-      <value abbrev="PNG" name="PNG compressed image" id="1"/>
-      <value abbrev="JPEG" name="JPEG compressed image" id="2"/>
-    </field>
-    <field name="SonarData" abbrev="sonar_data" type="rawdata">
-      <description>
-        Sonar data encoded as in 'encoding'.
-      </description>
-    </field>
-  </message>
-
   <message id="110" name="Historic Event" abbrev="HistoricEvent" used-by="vehicle">
     <description>
       This message is used to store historic event log entries.
