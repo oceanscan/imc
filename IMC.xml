@@ -1001,30 +1001,6 @@
     </field>
   </message>
 
-  <message id="53" name="Dynamics Simulation Parameters" abbrev="DynamicsSimParam">
-    <description>
-      Vehicle dynamics parameters for 3DOF, 4DOF or 5DOF simulations.
-    </description>
-    <field name="Action on the Vehicle Simulation Parameters" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
-      <description>
-        Action on the vehicle simulation parameters for the formation control
-      </description>
-      <value id="0" name="Request" abbrev="REQUEST"/>
-      <value id="1" name="Set" abbrev="SET"/>
-      <value id="2" name="Report" abbrev="REPORT"/>
-    </field>
-    <field name="TAS to Longitudinal Acceleration Gain" abbrev="tas2acc_pgain" type="fp32_t">
-      <description>
-        Proportional gain from the TAS (True Airspeed) error to the longitudinal acceleration.
-      </description>
-    </field>
-    <field name="Bank to Bank Rate Gain" abbrev="bank2p_pgain" type="fp32_t">
-      <description>
-        Proportional gain from the bank angle error to the bank angular rate.
-      </description>
-    </field>
-  </message>
-
   <!-- Storage -->
   <message id="100" name="Storage Usage" abbrev="StorageUsage" source="vehicle" flags="periodic">
     <description>
