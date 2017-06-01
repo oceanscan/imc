@@ -7666,12 +7666,6 @@
   </message>
 
   <!-- Vision -->
-  <message id="702" name="Compressed Image" abbrev="CompressedImage" source="ccu, vehicle">
-    <description/>
-    <field name="Frame Id" abbrev="frameid" type="uint8_t"/>
-    <field name="Data" abbrev="data" type="rawdata"/>
-  </message>
-
   <message id="703" name="Image Transmission Settings" abbrev="ImageTxSettings" source="ccu, vehicle">
     <description/>
     <field name="Frames Per Second" abbrev="fps" type="uint8_t"/>
