@@ -6134,13 +6134,6 @@
     </field>
   </message>
 
-  <message id="490" name="Image Tracking" abbrev="ImageTracking" source="ccu">
-    <description>
-      A "ImageTracking" is a maneuver specifying a particular heading to the
-      detected object.
-    </description>
-  </message>
-
   <message id="491" name="Takeoff Maneuver" abbrev="Takeoff" source="ccu">
     <description>
       Automatic takeoff for UAVs.
