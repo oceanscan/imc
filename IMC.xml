@@ -1253,29 +1253,6 @@
     </field>
   </message>
 
-  <message id="108" name="Historic Telemetry" abbrev="HistoricTelemetry" used-by="vehicle">
-    <description>
-      This message is used to store historic (transmitted afterwards) telemetry information.
-    </description>
-    <field name="Altitude" abbrev="altitude" type="fp32_t" unit="m"/>
-    <field name="Roll" abbrev="roll" type="uint16_t">
-      <description>
-        Roll encoded as α.(65535/(2.π))
-      </description>
-    </field>
-    <field name="Pitch" abbrev="pitch" type="uint16_t">
-      <description>
-        Pitch encoded as α.(65535/(2.π))
-      </description>
-    </field>
-    <field name="Yaw" abbrev="yaw" type="uint16_t">
-      <description>
-        Yaw encoded as α.(65535/(2.π))
-      </description>
-    </field>
-    <field name="Speed" abbrev="speed" type="int16_t" unit="dm"/>
-  </message>
-
   <message id="109" name="Historic Sonar Data" abbrev="HistoricSonarData" used-by="vehicle">
     <description>
       This message is used to store historic (transmitted afterwards) sonar data.
