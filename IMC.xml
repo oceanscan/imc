@@ -5745,48 +5745,6 @@
     </field>
   </message>
 
-  <message id="476" name="Formation Parameters" abbrev="FormationParameters" source="ccu">
-    <description>
-      A "Formation" is defined by the relative positions of the vehicles
-      inside the formation, and the reference frame where this positions are defined.
-
-      The formation reference frame may be:
-      - Earth Fixed: Where the vehicles relative position do not depend on the followed path.
-      This results in all UAVs following the same path with an offset relative to each other;
-      - Path Fixed:  Where the vehicles relative position depends on the followed path,
-      changing the inter-vehicle offset direction with the path direction.
-      - Path Curved:  Where the vehicles relative position depends on the followed path,
-      changing the inter-vehicle offset direction with the path direction and direction
-      change rate.
-      An offset in the xx axis results in a distance over the curved path line.
-      An offset in the yy axis results in an offset of the vehicle path line relative to the
-      formation center path line.
-    </description>
-    <field name="Formation Name" abbrev="formation_name" type="plaintext">
-      <description>
-        Name of the formation configuration.
-      </description>
-    </field>
-    <field name="Formation Reference Frame" abbrev="reference_frame" type="uint8_t" unit="Enumerated" prefix="OP">
-      <description>
-        Formation reference frame
-      </description>
-      <value id="0" name="Earth Fixed" abbrev="EARTH_FIXED"/>
-      <value id="1" name="Path Fixed" abbrev="PATH_FIXED"/>
-      <value id="2" name="Path Curved" abbrev="PATH_CURVED"/>
-    </field>
-    <field name="Formation Participants" abbrev="participants" type="message-list" message-type="VehicleFormationParticipant">
-      <description>
-        List of formation participants.
-      </description>
-    </field>
-    <field name="Custom settings for formation" abbrev="custom" unit="TupleList" type="plaintext">
-      <description>
-        Custom settings for the formation configuration.
-      </description>
-    </field>
-  </message>
-
   <message id="477" name="Formation Plan Execution" abbrev="FormationPlanExecution" source="ccu">
     <description>
       A "Formation Plan" is a maneuver specifying a plan for a team of vehicles.
