@@ -3003,22 +3003,6 @@
     </field>
   </message>
 
-  <message id="303" name="Set Control Surface Deflection" abbrev="SetControlSurfaceDeflection" source="vehicle">
-    <description>
-      Set the deflection angle of a control surface.
-    </description>
-    <field name="Identifier" abbrev="id" type="uint8_t">
-      <description>
-        The identification number of the destination control surface.
-      </description>
-    </field>
-    <field name="Angle" abbrev="angle" type="fp32_t" unit="rad">
-      <description>
-        Actuation magnitude.
-      </description>
-    </field>
-  </message>
-
   <message id="304" name="Remote Actions Request" abbrev="RemoteActionsRequest" source="vehicle,ccu">
     <description>
       This message is used as query to request for the possible remote
