@@ -1508,23 +1508,6 @@
     <field name="Status Text" abbrev="text" type="plaintext"/>
   </message>
 
-  <message id="180" name="Group Membership State" abbrev="GroupMembershipState" source="ccu,vehicle" flags="periodic">
-    <description>
-      Group communication link assertion.
-    </description>
-    <field name="Group Name" abbrev="group_name" type="plaintext">
-      <description>
-        Name of the group of systems.
-      </description>
-    </field>
-    <field name="Communication Links Assertion" abbrev="links" type="uint32_t">
-      <description>
-        Communication link assertion for each group member.
-        One bit to assert each system communication link state.
-      </description>
-    </field>
-  </message>
-
   <message id="181" name="System Group" abbrev="SystemGroup">
     <description>
       Group of systems configuration.
