@@ -7775,24 +7775,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="806" name="Create Session" abbrev="CreateSession" source="ccu,vehicle">
-    <description>
-      Request creating a new session with this remote peer. Example
-      session sequence is shown in the following diagram.
-
-      .. figure:: ../images/session_sequence.png
-
-      :align:  center
-    </description>
-    <field name="Session Timeout" abbrev="timeout" type="uint32_t">
-      <description>
-        Session timeout, in seconds. If no messages are received from
-        the remote peer, the session will be closed after this ammount
-        of seconds have ellapsed.
-      </description>
-    </field>
-  </message>
-
   <message id="807" name="Close Session" abbrev="CloseSession" source="ccu,vehicle">
     <description>
       Request closing of an ongoing session
