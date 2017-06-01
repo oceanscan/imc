@@ -1543,45 +1543,6 @@
     </field>
   </message>
 
-
-  <message id="186" abbrev="HistoricSample" name="Historic Data Sample">
-    <field name="Original System Id" abbrev="sys_id" type="uint16_t">
-      <description>
-        The IMC identifier of the system that produced this sample.
-      </description>
-    </field>
-    <field name="Priority" abbrev="priority" type="int8_t">
-      <description>
-        The priority for this data sample. Default priority is 0. Samples with
-        higher priorities will *always* be transmitted before samples with lower
-        priorities. Samples with -127 priority will not be transmitted but just
-        logged to disk locally.
-      </description>
-    </field>
-    <field name="X offset" abbrev="x" type="int16_t" unit="m">
-      <description>
-        Northing offsets relative to base latitude / longitude expressed in the enclosing `HistoricData` message.
-      </description>
-    </field>
-    <field name="Y offset" abbrev="y" type="int16_t" unit="m">
-      <description>
-        Easting offsets relative to base latitude / longitude expressed in the enclosing `HistoricData` message.
-      </description>
-    </field>
-    <field name="Z offset" abbrev="z" type="int16_t" unit="dm">
-      <description>
-        Altitude / depth offsets relative to sea level expressed in decimeters.
-        Negative values mean depth and positive values mean altitude.
-      </description>
-    </field>
-    <field name="Time offset" abbrev="t" type="int16_t" unit="s">
-      <description>
-        Time offset in seconds relative to the base time expressed in the enclosing `HistoricData` message.
-      </description>
-    </field>
-      <field name="Data Sample" abbrev="sample" type="message"/>
-  </message>
-
   <message id="187" abbrev="HistoricDataQuery" name="Historic Data Query">
     <field name="Request Id" abbrev="req_id" type="uint16_t" />
     <field name="Request Type" abbrev="type" type="uint8_t" unit="Enumerated"  prefix="HRTYPE">
