@@ -1467,23 +1467,6 @@
     <field name="Status Text" abbrev="text" type="plaintext"/>
   </message>
 
-  <message id="182" name="Link Latency" abbrev="LinkLatency">
-    <description>
-      Communications latency between two systems.
-    </description>
-    <field name="Value" abbrev="value" type="fp32_t" unit="s" min="0">
-      <description>
-        Time taken between the communications package/message is sent
-        from the source until it arrives to the destination.
-      </description>
-    </field>
-    <field name="Communications Source System ID" abbrev="sys_src" type="uint16_t">
-      <description>
-        ID of system that was the source of the communication package.
-      </description>
-    </field>
-  </message>
-
   <message id="183" name="Extended Receive Signal Strength Information" abbrev="ExtendedRSSI" source="vehicle">
     <description>
       Measure of the RSSI by a networking device.
