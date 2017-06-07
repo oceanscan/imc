@@ -960,25 +960,6 @@
     </field>
   </message>
 
-  <message id="51" name="Leak Simulation" abbrev="LeakSimulation">
-    <description>
-      Simulate leak behavior.
-    </description>
-    <field name="Operation" abbrev="op" type="uint8_t" prefix="LSIM" unit="Enumerated">
-      <description>
-        Indicates whether leaks have been detected or not.
-      </description>
-      <value id="0" abbrev="OFF" name="Leaks Off"/>
-      <value id="1" abbrev="ON" name="Leaks On"/>
-    </field>
-    <field name="Leak Entities" abbrev="entities" type="plaintext">
-      <description>
-        Comma separated list of leak entities (empty for all leaks
-        configured).
-      </description>
-    </field>
-  </message>
-
   <message id="52" name="Underwater Acoustics Simulation" abbrev="UASimulation">
     <description>
       Underwater acoustics simulation request.
