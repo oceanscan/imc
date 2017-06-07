@@ -333,13 +333,10 @@
       <message-type abbrev="CoverArea"/>
       <message-type abbrev="FollowReference"/>
       <message-type abbrev="CommsRelay"/>
-      <message-type abbrev="FormationPlanExecution"/>
       <message-type abbrev="Dislodge"/>
       <message-type abbrev="Drop"/>
-      <message-type abbrev="Sample"/>
       <message-type abbrev="ScheduledGoto"/>
       <message-type abbrev="RowsCoverage"/>
-      <message-type abbrev="ImageTracking"/>
       <message-type abbrev="Takeoff"/>
       <message-type abbrev="Land"/>
       <message-type abbrev="AutonomousSection"/>
@@ -355,11 +352,6 @@
       <message-type abbrev="DesiredSpeed"/>
       <message-type abbrev="DesiredPath"/>
       <message-type abbrev="DesiredThrottle"/>
-    </message-group>
-
-    <message-group name="RemoteData" abbrev="RemoteData">
-      <message-type abbrev="RemoteCommand"/>
-      <message-type abbrev="HistoricSample"/>
     </message-group>
   </message-groups>
 
