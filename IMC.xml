@@ -960,28 +960,6 @@
     </field>
   </message>
 
-  <message id="52" name="Underwater Acoustics Simulation" abbrev="UASimulation">
-    <description>
-      Underwater acoustics simulation request.
-    </description>
-    <field name="Type" abbrev="type" type="uint8_t" prefix="UAS" unit="Enumerated">
-      <description>Type of request.</description>
-      <value id="0" abbrev="DATA" name="Data Transmission"/>
-      <value id="1" abbrev="PING" name="Ping"/>
-      <value id="2" abbrev="PING_REPLY" name="Ping Reply"/>
-    </field>
-    <field name="Transmission Speed" abbrev="speed" unit="bps" type="uint16_t">
-      <description>
-        Transmission speed.
-      </description>
-    </field>
-    <field name="Data" abbrev="data" type="rawdata">
-      <description>
-        Data for transmission requests.
-      </description>
-    </field>
-  </message>
-
   <!-- Storage -->
   <message id="100" name="Storage Usage" abbrev="StorageUsage" source="vehicle" flags="periodic">
     <description>
