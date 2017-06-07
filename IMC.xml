@@ -1467,24 +1467,6 @@
     <field name="Status Text" abbrev="text" type="plaintext"/>
   </message>
 
-  <message id="183" name="Extended Receive Signal Strength Information" abbrev="ExtendedRSSI" source="vehicle">
-    <description>
-      Measure of the RSSI by a networking device.
-      Indicates the gain or loss in the signal strenght due to the transmission
-      and reception equipment and the transmission medium and distance.
-    </description>
-    <field name="Value" abbrev="value" type="fp32_t">
-      <description>
-        RSSI measurement.
-      </description>
-    </field>
-    <field name="RSSI Units" abbrev="units" type="uint8_t" unit="Enumerated" enum-def="RSSIUnits">
-      <description>
-        Indicates the units used for the RSSI value.
-      </description>
-    </field>
-  </message>
-
   <message id="188" abbrev="RemoteCommand" name="Remote Command" source="ccu,vehicle">
     <description>
       Command to remote system. If a system receives a RemoteCommand and it isn't the intended recipient, then it should
