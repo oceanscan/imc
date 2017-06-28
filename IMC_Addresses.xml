@@ -13,7 +13,9 @@
 
   <!-- ASVs -->
   <address id="0x0802" name="durius-1"/>
+  <address id="0x6015" name="durius-1-aux"/>
   <address id="0x0803" name="durius-2"/>
+  <address id="0x6016" name="durius-2-aux"/>
 
   <!-- AUVs -->
   <address id="0x00D1" name="lauv-simulator-1"/>
