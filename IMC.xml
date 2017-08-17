@@ -3365,7 +3365,7 @@
     </description>
     <field name="Actions" abbrev="actions" type="plaintext" unit="TupleList">
       <description>
-        List of values for each remote action (e.g: "Propeler=0.6,PanTilt=0.75,Lights=1").
+        List of values for each remote action (e.g: "Propeller=0.6,PanTilt=0.75,Lights=1").
       </description>
     </field>
   </message>
