@@ -56,6 +56,9 @@
   <address id="0x2013" name="lauv-oceaneco-4"/>
   <address id="0x6014" name="lauv-oceaneco-4-aux"/>
 
+  <address id="0x2014" name="lauv-dmo-2"/>
+  <address id="0x6017" name="lauv-dmo-2-aux"/>
+
   <!-- Mantas (OMST) -->
   <address id="0x801b" name="manta-10"/>
   <address id="0x801e" name="manta-13"/>
@@ -73,6 +76,7 @@
   <address id="0x8075" name="manta-oceaneco-4"/>
   <address id="0x8076" name="manta-omst-2"/>
   <address id="0x8077" name="manta-ntnu-2"/>
+  <address id="0x8078" name="manta-dmo-1"/>
 
   <!-- Special IDs -->
   <address id="0xFFF0" name="broadcast"/>
