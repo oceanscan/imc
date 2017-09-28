@@ -55,9 +55,10 @@
   <address id="0x6013" name="lauv-pub-1-aux"/>
   <address id="0x2013" name="lauv-oceaneco-4"/>
   <address id="0x6014" name="lauv-oceaneco-4-aux"/>
-
   <address id="0x2014" name="lauv-dmo-2"/>
   <address id="0x6017" name="lauv-dmo-2-aux"/>
+  <address id="0x2015" name="lauv-ualg-1"/>
+  <address id="0x6018" name="lauv-ualg-1-aux"/>
 
   <!-- Mantas (OMST) -->
   <address id="0x801b" name="manta-10"/>
