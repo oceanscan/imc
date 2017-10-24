@@ -6067,7 +6067,7 @@
       <value id="0" name="Vehicle Dependent" abbrev="VDEP"/>
       <value id="1" name="Clockwise" abbrev="CLOCKW"/>
       <value id="2" name="Counter Clockwise" abbrev="CCLOCKW"/>
-      <value id="3" name="Into the wind/current" abbrev="IWINDCURR"/>
+      <value id="3" name="Into the wind/current" abbrev="Into the wind"/>
     </field>
     <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
