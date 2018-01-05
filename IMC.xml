@@ -10025,4 +10025,69 @@
       receives this message shall reply with a FrameTransportInfo message.
     </description>
   </message>
+
+  <message id="2007" name="FrameTransportTx" abbrev="FrameTransportTx" source="ccu,vehicle">
+    <field name="Source System" abbrev="sys_src" type="plaintext"/>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
+
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        The request identifier used to receive transmission updates.
+      </description>
+    </field>
+
+    <field name="Flags" abbrev="flags" type="uint32_t" unit="Bitfield" prefix="UTF">
+      <value abbrev="SYS_SRC_NATIVE" name="Native Source System" id="0x00000001">
+        <description>
+          Set if the sys_src field contains an address that is specific to
+          the destination transport instead of a canonical system name.
+        </description>
+      </value>
+
+      <value abbrev="SYS_DST_NATIVE" name="Native Destination System" id="0x00000002">
+        <description>
+          Set if the sys_dst field contains an address that is specific to
+          the destination transport instead of a canonical system name.
+        </description>
+      </value>
+
+      <value abbrev="ACK" name="Request Acknowledgement" id="0x00000004">
+        <description>
+          Request the destination system to ackowledge reception of the frame.
+        </description>
+      </value>
+
+      <value abbrev="DELAYED" name="Delayed" id="0x00000008">
+        <description>
+          Transmit message piggybacked with the next non-delayed frame
+          transmission.
+        </description>
+      </value>
+    </field>
+
+    <field name="Data" abbrev="data" type="rawdata">
+      <description>
+        Data to transmit.
+      </description>
+    </field>
+  </message>
+
+  <message id="2008" name="Frame Transport Transmit Status" abbrev="FrameTransportTxStatus">
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        The request identifier used to receive transmission updates.
+      </description>
+    </field>
+
+    <field name="Status Code" abbrev="status" type="uint8_t" unit="Enumerated" prefix="FTXS">
+      <value abbrev="OK" name="Successfull transmission" id="1"/>
+      <value abbrev="ERROR" name="Error while trying to transmit message" id="2"/>
+      <value abbrev="QUEUED" name="Message has been queued for transmission" id="3"/>
+      <value abbrev="TRANSMIT" name="Message is currently being transmitted" id="4"/>
+      <value abbrev="EXPIRED" name="Message's TTL has expired. Transmition cancelled." id="5"/>
+      <value abbrev="CANCELED" name="Transmission was canceled." id="6"/>
+    </field>
+    <field name="Status Text" abbrev="text" type="plaintext"/>
+  </message>
+
 </messages>
