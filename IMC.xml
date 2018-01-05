@@ -277,6 +277,12 @@
       <value id="1" name="Copter" abbrev="COPTER"/>
       <value id="2" name="Vtol" abbrev="VTOL"/>
     </def>
+
+    <def name="Frame Transport Type" abbrev="FrameTransportType" prefix="FTT">
+      <value id="0" name="Iridium SBD" abbrev="IRIDIUM_SBD"/>
+      <value id="1" name="GSM SMS" abbrev="GSM_SMS"/>
+      <value id="2" name="Underwater Acoustic Modem" abbrev="UAM"/>
+    </def>
   </enumerations>
 
   <bitfields>
