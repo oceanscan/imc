@@ -316,6 +316,14 @@
       <value id="0x20" name="Maximum Vertical Rate" abbrev="MAX_VRATE"/>
       <value id="0x40" name="Operation Area" abbrev="AREA"/>
     </def>
+
+    <def prefix="FTF" name="Frame Transport Capabilities" abbrev="FrameTransportCapabilities">
+      <value id="0x00000001" name="Reliable Transmission" abbrev="RELIABLE_TX">
+        <description>
+          Transmission of frames is reliable.
+        </description>
+      </value>
+    </def>
   </bitfields>
 
   <message-groups>
@@ -9986,5 +9994,35 @@
         Fluorescent Dissolved Organic Matter reading.
       </description>
     </field>
+  </message>
+
+  <message id="2005" name="Frame Transport Information" abbrev="FrameTransportInfo">
+    <field name="Transport Type" abbrev="type" type="uint8_t" unit="Enumerated" enum-def="FrameTransportType">
+      <description>
+        Transport type.
+      </description>
+    </field>
+    <field name="Maximum Transmission Unit" abbrev="mtu" type="uint32_t" unit="byte">
+      <description>
+        Maximum amount of bytes that can be transmitted in a single frame.
+      </description>
+    </field>
+    <field name="Average Bitrate" abbrev="bitrate" type="uint32_t" unit="bps">
+      <description>
+        Average bitrate.
+      </description>
+    </field>
+    <field name="Capabilities" abbrev="capabilities" type="uint32_t" unit="Bitfield" bitfield-def="FrameTransportCapabilities">
+      <description>
+        Capabilities.
+      </description>
+    </field>
+  </message>
+
+  <message id="2006" name="Query Frame Transport Information" abbrev="FrameTransportInfoQuery">
+    <description>
+      Query frame transport information. Each frame transport that
+      receives this message shall reply with a FrameTransportInfo message.
+    </description>
   </message>
 </messages>
