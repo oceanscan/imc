@@ -9981,4 +9981,24 @@
       </description>
     </field>
   </message>
+
+  <message id="2005" name="Transmit Iridium Message (Extended)" abbrev="IridiumMsgTxExtended" source="vehicle,ccu">
+    <field name="Request Identifier" abbrev="req_id" type="uint16_t">
+      <description>The request identifier used to receive transmission updates.</description>
+    </field>
+    <field name="Time to live" abbrev="ttl" type="uint16_t" unit="s">
+      <description>Time, in seconds, after which there will be no more atempts to transmit the message.</description>
+    </field>
+    <field name="Expiration Time" abbrev="expiration" type="uint32_t" unit="s">
+      <description>Time in seconds since the Unix Epoch after which the recipient shall discard the message.</description>
+    </field>
+    <field name="Destination Identifier" abbrev="destination" type="plaintext">
+      <description>The unique identifier of this message's destination (e.g. lauv-xtreme-2, manta-0).</description>
+    </field>
+    <field name="Data" abbrev="data" type="rawdata">
+      <description>
+        Message data.
+      </description>
+    </field>
+  </message>
 </messages>
