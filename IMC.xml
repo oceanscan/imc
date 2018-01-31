@@ -1394,7 +1394,8 @@
     </field>
     <field name="Services" abbrev="services" type="plaintext">
       <description>
-        Semicolon separated list of URLs. Examples of such URLs are
+        Semicolon separated list of URLs. Examples of such URLs are:
+
         - *imc+udp://192.168.106.34:6002/*
         - *dune://0.0.0.0/uid/1294925553839635/*
         - *http://192.168.106.34/dune/*.
@@ -3677,8 +3678,7 @@
       next:
 
       .. figure:: ../images/euler-lauv.png
-
-      :align:  center
+         :align:  center
 
       Euler angles
     </description>
@@ -7250,7 +7250,6 @@
         The name of the controlling agent that will be allowed to guide the vehicle during the AutononousSection.
       </description>
     </field>
-
     <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
         Custom settings for maneuver.
@@ -7259,23 +7258,23 @@
   </message>
 
   <message id="494" name="Follow Point Maneuver" abbrev="FollowPoint">
-        <description>This maneuver behaves by following a point.</description>
-        <field name="Source To Follow" abbrev="target" type="plaintext">
-          <description>
-            The identifier of the point source to follow (via RemoteSensorInfo or EstimatedState).
-          </description>
-        </field>
-        <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0">
-          <description>
-            Use this speed when travelling from afar.
-          </description>
-        </field>
-        <field name="Speed Units" abbrev="speed_units" type="uint8_t" unit="Enumerated" enum-def="SpeedUnits">
+    <description>This maneuver behaves by following a point.</description>
+    <field name="Source To Follow" abbrev="target" type="plaintext">
+      <description>
+        The identifier of the point source to follow (via RemoteSensorInfo or EstimatedState).
+      </description>
+    </field>
+    <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0">
+      <description>
+        Use this speed when travelling from afar.
+      </description>
+    </field>
+    <field name="Speed Units" abbrev="speed_units" type="uint8_t" unit="Enumerated" enum-def="SpeedUnits">
       <description>
         Indicates the units used for the maximum speed value.
       </description>
     </field>
-        <field name="Latitude WGS-84" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+    <field name="Latitude WGS-84" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
       <description>
         WGS-84 Latitude of maneuver in the map. Ignored during execution.
       </description>
@@ -7295,7 +7294,7 @@
         Units of the z reference.
       </description>
     </field>
-        <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
+    <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
         Custom settings for maneuver.
       </description>
