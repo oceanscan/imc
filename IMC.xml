@@ -9113,49 +9113,195 @@
   </message>
 
   <message id="814" name="UamTxFrame" abbrev="UamTxFrame" source="ccu,vehicle">
-    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
-    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
-    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="UTF">
-      <value abbrev="ACK" name="Acknowledgement" id="0x01"/>
-      <value abbrev="DELAYED" name="Delayed" id="0x02"/>
+    <description>
+      This message shall be sent to acoustic modem drivers to request
+      transmission of a data frame via the acoustic channel.
+    </description>
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        A sequence identifier that should be incremented for each
+        request. This number will then be used to issue transmission
+        status updates via the message UamTxStatus.
+      </description>
     </field>
-    <field name="Data" abbrev="data" type="rawdata"/>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext">
+      <description>
+        The canonical name of the destination system. If supported, the
+        special destination 'broadcast' shall be used to dispatch messages
+        to all nodes within range.
+      </description>
+    </field>
+    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="UTF">
+      <description>
+        Transmission flags.
+      </description>
+      <value abbrev="ACK" name="Acknowledgement" id="0x01">
+        <description>
+          On modems that support it, this flag shall be used to request an
+          acknowledgment of reception from the receiving node.
+        </description>
+      </value>
+      <value abbrev="DELAYED" name="Delayed" id="0x02">
+        <description>
+          On modems that support it, this flag shall be used to delay the
+          frame transmission until the modem needs to transmit control
+          data (e.g., acknowledgment of reception, etc).
+        </description>
+      </value>
+    </field>
+    <field name="Data" abbrev="data" type="rawdata">
+      <description>
+        The actual data frame to transmit. The data size shall not exceed
+        the MTU of the acoustic modem.
+      </description>
+    </field>
   </message>
 
   <message id="815" name="UamRxFrame" abbrev="UamRxFrame" source="ccu,vehicle">
-    <field name="Source System" abbrev="sys_src" type="plaintext"/>
-    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
-    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="URF">
-      <value abbrev="PROMISCUOUS" name="Promiscuous" id="0x01"/>
-      <value abbrev="DELAYED" name="Delayed" id="0x02"/>
+    <description>
+      This message shall be dispatched by acoustic modem drivers each time
+      a data frame is received over the acoustic channel.
+    </description>
+    <field name="Source System" abbrev="sys_src" type="plaintext">
+      <description>
+        The canonical name of the node that transmitted the data frame. If
+        this name cannot be resolved the string 'unknown' shall be used.
+      </description>
     </field>
-    <field name="Data" abbrev="data" type="rawdata"/>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext">
+      <description>
+        The canonical name of the destination node of the data frame. If
+        this name cannot be resolved the string 'unknown' shall be used.
+      </description>
+    </field>
+    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="URF">
+      <description>
+        Reception flags.
+      </description>
+      <value abbrev="PROMISCUOUS" name="Promiscuous" id="0x01">
+        <description>
+          The data frame was transmitted to an acoustic modem other than
+          the one the acoustic modem driver is controlling.
+        </description>
+      </value>
+      <value abbrev="DELAYED" name="Delayed" id="0x02">
+        <description>
+          The data frame was transmitted using the DELAYED flag.
+        </description>
+      </value>
+    </field>
+    <field name="Data" abbrev="data" type="rawdata">
+      <description>
+        The actual received data frame.
+      </description>
+    </field>
   </message>
 
   <message id="816" name="UamTxStatus" abbrev="UamTxStatus" source="ccu,vehicle">
-    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
-    <field name="Value" abbrev="value" type="uint8_t" unit="Enumerated" prefix="UTS">
-      <value abbrev="DONE" name="Transmission Completed" id="0"/>
-      <value abbrev="FAILED" name="Transmission Failed" id="1"/>
-      <value abbrev="CANCELED" name="Transmission Canceled" id="2"/>
-      <value abbrev="BUSY" name="Modem is busy" id="3"/>
-      <value abbrev="INV_ADDR" name="Invalid address" id="4"/>
-      <value abbrev="IP" name="In Progress" id="5"/>
-      <value abbrev="UNSUPPORTED" name="Unsupported operation" id="6"/>
-      <value abbrev="INV_SIZE" name="Invalid transmission size" id="7"/>
+    <description>
+      This message shall be used by acoustic modem drivers to send updates
+      on the transmission status of data frames.
+    </description>
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        The sequence identifier of the frame transmission request.
+      </description>
     </field>
-    <field name="Error Message" abbrev="error" type="plaintext"/>
+    <field name="Value" abbrev="value" type="uint8_t" unit="Enumerated" prefix="UTS">
+      <description>
+        Frame transmission status.
+      </description>
+      <value abbrev="DONE" name="Transmission Completed" id="0">
+        <description>
+          The frame transmission was completed.
+        </description>
+      </value>
+      <value abbrev="FAILED" name="Transmission Failed" id="1">
+        <description>
+          The frame transmission failed. The reason for the failure is given in
+          the field 'error'.
+        </description>
+      </value>
+      <value abbrev="CANCELED" name="Transmission Canceled" id="2">
+        <description>
+          The frame transmission was canceled.
+        </description>
+      </value>
+      <value abbrev="BUSY" name="Modem is busy" id="3">
+        <description>
+          The acoustic modem driver is busy and could not honor the
+          frame transmission request at the moment.
+        </description>
+      </value>
+      <value abbrev="INV_ADDR" name="Invalid address" id="4">
+        <description>
+          The canonical name of the destination node could not be
+          resolved.
+        </description>
+      </value>
+      <value abbrev="IP" name="In Progress" id="5">
+        <description>
+          The frame transmission is in progress.
+        </description>
+      </value>
+      <value abbrev="UNSUPPORTED" name="Unsupported operation" id="6">
+        <description>
+          The frame transmission request is not valid for this acoustic
+          modem driver.
+        </description>
+      </value>
+      <value abbrev="INV_SIZE" name="Invalid transmission size" id="7">
+        <description>
+          The frame transmission request exceeds the MTU of the acoustic
+          modem.
+        </description>
+      </value>
+    </field>
+    <field name="Error Message" abbrev="error" type="plaintext">
+      <description>
+        Where applicable this field shall contain a human-readable message
+        explaining the error.
+      </description>
+    </field>
   </message>
 
   <message id="817" name="UamRxRange" abbrev="UamRxRange" source="ccu,vehicle">
-    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
-    <field name="System" abbrev="sys" type="plaintext"/>
-    <field name="Value" abbrev="value" type="fp32_t"/>
+    <description>
+      Acoustic range measurement.
+    </description>
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        The sequence identifier of the ranging request.
+      </description>
+    </field>
+    <field name="System" abbrev="sys" type="plaintext">
+      <description>
+        The canonical name of the ranged system.
+      </description>
+    </field>
+    <field name="Value" abbrev="value" type="fp32_t" unit="m">
+      <description>
+        The actual range. Negative values denote invalid measurements.
+      </description>
+    </field>
   </message>
 
   <message id="818" name="UamTxRange" abbrev="UamTxRange" source="ccu,vehicle">
-    <field name="Sequence Id" abbrev="seq" type="uint16_t"/>
-    <field name="Destination System" abbrev="sys_dst" type="plaintext"/>
+    <description>
+      Request an acoustic modem driver to measure the distance to another system.
+    </description>
+    <field name="Sequence Id" abbrev="seq" type="uint16_t">
+      <description>
+        A sequence identifier that should be incremented for each
+        request. This number will then be used to issue transmission
+        status updates via the message UamTxStatus.
+      </description>
+    </field>
+    <field name="Destination System" abbrev="sys_dst" type="plaintext">
+      <description>
+        The canonical name of the target system.
+      </description>
+    </field>
     <field name="Timeout" abbrev="timeout" type="fp32_t" unit="s">
       <description>
         Maximum amount of time to wait for a reply.
