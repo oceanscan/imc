@@ -9128,7 +9128,7 @@
       <description>
         The canonical name of the destination system. If supported, the
         special destination 'broadcast' shall be used to dispatch messages
-        to all nodes within range.
+        to all nodes.
       </description>
     </field>
     <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="UTF">
