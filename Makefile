@@ -19,7 +19,7 @@ validate:
 
 doc:
 	@echo "* Generating documentation..."
-	@python doc/generate.py
+	@python doc/generate.py --commit HEAD
 
 clean:
 	@echo "* Cleaning sources..."
