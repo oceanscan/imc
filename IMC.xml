@@ -7450,27 +7450,27 @@
       <description>
 	Current state of execution.
       </description>
-      <value abbrev="WAIT" name="Waiting for first command" id="0">
+      <value abbrev="WAIT" name="Waiting for first command" id="1">
 	<description>
 	  System is waiting for first command.
 	</description>
       </value>
-      <value abbrev="MOVING" name="Moving towards received command" id="1">
+      <value abbrev="MOVING" name="Moving towards received command" id="2">
 	<description>
 	  System is moving according with command provided.
 	</description>
       </value>
-      <value abbrev="STOPPED" name="Speed command is zero" id="2">
+      <value abbrev="STOPPED" name="Speed command is zero" id="3">
 	<description>
 	  System is stopped. Speed reference is zero.
 	</description>
       </value>
-      <value abbrev="BAD_COMMAND" name="Command is out of safe bounds" id="3">
+      <value abbrev="BAD_COMMAND" name="Command is out of safe bounds" id="4">
 	<description>
 	  Command provided breaks system's physical limitations.
 	</description>
       </value>
-      <value abbrev="TIMEOUT" name="Controlling system timed out" id="4">
+      <value abbrev="TIMEOUT" name="Controlling system timed out" id="5">
 	<description>
 	  Maneuver will be terminated since timeout was exceeded.
 	</description>
