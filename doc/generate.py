@@ -119,14 +119,12 @@ for u in root.findall('units/unit'):
 text += str(tunits)
 open(os.path.join(src_dir, 'Message Format.rst'), 'a').write(text)
 
-# Messages by Group.
-groups = []
-for group in root.findall('groups/group'):
-    name = group.attrib['name']
-    min_id = int(group.attrib['min'])
-    max_id = int(group.attrib['max'])
+# Messages by Category.
+categories = [g.attrib['category'] for g in root.findall('message')]
+categories = sorted(set(categories), key=lambda x: categories.index(x))
+
+for name in categories:
     files.append(name + '.rst')
-    groups.append({'name': name, 'min': min_id, 'max': max_id})
     text = rst.h1(name + ' Messages')
     open(os.path.join(src_dir, name + '.rst'), 'w').write(text)
 
@@ -173,12 +171,9 @@ for msg in root.findall('message'):
             t.add_row(name, f.attrib['abbrev'], '*' + unit + '*', f.attrib['type'], desc, frange)
         text += str(t)
 
-    my_group = ''
-    for group in groups:
-        if id >= group['min'] and id <= group['max']:
-            my_group = group['name']
+    category = msg.attrib['category']
 
-    open(os.path.join(src_dir, my_group + '.rst'), 'a').write(text)
+    open(os.path.join(src_dir, category + '.rst'), 'a').write(text)
 
 # Master document.
 fd = open(os.path.join(src_dir, 'index.rst'), 'w')

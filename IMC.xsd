@@ -132,7 +132,7 @@
                 </xs:element>
                 <xs:element name="payload-header" type="headerType" minOccurs="0">
                     <xs:annotation>
-                        <xs:documentation>This is a placehold for helping to define fields that apear allways in the begining of the message payload.</xs:documentation>
+                        <xs:documentation>This is a placeholder for helping to define fields that appear always in the beginning of the message payload.</xs:documentation>
                     </xs:annotation>
                     <xs:unique name="uniquePayloadHeaderFieldAbbrev">
                         <xs:selector xpath="field"/>
@@ -188,12 +188,12 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="creation" use="optional">
+            <xs:attribute name="creation">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="revision" use="optional">
+            <xs:attribute name="revision">
                 <xs:simpleType>
                     <xs:restriction base="xs:string"/>
                 </xs:simpleType>
@@ -302,8 +302,8 @@
         </xs:attribute>
         <xs:attributeGroup ref="valueAttributes"/>
         <xs:attributeGroup ref="minMaxAttributes"/>
-        <xs:attribute name="note" type="xs:string" use="optional"/>
-        <xs:attribute name="prefix" type="xs:string" use="optional">
+        <xs:attribute name="note" type="xs:string"/>
+        <xs:attribute name="prefix" type="xs:string">
             <xs:annotation>
                 <xs:documentation>To be used with 'enum' or 'bitmask' elements.</xs:documentation>
             </xs:annotation>
@@ -344,7 +344,7 @@
                 <xs:documentation>This flags should be indicated in the 'flags' child element of 'messages'.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attributeGroup ref="controlAttibutes"/>
+        <xs:attributeGroup ref="controlAttributes"/>
     </xs:complexType>
     <xs:complexType name="typeType">
         <xs:sequence>
@@ -434,7 +434,7 @@
         <xs:attribute name="note" type="xs:string"/>
     </xs:complexType>
     <xs:attributeGroup name="byteOrderAttribute">
-        <xs:attribute name="byte-order" use="optional" default="LITTLE_ENDIAN">
+        <xs:attribute name="byte-order" default="LITTLE_ENDIAN">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="LITTLE_ENDIAN"/>
@@ -444,12 +444,12 @@
         </xs:attribute>
     </xs:attributeGroup>
     <xs:attributeGroup name="valueAttributes">
-        <xs:attribute name="value" use="optional">
+        <xs:attribute name="value">
             <xs:simpleType>
                 <xs:restriction base="xs:string"/>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="fixed" type="xs:boolean" use="optional" default="false">
+        <xs:attribute name="fixed" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation>This is used to indicate that the value is fixed and should not be changed.</xs:documentation>
             </xs:annotation>
@@ -462,37 +462,38 @@
             </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="subtype" type="xs:string"/>
-        <xs:attribute name="width" type="xs:int" use="optional"/>
+        <xs:attribute name="width" type="xs:int"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="minMaxAttributes">
-        <xs:attribute name="min" type="xs:string" use="optional"/>
-        <xs:attribute name="max" type="xs:string" use="optional"/>
+        <xs:attribute name="min" type="xs:string"/>
+        <xs:attribute name="max" type="xs:string"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="controlAttibutes">
-        <xs:attribute name="source" use="optional">
+    <xs:attributeGroup name="controlAttributes">
+        <xs:attribute name="source">
             <xs:annotation>
-                <xs:documentation>Use coma separeted values: ccu, vehicle, simulated.</xs:documentation>
+                <xs:documentation>Use comma separated values: ccu, vehicle, simulated.</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string"/>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="used-by" type="xs:string" use="optional"/>
-        <xs:attribute name="stable" type="xs:boolean" use="optional" default="true"/>
-        <xs:attribute name="deprecated" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="used-by" type="xs:string"/>
+        <xs:attribute name="category" type="xs:string" use="required"/>
+        <xs:attribute name="stable" type="xs:boolean" default="true"/>
+        <xs:attribute name="deprecated" type="xs:boolean" default="false"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="enumBitmaskAttibutes">
-        <xs:attribute name="prefix" type="xs:ID" use="optional">
+    <xs:attributeGroup name="enumBitmaskAttributes">
+        <xs:attribute name="prefix" type="xs:ID">
             <xs:annotation>
-                <xs:documentation>Use coma separeted values: ccu, vehicle, simulated.</xs:documentation>
+                <xs:documentation>Use coma separated values: ccu, vehicle, simulated.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
     <xs:attributeGroup name="enumBitmaskRefAttributes">
-        <xs:attribute name="enum-def" type="xs:string" use="optional" default=""/>
-        <xs:attribute name="bitfield-def" type="xs:string" use="optional" default=""/>
+        <xs:attribute name="enum-def" type="xs:string" default=""/>
+        <xs:attribute name="bitfield-def" type="xs:string" default=""/>
     </xs:attributeGroup>
     <xs:attributeGroup name="messageTypeRefAttributes">
-        <xs:attribute name="message-type" type="xs:string" use="optional" default=""/>
+        <xs:attribute name="message-type" type="xs:string" default=""/>
     </xs:attributeGroup>
 </xs:schema>
