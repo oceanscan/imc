@@ -293,24 +293,25 @@
 
   <message-groups>
     <message-group name="Maneuver" abbrev="Maneuver">
-      <message-type abbrev="Goto"/>
-      <message-type abbrev="PopUp"/>
-      <message-type abbrev="Teleoperation"/>
-      <message-type abbrev="Launch"/>
-      <message-type abbrev="Loiter"/>
-      <message-type abbrev="IdleManeuver"/>
-      <message-type abbrev="Rows"/>
-      <message-type abbrev="FollowPath"/>
-      <message-type abbrev="YoYo"/>
-      <message-type abbrev="StationKeeping"/>
-      <message-type abbrev="Elevator"/>
-      <message-type abbrev="FollowTrajectory"/>
+      <message-type abbrev="Alignment"/>
       <message-type abbrev="CustomManeuver"/>
       <message-type abbrev="CompassCalibration"/>
-      <message-type abbrev="FollowReference"/>
-      <message-type abbrev="FollowCommand"/>
       <message-type abbrev="Dislodge"/>
-      <message-type abbrev="Alignment"/>
+      <message-type abbrev="Elevator"/>
+      <message-type abbrev="FollowCommand"/>
+      <message-type abbrev="FollowPath"/>
+      <message-type abbrev="FollowReference"/>
+      <message-type abbrev="FollowTrajectory"/>
+      <message-type abbrev="Goto"/>
+      <message-type abbrev="IdleManeuver"/>
+      <message-type abbrev="Launch"/>
+      <message-type abbrev="Loiter"/>
+      <message-type abbrev="Magnetometer"/>
+      <message-type abbrev="PopUp"/>
+      <message-type abbrev="Teleoperation"/>
+      <message-type abbrev="Rows"/>
+      <message-type abbrev="StationKeeping"/>
+      <message-type abbrev="YoYo"/>
     </message-group>
 
     <message-group name="Control Command" abbrev="ControlCommand">
