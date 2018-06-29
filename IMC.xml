@@ -5100,7 +5100,7 @@
         Width of the maneuver.
       </description>
     </field>
-    <field name="Direction" abbrev="direction" type="uint8_t" unit="Enumerated" prefix="MD" max="3">
+    <field name="Direction" abbrev="direction" type="uint8_t" unit="Enumerated" prefix="MD" max="1">
       <description>
         Desired direction.
       </description>
