@@ -3273,6 +3273,9 @@
       <value id="2" name="Not Supported" abbrev="NOT_SUPPORTED"/>
       <value id="3" name="Aligning" abbrev="ALIGNING"/>
       <value id="4" name="Wrong Medium" abbrev="WRONG_MEDIUM"/>
+      <value id="5" name="Coarse Alignment" abbrev="COARSE_ALIGNMENT"/>
+      <value id="6" name="Fine Alignment" abbrev="FINE_ALIGNMENT"/>
+      <value id="7" name="System Ready" abbrev="SYSTEM_READY"/>
     </field>
   </message>
 
