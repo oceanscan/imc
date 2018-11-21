@@ -6121,22 +6121,22 @@
     </field>
     <field name="Durations" abbrev="durations" type="plaintext" unit="TupleList">
       <description>
-        Maneuver and plan duration statistics in seconds, for example: “Total=1000,Goto1=20,Rows=980”
+        Maneuver and plan duration statistics in seconds, for example: Total=1000,Goto1=20,Rows=980
       </description>
     </field>
     <field name="Distances" abbrev="distances" type="plaintext" unit="TupleList">
       <description>
-        Distances travelled in meters in each maneuver and/or total: “Total=2000,Rows=1800,Elevator=200”
+        Distances travelled in meters in each maneuver and/or total: Total=2000,Rows=1800,Elevator=200
       </description>
     </field>
     <field name="Actions" abbrev="actions" type="plaintext" unit="TupleList">
       <description>
-        List of components active by plan actions during the plan and time active in seconds: “Sidescan=100,Camera Module=150”
+        List of components active by plan actions during the plan and time active in seconds: Sidescan=100,Camera Module=150
       </description>
     </field>
     <field name="Fuel" abbrev="fuel" type="plaintext" unit="TupleList">
       <description>
-        Amount of fuel spent, in battery percentage, by different parcels (if applicable): “Total=35,Hotel=5,Payload=10,Motion=20,IMU=0”
+        Amount of fuel spent, in battery percentage, by different parcels (if applicable): Total=35,Hotel=5,Payload=10,Motion=20,IMU=0
       </description>
     </field>
   </message>
