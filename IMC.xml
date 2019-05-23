@@ -6444,6 +6444,11 @@
           modem.
         </description>
       </value>
+      <value abbrev="NOT_TRANSDUCER" name="Not transducer" id="8">
+        <description>
+          transducer not connected to the acoustic modem.
+        </description>
+      </value>
     </field>
     <field name="Error Message" abbrev="error" type="plaintext">
       <description>
