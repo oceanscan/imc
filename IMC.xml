@@ -7009,4 +7009,30 @@
       </description>
     </field>
   </message>
+
+    <message id="2005" name="Task Delegation" abbrev="TaskDelegation" source="vehicle" category="Core">
+    <description>
+      Delegate task creation and start to a given system
+    </description>
+    <field name="Target System's Name" abbrev="target_system" type="plaintext">
+      <description>
+        Which system is this delegation to.
+      </description>
+    </field>
+    <field name="Task Name" abbrev="task_name" type="plaintext">
+      <description>
+        Which task is to be created and started by the target system.
+      </description>
+    </field>
+    <field name="Task Section" abbrev="task_section" type="plaintext">
+      <description>
+        Section for the task to be created.
+      </description>
+    </field>
+    <field name="Task Parameters" abbrev="task_parameters" type="message" message-type="EntityParameters">
+      <description>
+        EntityParameters message describing the task parameters.
+      </description>
+    </field>
+  </message>
 </messages>
