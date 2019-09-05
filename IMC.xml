@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.23">
+          version="5.4.24">
 
   <description>
     This document describes the communications protocol associated
@@ -6272,6 +6272,11 @@
 
   <message id="805" name="SaveEntityParameters" abbrev="SaveEntityParameters" source="ccu,vehicle" category="Core">
     <field name="Entity Name" abbrev="name" type="plaintext"/>
+  </message>
+
+  <message id="806" name="UpdatePersistencyEntityParameter" abbrev="UpdatePersistencyEntityParameter" source="ccu,vehicle" category="Core">
+    <field name="Entity Name" abbrev="name" type="plaintext"/>
+    <field name="Parameters" abbrev="params" type="message-list" message-type="EntityParameter"/>
   </message>
 
   <message id="811" name="Push Entity Parameters" abbrev="PushEntityParameters" source="ccu,vehicle" category="Core">
