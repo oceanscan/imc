@@ -7017,7 +7017,7 @@
   </message>
 
   <message id="3001" name="QueryEntityConfig" abbrev="QueryEntityConfig" source="ccu,vehicle" category="Manager">
-    <field name="Entity Name" abbrev="name" type="plaintext"/>
+    <field name="Entity Name" abbrev="entity" type="plaintext"/>
   </message>
   <message id="3002" name="Option" abbrev="Option" source="ccu,vehicle" category="Core">
     <description>
@@ -7039,12 +7039,12 @@
     <description>
       List of section option.
     </description>
-    <field name="Entity Name" abbrev="name" type="plaintext">
+    <field name="Section Name" abbrev="section" type="plaintext">
       <description>
         Name of the section.
       </description>
     </field>
-    <field name="Options" abbrev="params" type="message-list" message-type="Option">
+    <field name="Options" abbrev="options" type="message-list" message-type="Option">
       <description>
         List of option.
       </description>
@@ -7054,7 +7054,7 @@
     <description>
       List of section.
     </description>
-    <field name="Sections" abbrev="params" type="message-list" message-type="SectionOptions">
+    <field name="Sections" abbrev="sections" type="message-list" message-type="SectionOptions">
       <description>
         List of sections.
       </description>
