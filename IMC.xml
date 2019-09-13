@@ -7054,7 +7054,7 @@
     <description>
       List of section.
     </description>
-    <field name="Sections" abbrev="sections" type="message-list" message-type="SectionOptions">
+    <field name="Sections" abbrev="sections" type="message-list" message-type="Section">
       <description>
         List of sections.
       </description>
