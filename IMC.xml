@@ -424,6 +424,7 @@
       <value id="2" name="Fault" abbrev="FAULT"/>
       <value id="3" name="Error" abbrev="ERROR"/>
       <value id="4" name="Failure" abbrev="FAILURE"/>
+      <value id="5" name="Waiting remote config" abbrev="ESTA_WAIT_REMOTE_CFG"/>
     </field>
     <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="EFLA">
       <description>
@@ -6274,11 +6275,6 @@
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
 
-  <message id="806" name="UpdatePersistencyEntityParameter" abbrev="UpdatePersistencyEntityParameter" source="ccu,vehicle" category="Core">
-    <field name="Entity Name" abbrev="name" type="plaintext"/>
-    <field name="Parameters" abbrev="params" type="message-list" message-type="EntityParameter"/>
-  </message>
-
   <message id="811" name="Push Entity Parameters" abbrev="PushEntityParameters" source="ccu,vehicle" category="Core">
     <field name="Entity Name" abbrev="name" type="plaintext"/>
   </message>
@@ -7011,6 +7007,56 @@
     <field name="Data" abbrev="data" type="rawdata">
       <description>
         Message data.
+      </description>
+    </field>
+  </message>
+
+  <message id="3000" name="UpdatePersistencyEntityParameter" abbrev="UpdatePersistencyEntityParameter" source="ccu,vehicle" category="Manager">
+    <field name="Entity Name" abbrev="name" type="plaintext"/>
+    <field name="Parameters" abbrev="params" type="message-list" message-type="EntityParameter"/>
+  </message>
+
+  <message id="3001" name="QueryEntityConfig" abbrev="QueryEntityConfig" source="ccu,vehicle" category="Manager">
+    <field name="Entity Name" abbrev="name" type="plaintext"/>
+  </message>
+  <message id="3002" name="Option" abbrev="Option" source="ccu,vehicle" category="Core">
+    <description>
+      Section option
+    </description>
+    <field name="Name" abbrev="name" type="plaintext">
+      <description>
+        Name of the option.
+      </description>
+    </field>
+    <field name="Value" abbrev="value" type="plaintext">
+      <description>
+        Current value of the option.
+      </description>
+    </field>
+  </message>
+
+  <message id="3003" name="SectionOptions" abbrev="SectionOptions" source="ccu,vehicle" category="Core">
+    <description>
+      List of section option.
+    </description>
+    <field name="Entity Name" abbrev="name" type="plaintext">
+      <description>
+        Name of the section.
+      </description>
+    </field>
+    <field name="Options" abbrev="params" type="message-list" message-type="Option">
+      <description>
+        List of option.
+      </description>
+    </field>
+  </message>
+  <message id="3004" name="EntityConfig" abbrev="EntityConfig" source="ccu,vehicle" category="Core">
+    <description>
+      List of section.
+    </description>
+    <field name="Sections" abbrev="params" type="message-list" message-type="SectionOptions">
+      <description>
+        List of sections.
       </description>
     </field>
   </message>
