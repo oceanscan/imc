@@ -7035,11 +7035,11 @@
     </field>
   </message>
 
-  <message id="3003" name="SectionOptions" abbrev="SectionOptions" source="ccu,vehicle" category="Core">
+  <message id="3003" name="Section" abbrev="Section" source="ccu,vehicle" category="Core">
     <description>
       List of section option.
     </description>
-    <field name="Section Name" abbrev="section" type="plaintext">
+    <field name="Section Name" abbrev="name" type="plaintext">
       <description>
         Name of the section.
       </description>
