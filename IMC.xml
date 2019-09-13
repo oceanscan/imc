@@ -424,7 +424,7 @@
       <value id="2" name="Fault" abbrev="FAULT"/>
       <value id="3" name="Error" abbrev="ERROR"/>
       <value id="4" name="Failure" abbrev="FAILURE"/>
-      <value id="5" name="Waiting remote config" abbrev="ESTA_WAIT_REMOTE_CFG"/>
+      <value id="5" name="Waiting remote config" abbrev="WAIT_REMOTE_CFG"/>
     </field>
     <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="EFLA">
       <description>
