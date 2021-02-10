@@ -7011,13 +7011,8 @@
     </field>
   </message>
 
-  <message id="3000" name="UpdatePersistencyEntityParameter" abbrev="UpdatePersistencyEntityParameter" source="ccu,vehicle" category="Manager">
-    <field name="Entity Name" abbrev="name" type="plaintext"/>
-    <field name="Parameters" abbrev="params" type="message-list" message-type="EntityParameter"/>
-  </message>
-
-  <message id="3001" name="QueryEntityConfig" abbrev="QueryEntityConfig" source="ccu,vehicle" category="Manager">
-    <field name="Entity Name" abbrev="entity" type="plaintext"/>
+  <message id="3001" name="QuerySectionParameters" abbrev="QuerySectionParameters" source="vehicle" category="Manager">
+    <field name="Section Name" abbrev="section" type="plaintext"/>
   </message>
   <message id="3002" name="Option" abbrev="Option" source="ccu,vehicle" category="Core">
     <description>
@@ -7034,14 +7029,13 @@
       </description>
     </field>
   </message>
-
-  <message id="3003" name="Section" abbrev="Section" source="ccu,vehicle" category="Core">
+  <message id="3003" name="SectionParameters" abbrev="SectionParameters" source="vehicle" category="Manager">
     <description>
-      List of section option.
+      List of section parameters.
     </description>
-    <field name="Section Name" abbrev="name" type="plaintext">
+    <field name="Section Name" abbrev="section" type="plaintext">
       <description>
-        Name of the section.
+        Name of the entity.
       </description>
     </field>
     <field name="Options" abbrev="options" type="message-list" message-type="Option">
@@ -7050,13 +7044,29 @@
       </description>
     </field>
   </message>
-  <message id="3004" name="EntityConfig" abbrev="EntityConfig" source="ccu,vehicle" category="Core">
+  <message id="3004" name="InternalFile" abbrev="InternalFile" source="vehicle" category="Storage">
     <description>
-      List of section.
+      File info and data
     </description>
-    <field name="Sections" abbrev="sections" type="message-list" message-type="Section">
+    <field name="File name" abbrev="name" type="plaintext">
       <description>
-        List of sections.
+        Name of the file.
+      </description>
+    </field>
+    <field name="data" abbrev="data" type="rawdata">
+      <description>
+        Data of file
+      </description>
+    </field>
+  </message>
+
+  <message id="3005" name="ExternalFile" abbrev="ExternalFile" source="vehicle" category="Storage">
+    <description>
+      File info
+    </description>
+    <field name="File Path" abbrev="path" type="plaintext">
+      <description>
+        Path of the file.
       </description>
     </field>
   </message>
