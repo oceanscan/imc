@@ -489,6 +489,76 @@
       </description>
     </field>
   </message>
+  <message id="8000" name="Typed Entity Parameter" abbrev="TypedEntityParameter" source="vehicle" category="Triton">
+    <description>
+      Entity parameter with all the data that defines an entity parameter.
+    </description>
+    <field name="Entity Name" abbrev="name" type="plaintext">
+      <description>
+        Name of the parameter.
+      </description>
+    </field>
+    <field name="Type" abbrev="type" type="uint8_t" unit="Enumerated" prefix="TYPE">
+      <value abbrev="BOOL" name="Boolean Domain" id="1"/>
+      <value abbrev="INT" name="Integer Domain" id="2"/>
+      <value abbrev="FLOAT" name="Float Domain" id="3"/>
+      <value abbrev="STRING" name="String Domain" id="4"/>
+      <value abbrev="LIST_BOOL" name="List of Booleans" id="5"/>
+      <value abbrev="LIST_INT" name="List of Integers" id="6"/>
+      <value abbrev="LIST_FLOAT" name="List of Floats" id="7"/>
+      <value abbrev="LIST_String" name="List of Strings" id="8"/>
+    </field>
+    <field name="Default" abbrev="default" type="plaintext">
+      <description>
+        Default value of the parameter.
+      </description>
+    </field>
+    <field name="Units" abbrev="units" type="plaintext">
+      <description>
+        Default value of the parameter.
+      </description>
+    </field>
+    <field name="Description" abbrev="description" type="plaintext">
+      <description>
+        Description of the parameter
+      </description>
+    </field>
+    <field name="Min Value" abbrev="min_value" type="fp32_t">
+      <description>
+        Optional. Min value of the parameter
+      </description>
+    </field>
+    <field name="Max Value" abbrev="max_value" type="fp32_t">
+      <description>
+        Optional. Max value of the parameter
+      </description>
+    </field>
+    <field name="List size" abbrev="list_size" type="uint8_t">
+      <description>
+        When the parameter is a list, list_size indicates the size of the list
+      </description>
+    </field>
+    <field name="Visibility" abbrev="visibility" type="plaintext"/>
+    <field name="Scope" abbrev="scope" type="plaintext"/>
+  </message>
+
+  <message id="8001" name="Typed Entity Parameters" abbrev="TypedEntityParameters" source="vehicle" category="Triton">
+    <description>This message can be used to query/report the entities and respective parameters in the system</description>
+    <field name="operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
+      <description>
+        Operation to perform.
+      </description>
+      <value abbrev="REQUEST" name="Request" id="0"/>
+      <value abbrev="REPLY" name="Reply" id="1"/>
+    </field>
+    <field name="request id" abbrev="request_id" type="uint32_t">
+      <description>Echoes the request_id in the request</description>
+    </field>
+    <field name="parameter" abbrev="parameter" type="message" message-type="TypedEntityParameter">
+      <description>Contains an optionally defined TypedEntityParameter as a response to a TypedEntityParamaters Request.</description>
+    </field>
+  </message>
+  
 
   <message id="5" name="Entity List" abbrev="EntityList" source="vehicle" category="Core">
     <description>
