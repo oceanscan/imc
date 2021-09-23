@@ -1505,6 +1505,13 @@
           is specified by the 'msg' field.
         </description>
       </value>
+      <value id="17" name="Forced Abort" abbrev="FORCED_ABORT">
+        <description>
+          Send an abort through the acoustic channel to the system
+          specified in the field 'system', ignoring safety checks such
+          as "transducer not connected".
+        </description>
+      </value>
     </field>
     <field name="System" abbrev="system" type="plaintext">
       <description>
@@ -6334,6 +6341,11 @@
           On modems that support it, this flag shall be used to delay the
           frame transmission until the modem needs to transmit control
           data (e.g., acknowledgment of reception, etc).
+        </description>
+      </value>
+      <value abbrev="FORCED" name="Forced" id="0x04">
+        <description>
+          Ignore safety checks such as "transducer not connected".
         </description>
       </value>
     </field>
