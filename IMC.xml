@@ -6998,7 +6998,7 @@
     <description>
       One Current measurement at a specific CellPosition.
     </description>
-    <field name="Cell Position" abbrev="CellPosition" type="fp32_t" unit="m">
+    <field name="Cell Position" abbrev="cell_position" type="fp32_t" unit="m">
       <description>
         Distance of each measurment cell along the Z-axis in the coordintate frame.
       </description>
