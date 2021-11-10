@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.24">
+          version="5.4.25">
 
   <description>
     This document describes the communications protocol associated
@@ -7142,6 +7142,25 @@
     <field name="Simulated Speed" abbrev="simulated_speed" type="int32_t" unit="m/s">
       <description>
         Doppler shift added to the sonar pulse in retransmission
+      </description>
+    </field>
+  </message>
+
+  <message id="2007" name="Validate Plan DB" abbrev="ValidatePlan" source="vehicle" category="Plan Supervision">
+    <description>
+      Use to validate plans
+    </description>
+    <field name="Type of request" abbrev="type" type="uint8_t" unit="Enumerated" prefix="VPS">
+      <description>
+        Type of request.
+      </description>
+      <value id="0" abbrev="REQ" name="Request"/>
+      <value id="1" abbrev="VALID" name="Reply -- Valid"/>
+      <value id="2" abbrev="INVALID" name="Reply -- Invalid"/>
+    </field>
+    <field name="Plan DB" abbrev="plan" type="message" message-type="PlanDB">
+      <description>
+        An inline plan specification to be used both in requests and replies.
       </description>
     </field>
   </message>
