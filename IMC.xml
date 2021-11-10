@@ -7151,7 +7151,7 @@
     <description>
       Use to validate plans
     </description>
-    <field name="Type of request" abbrev="type" type="uint8_t" unit="Enumerated" prefix="VPS">
+    <field name="Request Type" abbrev="type" type="uint8_t" unit="Enumerated" prefix="VPS">
       <description>
         Type of request.
       </description>
@@ -7185,7 +7185,7 @@
       <value abbrev="LIST_FLOAT" name="List of Floats" id="7"/>
       <value abbrev="LIST_String" name="List of Strings" id="8"/>
     </field>
-    <field name="Default" abbrev="default" type="plaintext">
+    <field name="Default Value" abbrev="default_value" type="plaintext">
       <description>
         Default value of the parameter.
       </description>
@@ -7210,9 +7210,14 @@
         Optional. Max value of the parameter
       </description>
     </field>
-    <field name="List size" abbrev="list_size" type="uint8_t">
+    <field name="List Min Size" abbrev="list_min_size" type="uint32_t">
       <description>
-        When the parameter is a list, list_size indicates the size of the list
+        When the parameter is a list, list_min_size indicates the minimum size of the list
+      </description>
+    </field>
+    <field name="List Max Size" abbrev="list_max_size" type="uint32_t">
+      <description>
+        When the parameter is a list, list_max_size indicates the maximum size of the list
       </description>
     </field>
     <field name="Visibility" abbrev="visibility" type="plaintext"/>
