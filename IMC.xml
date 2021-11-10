@@ -7183,17 +7183,72 @@
       <value abbrev="LIST_BOOL" name="List of Booleans" id="5"/>
       <value abbrev="LIST_INT" name="List of Integers" id="6"/>
       <value abbrev="LIST_FLOAT" name="List of Floats" id="7"/>
-      <value abbrev="LIST_String" name="List of Strings" id="8"/>
+      <value abbrev="LIST_STRING" name="List of Strings" id="8"/>
     </field>
     <field name="Default Value" abbrev="default_value" type="plaintext">
       <description>
         Default value of the parameter.
       </description>
     </field>
-    <field name="Units" abbrev="units" type="plaintext">
-      <description>
-        Default value of the parameter.
-      </description>
+    <field name="Units" abbrev="units" type="uint8_t" unit="Enumerated" prefix="UNITS">
+      <value abbrev="MeterPerSquareSecond" name="MeterPerSquareSecond" id="0"/>
+      <value abbrev="DecibelPerMeter" name="DecibelPerMeter" id="1"/>
+      <value abbrev="Degree" name="Degree" id="2"/>
+      <value abbrev="Radian" name="Radian" id="3"/>
+      <value abbrev="RadianPerSecond" name="RadianPerSecond" id="4"/>
+      <value abbrev="DegreePerSecond" name="DegreePerSecond" id="5"/>
+      <value abbrev="SquareMeter" name="SquareMeter" id="6"/>
+      <value abbrev="KilogramPerCubicMeter" name="KilogramPerCubicMeter" id="7"/>
+      <value abbrev="Bit" name="Bit" id="8"/>
+      <value abbrev="Byte" name="Byte" id="9"/>
+      <value abbrev="Kibibyte" name="Kibibyte" id="10"/>
+      <value abbrev="Mibibyte" name="Mibibyte" id="11"/>
+      <value abbrev="Gibibyte" name="Gibibyte" id="12"/>
+      <value abbrev="BitPerSecond" name="BitPerSecond" id="13"/>
+      <value abbrev="Pixel" name="Pixel" id="14"/>
+      <value abbrev="Meter" name="Meter" id="15"/>
+      <value abbrev="Centimeter" name="Centimeter" id="16"/>
+      <value abbrev="Kilometer" name="Kilometer" id="17"/>
+      <value abbrev="KilogramPerSecond" name="KilogramPerSecond" id="18"/>
+      <value abbrev="KilogramPerMeter" name="KilogramPerMeter" id="19"/>
+      <value abbrev="Coulomb" name="Coulomb" id="20"/>
+      <value abbrev="AmpereHour" name="AmpereHour" id="21"/>
+      <value abbrev="MilliampereHour" name="MilliampereHour" id="22"/>
+      <value abbrev="Ampere" name="Ampere" id="23"/>
+      <value abbrev="Milliampere" name="Milliampere" id="24"/>
+      <value abbrev="Volt" name="Volt" id="25"/>
+      <value abbrev="Millivolt" name="Millivolt" id="26"/>
+      <value abbrev="WattHour" name="WattHour" id="27"/>
+      <value abbrev="KillowattHour" name="KillowattHour" id="28"/>
+      <value abbrev="Newton" name="Newton" id="29"/>
+      <value abbrev="Hertz" name="Hertz" id="30"/>
+      <value abbrev="Kilohertz" name="Kilohertz" id="31"/>
+      <value abbrev="Megahertz" name="Megahertz" id="32"/>
+      <value abbrev="Decibel" name="Decibel" id="33"/>
+      <value abbrev="Gauss" name="Gauss" id="34"/>
+      <value abbrev="Gram" name="Gram" id="35"/>
+      <value abbrev="Kilogram" name="Kilogram" id="36"/>
+      <value abbrev="KilogramSquareMeter" name="KilogramSquareMeter" id="37"/>
+      <value abbrev="Watt" name="Watt" id="38"/>
+      <value abbrev="Milliwatt" name="Milliwatt" id="39"/>
+      <value abbrev="Atmosphere" name="Atmosphere" id="40"/>
+      <value abbrev="Pascal" name="Pascal" id="41"/>
+      <value abbrev="Kilopascal" name="Kilopascal" id="42"/>
+      <value abbrev="Bar" name="Bar" id="43"/>
+      <value abbrev="RPM" name="RPM" id="44"/>
+      <value abbrev="DegreeCelsius" name="DegreeCelsius" id="45"/>
+      <value abbrev="Second" name="Second" id="46"/>
+      <value abbrev="Millisecond" name="Millisecond" id="47"/>
+      <value abbrev="Microsecond" name="Microsecond" id="48"/>
+      <value abbrev="Nanosecond" name="Nanosecond" id="49"/>
+      <value abbrev="Minute" name="Minute" id="50"/>
+      <value abbrev="NetwonMeter" name="NetwonMeter" id="51"/>
+      <value abbrev="NetwonMeterPerRadian" name="NetwonMeterPerRadian" id="52"/>
+      <value abbrev="MeterPerSecond" name="MeterPerSecond" id="53"/>
+      <value abbrev="Knot" name="Knot" id="54"/>
+      <value abbrev="CubicMeter" name="CubicMeter" id="55"/>
+      <value abbrev="Percentage" name="Percentage" id="56"/>
+      <value abbrev="None" name="None" id="57"/>
     </field>
     <field name="Description" abbrev="description" type="plaintext">
       <description>
@@ -7220,8 +7275,16 @@
         When the parameter is a list, list_max_size indicates the maximum size of the list
       </description>
     </field>
-    <field name="Visibility" abbrev="visibility" type="plaintext"/>
-    <field name="Scope" abbrev="scope" type="plaintext"/>
+    <field name="Visibility" abbrev="visibility" type="uint8_t" unit="Enumerated" prefix="VISIBILITY">
+      <value abbrev="user" name="User" id="0"/>
+      <value abbrev="developer" name="Developer" id="1"/>
+    </field>
+    <field name="Scope" abbrev="scope" type="uint8_t" unit="Enumerated" prefix="SCOPE">
+      <value abbrev="global" name="Global" id="0"/>
+      <value abbrev="idle" name="Idle" id="1"/>
+      <value abbrev="plan" name="Plan" id="2"/>
+      <value abbrev="maneuver" name="Maneuver" id="3"/>
+    </field>
   </message>
 
   <message id="2009" name="Typed Entity Parameters" abbrev="TypedEntityParameters" source="vehicle" category="Triton">
@@ -7236,8 +7299,11 @@
     <field name="request id" abbrev="request_id" type="uint32_t">
       <description>Echoes the request_id in the request</description>
     </field>
-    <field name="parameter" abbrev="parameter" type="message" message-type="TypedEntityParameter">
-      <description>Contains an optionally defined TypedEntityParameter as a response to a TypedEntityParamaters Request.</description>
+    <field name="Entity Name" abbrev="entity_name" type="plaintext">
+      <description>Entity Label of the task that's replying to the request</description>
+    </field>
+    <field name="parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParameter">
+      <description>Contains an optionally defined List of TypedEntityParameter as a response to a TypedEntityParamaters Request.</description>
     </field>
   </message>
 </messages>
