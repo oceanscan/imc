@@ -175,7 +175,7 @@
       chapters.
     </description>
     <unit abbrev="A" name="Ampere"/>
-    <unit abbrev="bit" name="Bit"/>
+    <unit abbrev="bit" name="Bit"/>    
     <unit abbrev="bps" name="Bits per second"/>
     <unit abbrev="byte" name="Byte"/>
     <unit abbrev="g" name="Gravity acceleration"/>
@@ -193,6 +193,7 @@
     <unit abbrev="m" name="Meter"/>
     <unit abbrev="m/s" name="Meter per second"/>
     <unit abbrev="m/s/s" name="Meter per square second"/>
+    <unit abbrev="Mbps" name="Megabits per second"/>
     <unit abbrev="ms" name="Millisecond"/>
     <unit abbrev="µs" name="Microsecond"/>
     <unit abbrev="S/m" name="Siemens per meter"/>
@@ -7323,20 +7324,20 @@
 
   <message id="2009" name="Typed Entity Parameters" abbrev="TypedEntityParameters" source="vehicle" category="Triton">
     <description>This message can be used to query/report the entities and respective parameters in the system</description>
-    <field name="operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
+    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
       <description>
         Operation to perform.
       </description>
       <value abbrev="REQUEST" name="Request" id="0"/>
       <value abbrev="REPLY" name="Reply" id="1"/>
     </field>
-    <field name="request id" abbrev="request_id" type="uint32_t">
+    <field name="Request identitier" abbrev="request_id" type="uint32_t">
       <description>Echoes the request_id in the request</description>
     </field>
     <field name="Entity Name" abbrev="entity_name" type="plaintext">
       <description>Entity Label of the task that's replying to the request</description>
     </field>
-    <field name="parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParameter">
+    <field name="Parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParameter">
       <description>Contains an optionally defined List of TypedEntityParameter as a response to a TypedEntityParamaters Request.</description>
     </field>
   </message>
@@ -7355,4 +7356,50 @@
     </field>
   </message>
 
+  <message id="2011" name="WiFi Statistics" abbrev="WifiStats" source="ccu,vehicle" category="Networking">
+    <description>This message is used to log wifi connection statistics, heavily influenced by the stats available in ubiquiti radios.</description>
+    <field name="MAC Address" abbrev="mac" type="plaintext">
+      <description>MAC address of the associated radio.</description>      
+    </field>
+    <field name="IP Address" abbrev="ip" type="plaintext">
+      <description>Last IP address of the associated radio.</description>      
+    </field>
+    <field name="Client Connection Quality" abbrev="ccq" type="uint8_t" unit="%">
+      <description>Client Connection Quality indicator</description>
+    </field>
+    <field name="Noise Floor" abbrev="noise_floor" type="int16_t" unit="dB">
+      <description>Noise Floor (measure of the signal created from the sum of all the noise sources
+         and unwanted signals within a measurement system, where noise is defined as any signal other 
+         than the one being monitored).
+      </description>
+    </field>
+    <field name="Signal" abbrev="signal" type="int16_t" unit="dB">
+      <description>Measure of the signal of the associated radio.</description>
+    </field>
+    <field name="RSSI" abbrev="rssi" type="uint16_t">
+      <description>Received Signal Strength Indicator, in arbitraty units. The bigger the RSSI, the better 
+        the connection quality.</description>
+    </field>
+    <field name="Reception Data Rate" abbrev="rx_rate" type="int16_t" unit="Mbps">
+      <description>Reception data rate for the associated radio, -1 if not available.</description>
+    </field>
+    <field name="Transmission Data Rate" abbrev="tx_rate" type="int16_t" unit="Mbps">
+      <description>Transmission data rate for the associated radio, -1 if not available.</description>
+    </field>
+    <field name="Transmission Latency" abbrev="tx_latency" type="int16_t" unit="s">
+      <description>Latency of transmission to the associated radio, -1 if not available.</description>
+    </field>    
+    <field name="Transmission Power" abbrev="tx_power" type="int16_t" unit="s">
+      <description>Power of transmission to the associated radio, -1 if not available.</description>
+    </field>    
+    <field name="Reception Counter" abbrev="rx_count" type="int16_t" unit="byte">
+      <description>Amount of bytes already received from the associated radio, -1 if not available.</description>
+    </field>
+    <field name="Transmission Counter" abbrev="tx_count" type="int16_t" unit="byte">
+      <description>Amount of bytes already transmitted to the associated radio, -1 if not available.</description>
+    </field>
+    <field name="Distance" abbrev="distance" type="int16_t" unit="m">
+      <description>Distance for the associated radio, -1 if not available.</description>
+    </field>
+  </message>
 </messages>
