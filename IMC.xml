@@ -7392,11 +7392,11 @@
     <field name="Transmission Power" abbrev="tx_power" type="int16_t" unit="s">
       <description>Power of transmission to the associated radio, -1 if not available.</description>
     </field>    
-    <field name="Reception Counter" abbrev="rx_count" type="int16_t" unit="byte">
-      <description>Amount of bytes already received from the associated radio, -1 if not available.</description>
+    <field name="Reception Counter" abbrev="rx_count" type="uint32_t" unit="byte">
+      <description>Amount of bytes already received from the associated radio.</description>
     </field>
-    <field name="Transmission Counter" abbrev="tx_count" type="int16_t" unit="byte">
-      <description>Amount of bytes already transmitted to the associated radio, -1 if not available.</description>
+    <field name="Transmission Counter" abbrev="tx_count" type="uint32_t" unit="byte">
+      <description>Amount of bytes already transmitted to the associated radio.</description>
     </field>
     <field name="Distance" abbrev="distance" type="int16_t" unit="m">
       <description>Distance for the associated radio, -1 if not available.</description>
