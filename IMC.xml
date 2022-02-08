@@ -7402,4 +7402,20 @@
       <description>Distance for the associated radio, -1 if not available.</description>
     </field>
   </message>
+
+  <message id="2012" name="WiFi Network" abbrev="WifiNetwork" source="ccu,vehicle" category="Networking">
+    <description>This message is used to log wifi networks in the surroundings.</description>    
+    <field name="ESSID" abbrev="essid" type="plaintext">
+      <description>Extended Service Set Identifier of the network</description>      
+    </field>
+    <field name="MAC Address" abbrev="mac" type="plaintext">
+      <description>MAC Address of the network.</description>      
+    </field>
+    <field name="Signal Level" abbrev="signal" type="int16_t" unit="dB"/>
+    <field name="Noise Level" abbrev="noise" type="int16_t" unit="dB"/>
+    <field name="CCQ" abbrev="ccq" type="int8_t" unit="%"/>
+    <field name="Wifi Channel" abbrev="channel" type="uint8_t"/>
+    <field name="Wifi Frequency" abbrev="freq" type="fp32_t"/>
+    <field name="Security" abbrev="security" type="plaintext"/>
+  </message>
 </messages>
