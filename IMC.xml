@@ -5604,6 +5604,9 @@
       <value id="0x08" name="Mobile" abbrev="MOBILE">
         <description>Use mobile networks</description>
       </value>
+      <value id="0x10" name="Radio" abbrev="RADIO">
+        <description>Use Radio telemetry</description>
+      </value>
     </field>
     <field name="Period" abbrev="period" type="uint16_t" unit="s">
       <description>
