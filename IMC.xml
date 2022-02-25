@@ -275,8 +275,12 @@
       <value id="0x00000040" abbrev="YAW" name="Yaw Control"/>
       <value id="0x00000080" abbrev="SPEED" name="Speed Control"/>
       <value id="0x00000100" abbrev="YAW_RATE" name="Yaw Rate Control"/>
+      <value id="0x00000200" abbrev="VERTICAL_RATE" name="Vertical Rate Control"/>
       <value id="0x00000400" abbrev="TORQUE" name="Torque Control"/>
       <value id="0x00000800" abbrev="FORCE" name="Force Control"/>
+      <value id="0x00001000" abbrev="VELOCITY" name="Velocity Control"/>
+      <value id="0x00002000" abbrev="THROTTLE" name="Throttle Control"/>
+      <value id="0x40000000" abbrev="EXTERNAL" name="Unspecified External Control"/>
       <value id="0x80000000" abbrev="NO_OVERRIDE" name="Non-overridable control"/>
       <value id="0xFFFFFFFF" abbrev="ALL" name="All"/>
     </def>
@@ -311,7 +315,7 @@
       <message-type abbrev="PopUp"/>
       <message-type abbrev="Teleoperation"/>
       <message-type abbrev="Rows"/>
-      <message-type abbrev="StationKeeping"/>
+      <message-type abbrev="StationKeeping"/>      
       <message-type abbrev="YoYo"/>
     </message-group>
 
@@ -542,6 +546,14 @@
     <description>
       Request the destination system to restart itself.
     </description>
+    <field name="Restart Type" abbrev="type" type="uint8_t" unit="Enumerated"  prefix="RSTYPE">
+      <value abbrev="DUNE" name="Dune" id="1">
+        <description>Request a DUNE restart</description>
+      </value>
+      <value abbrev="SYSTEM" name="System" id="2">
+        <description>Request a system restart.</description>
+      </value>
+    </field>
   </message>
 
   <message id="14" name="Entity Activation State" abbrev="EntityActivationState" source="vehicle,ccu" category="Core">
@@ -1295,6 +1307,7 @@
       <value abbrev="QUEUED" name="Message has been queued for transmission" id="3"/>
       <value abbrev="TRANSMIT" name="Message is currently being transmitted" id="4"/>
       <value abbrev="EXPIRED" name="Message's TTL has expired. Transmition cancelled." id="5"/>
+      <value abbrev="EMPTY" name="No more messages to be transmitted or received." id="6"/>
     </field>
     <field name="Status Text" abbrev="text" type="plaintext"/>
   </message>
@@ -1507,7 +1520,12 @@
           is specified by the 'msg' field.
         </description>
       </value>
-      <value id="17" name="Forced Abort" abbrev="FORCED_ABORT">
+      <value id="17" name="Initiate Reverse Range" abbrev="REVERSE_RANGE">
+        <description>
+          Request sending updated position to remote system so it can be ranged.
+        </description>
+      </value>
+      <value id="18" name="Forced Abort" abbrev="FORCED_ABORT">
         <description>
           Send an abort through the acoustic channel to the system
           specified in the field 'system', ignoring safety checks such
@@ -2165,7 +2183,83 @@
   <message id="276" name="Sonar Data" abbrev="SonarData" source="vehicle" flags="periodic" category="Sensors">
     <description>
       This message contains the data acquired by a single sonar
-      measurement.
+      measurement. The following describes the format used to
+      fill the data field used in this message. (Byte order is
+      little endian.)
+
+      **Sidescan:**
+
+      +------+-------------------+-----------+
+      | Data | Name              | Type      |
+      +======+===================+===========+
+      | A    | Ranges data       |   uintX_t |
+      +------+-------------------+-----------+
+
+      .. figure:: ../images/imc_sidescan.png
+
+      * The type *uintX_t* will depend on the number of bits per unit, and it should be a multiple of 8.
+      * Furthermore, for now, 32 bits is the highest value of bits per unit supported.
+
+      **Multibeam:**
+
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | Index| Section| Name                    | Type    | Comments                                                             |
+      +======+========+=========================+=========+======================================================================+
+      | 1    | H1     | Number of points        | uint16_t| Number of data points                                                |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 2    | H2     | Start angle             | fp32_t  | In radians                                                           |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 3    | H3     | Flags                   | uint8_t | Refer to next table                                                  |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 4    | H4 ?   | Angle scale factor      | fp32_t  | Used for angle steps in radians                                      |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 5    | H5 ?   | Intensities scale factor| fp32_t  |                                                                      |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 6    | D1 ?   | Angle steps[H1]         | uint16_t| Values in radians                                                    |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 7    | D2     | Ranges[H1]              | uintX_t | Ranges data points (scale factor from common field "Scaling Factor") |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+      | 8    | D3 ?   | Intensities[H1]         | uintX_t | Intensities data points                                              |
+      +------+--------+-------------------------+---------+----------------------------------------------------------------------+
+
+      +--------+------------------+-----+
+      | Section| Flag Label       | Bit |
+      +========+==================+=====+
+      | H4.1   | Intensities flag | 0   |
+      +--------+------------------+-----+
+      | H4.2   | Angle step flag  | 1   |
+      +--------+------------------+-----+
+
+      .. figure:: ../images/imc_multibeam.png
+
+      *Notes:*
+
+      * Each angle at step *i* can be calculated is defined by:
+
+      .. code-block:: python
+
+         angle[i] = H2_start_angle + (32-bit sum of D1_angle_step[0] through D1_angle_step[i]) * H4_scaling_factor
+
+      * If bit H4.1 is not set then sections H5 and D3 won't exist.
+      * If bit H4.2 is not set then sections H4 and D1 won't exist. In case this bit is set, then the angle steps is read from field "Beam Width" from "Beam Configuration".
+      * The type *uintX_t* will depend on the number of bits per unit, and it should be a multiple of 8.
+      * Furthermore, for now, 32 bits is the highest value of bits per unit supported.
+
+      *How to write ranges and intensities data:*
+
+      .. code-block:: python
+         :linenos:
+
+
+         data_unit = (Integer) (data_value / scale_factor);
+         bytes_per_unit = bits_per_unit / 8;
+         LOOP: i = 0, until i = bytes_per_unit
+             byte[i] = (data_unit >> 8 * i) &amp; 0xFF);
+
+         write(byte);
+
+      **Common:**
+
     </description>
     <field name="Type" abbrev="type" type="uint8_t" unit="Enumerated" prefix="ST">
       <description>
@@ -2192,7 +2286,7 @@
     </field>
     <field name="Bits Per Data Point" abbrev="bits_per_point" type="uint8_t" unit="bit">
       <description>
-        Size of the data unit.
+        Size of the data unit. (Should be multiple of 8)
       </description>
     </field>
     <field name="Scaling Factor" abbrev="scale_factor" type="fp32_t">
@@ -2700,6 +2794,11 @@
         <description>
           Save the current state of the channel 'id' to persistent
           storage.
+        </description>
+      </value>
+      <value id="7" name="Restart" abbrev="RESTART">
+        <description>
+          Restart power channel specified in field 'id'.
         </description>
       </value>
     </field>
@@ -5519,35 +5618,6 @@
     </field>
   </message>
 
-  <message id="515" name="Asset Report " abbrev="AssetReport" source="ccu,vehicle" category="Vehicle Supervision">
-    <description>
-      This message is represents an Asset position / status.
-    </description>
-    <field name="Asset Name" abbrev="name" type="plaintext">
-      <description>
-        The human readable name of the asset.
-      </description>
-    </field>
-    <field name="Report Timestamp" abbrev="report_time" type="fp64_t" unit="s">
-      <description>
-        Time in seconds since epoch, for the generation instant.
-      </description>
-    </field>
-    <field name="Medium" abbrev="medium" type="uint8_t" unit="Enumerated" prefix="RM">
-      <value id="1" name="WiFi" abbrev="WIFI"/>
-      <value id="2" name="Satellite" abbrev="SATELLITE"/>
-      <value id="3" name="Acoustic" abbrev="ACOUSTIC"/>
-      <value id="4" name="SMS" abbrev="SMS"/>
-    </field>    
-    <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad" />
-    <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad" />
-    <field name="Depth" abbrev="depth" type="fp32_t" unit="m" />
-    <field name="Altitude" abbrev="alt" type="fp32_t" unit="m" />
-    <field name="Speed Over Ground" abbrev="sog" type="fp32_t" unit="m/s" />
-    <field name="Course Over Ground" abbrev="cog" type="fp32_t" unit="rad" />
-    <field name="Additional Info" abbrev="msgs" type="message-list" />
-  </message>
-
   <message id="517" name="SMS Transmission Request" abbrev="SmsRequest" category="Networking">
     <description>
       Request SMS Text sending.
@@ -5580,6 +5650,35 @@
     <field name="Information" abbrev="info" type="plaintext">
       <description> Error description.</description>
     </field>
+  </message>
+
+  <message id="525" name="Asset Report " abbrev="AssetReport" source="ccu,vehicle" category="Vehicle Supervision">
+    <description>
+      This message is represents an Asset position / status.
+    </description>
+    <field name="Asset Name" abbrev="name" type="plaintext">
+      <description>
+        The human readable name of the asset.
+      </description>
+    </field>
+    <field name="Report Timestamp" abbrev="report_time" type="fp64_t" unit="s">
+      <description>
+        Time in seconds since epoch, for the generation instant.
+      </description>
+    </field>
+    <field name="Medium" abbrev="medium" type="uint8_t" unit="Enumerated" prefix="RM">
+      <value id="1" name="WiFi" abbrev="WIFI"/>
+      <value id="2" name="Satellite" abbrev="SATELLITE"/>
+      <value id="3" name="Acoustic" abbrev="ACOUSTIC"/>
+      <value id="4" name="SMS" abbrev="SMS"/>
+    </field>    
+    <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad" />
+    <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad" />
+    <field name="Depth" abbrev="depth" type="fp32_t" unit="m" />
+    <field name="Altitude" abbrev="alt" type="fp32_t" unit="m" />
+    <field name="Speed Over Ground" abbrev="sog" type="fp32_t" unit="m/s" />
+    <field name="Course Over Ground" abbrev="cog" type="fp32_t" unit="rad" />
+    <field name="Additional Info" abbrev="msgs" type="message-list" />
   </message>
 
   <!-- Plan Supervision -->
@@ -6521,9 +6620,19 @@
           modem.
         </description>
       </value>
-      <value abbrev="NOT_TRANSDUCER" name="Not transducer" id="8">
+      <value abbrev="SENT" name="Message has been sent" id="8">
         <description>
-          transducer not connected to the acoustic modem.
+          The message has been sent out.
+        </description>
+      </value>
+      <value abbrev="DELIVERED" name="Message has been acknowledged by the destination" id="9">
+        <description>
+          Message has been acknowledged by the destination.
+        </description>
+      </value>
+      <value abbrev="NO_TRANSDUCER" name="No transducer" id="10">
+        <description>
+          Transducer not connected to the acoustic modem.
         </description>
       </value>
     </field>
@@ -7156,29 +7265,9 @@
     </field>
   </message>
 
-  <message id="2006" name="Sonar Pulse" abbrev="SonarPulse" source="vehicle" category="Sensors">
-    <description>
-      Information regarding a sent/received Sonar pulse.
-    </description>
-    <field name="Frequency" abbrev="frequency" type="int32_t" unit="Hz">
-      <description>
-        Frequency of the sent/received sonar pulse.
-      </description>
-    </field>
-    <field name="Pulse Length" abbrev="pulse_length" type="int32_t" unit="ms">
-      <description>
-        Pulse Length of the sonar pulse.
-      </description>
-    </field>
-    <field name="Time Delay" abbrev="time_delay" type="int32_t" unit="ms">
-      <description>
-        Time Delay of the sonar pulse.
-      </description>
-    </field>
-    <field name="Simulated Speed" abbrev="simulated_speed" type="int32_t" unit="m/s">
-      <description>
-        Doppler shift added to the sonar pulse in retransmission
-      </description>
+  <message id="2006" name="Total Magnetic Field Intensity" abbrev="TotalMagIntensity" source="vehicle" category="Sensors">
+    <field name="Value" abbrev="value" type="fp64_t">
+      <description>Total Magnetic Field Intensity (TMI)</description>
     </field>
   </message>
   
@@ -7201,7 +7290,7 @@
     </field>
   </message>
   
-  <message id="2008" name="Typed Entity Parameter" abbrev="TypedEntityParameter" source="vehicle" category="Triton">
+  <message id="2008" name="Typed Entity Parameter" abbrev="TypedEntityParameter" source="vehicle" category="CCU">
     <description>
       Entity parameter with all the data that defines an entity parameter.
     </description>
@@ -7225,65 +7314,10 @@
         Default value of the parameter.
       </description>
     </field>
-    <field name="Units" abbrev="units" type="uint8_t" unit="Enumerated" prefix="UNITS">
-      <value abbrev="MeterPerSquareSecond" name="MeterPerSquareSecond" id="0"/>
-      <value abbrev="DecibelPerMeter" name="DecibelPerMeter" id="1"/>
-      <value abbrev="Degree" name="Degree" id="2"/>
-      <value abbrev="Radian" name="Radian" id="3"/>
-      <value abbrev="RadianPerSecond" name="RadianPerSecond" id="4"/>
-      <value abbrev="DegreePerSecond" name="DegreePerSecond" id="5"/>
-      <value abbrev="SquareMeter" name="SquareMeter" id="6"/>
-      <value abbrev="KilogramPerCubicMeter" name="KilogramPerCubicMeter" id="7"/>
-      <value abbrev="Bit" name="Bit" id="8"/>
-      <value abbrev="Byte" name="Byte" id="9"/>
-      <value abbrev="Kibibyte" name="Kibibyte" id="10"/>
-      <value abbrev="Mibibyte" name="Mibibyte" id="11"/>
-      <value abbrev="Gibibyte" name="Gibibyte" id="12"/>
-      <value abbrev="BitPerSecond" name="BitPerSecond" id="13"/>
-      <value abbrev="Pixel" name="Pixel" id="14"/>
-      <value abbrev="Meter" name="Meter" id="15"/>
-      <value abbrev="Centimeter" name="Centimeter" id="16"/>
-      <value abbrev="Kilometer" name="Kilometer" id="17"/>
-      <value abbrev="KilogramPerSecond" name="KilogramPerSecond" id="18"/>
-      <value abbrev="KilogramPerMeter" name="KilogramPerMeter" id="19"/>
-      <value abbrev="Coulomb" name="Coulomb" id="20"/>
-      <value abbrev="AmpereHour" name="AmpereHour" id="21"/>
-      <value abbrev="MilliampereHour" name="MilliampereHour" id="22"/>
-      <value abbrev="Ampere" name="Ampere" id="23"/>
-      <value abbrev="Milliampere" name="Milliampere" id="24"/>
-      <value abbrev="Volt" name="Volt" id="25"/>
-      <value abbrev="Millivolt" name="Millivolt" id="26"/>
-      <value abbrev="WattHour" name="WattHour" id="27"/>
-      <value abbrev="KillowattHour" name="KillowattHour" id="28"/>
-      <value abbrev="Newton" name="Newton" id="29"/>
-      <value abbrev="Hertz" name="Hertz" id="30"/>
-      <value abbrev="Kilohertz" name="Kilohertz" id="31"/>
-      <value abbrev="Megahertz" name="Megahertz" id="32"/>
-      <value abbrev="Decibel" name="Decibel" id="33"/>
-      <value abbrev="Gauss" name="Gauss" id="34"/>
-      <value abbrev="Gram" name="Gram" id="35"/>
-      <value abbrev="Kilogram" name="Kilogram" id="36"/>
-      <value abbrev="KilogramSquareMeter" name="KilogramSquareMeter" id="37"/>
-      <value abbrev="Watt" name="Watt" id="38"/>
-      <value abbrev="Milliwatt" name="Milliwatt" id="39"/>
-      <value abbrev="Atmosphere" name="Atmosphere" id="40"/>
-      <value abbrev="Pascal" name="Pascal" id="41"/>
-      <value abbrev="Kilopascal" name="Kilopascal" id="42"/>
-      <value abbrev="Bar" name="Bar" id="43"/>
-      <value abbrev="RPM" name="RPM" id="44"/>
-      <value abbrev="DegreeCelsius" name="DegreeCelsius" id="45"/>
-      <value abbrev="Second" name="Second" id="46"/>
-      <value abbrev="Millisecond" name="Millisecond" id="47"/>
-      <value abbrev="Microsecond" name="Microsecond" id="48"/>
-      <value abbrev="Nanosecond" name="Nanosecond" id="49"/>
-      <value abbrev="Minute" name="Minute" id="50"/>
-      <value abbrev="NetwonMeter" name="NetwonMeter" id="51"/>
-      <value abbrev="NetwonMeterPerRadian" name="NetwonMeterPerRadian" id="52"/>
-      <value abbrev="MeterPerSecond" name="MeterPerSecond" id="53"/>
-      <value abbrev="Knot" name="Knot" id="54"/>
-      <value abbrev="CubicMeter" name="CubicMeter" id="55"/>
-      <value abbrev="Percentage" name="Percentage" id="56"/>
-      <value abbrev="None" name="None" id="57"/>
+    <field name="Units" abbrev="units" type="plaintext">
+      <description>
+        The units of the field, if applicable
+      </description>
     </field>
     <field name="Description" abbrev="description" type="plaintext">
       <description>
@@ -7322,7 +7356,7 @@
     </field>
   </message>
 
-  <message id="2009" name="Typed Entity Parameters" abbrev="TypedEntityParameters" source="vehicle" category="Triton">
+  <message id="2009" name="Typed Entity Parameters" abbrev="TypedEntityParameters" source="vehicle" category="CCU">
     <description>This message can be used to query/report the entities and respective parameters in the system</description>
     <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
       <description>
@@ -7417,5 +7451,31 @@
     <field name="Wifi Channel" abbrev="channel" type="uint8_t"/>
     <field name="Wifi Frequency" abbrev="freq" type="fp32_t"/>
     <field name="Security" abbrev="security" type="plaintext"/>
+  </message>
+
+  <message id="2013" name="Sonar Pulse" abbrev="SonarPulse" source="vehicle" category="Sensors">
+    <description>
+      Information regarding a sent/received Sonar pulse.
+    </description>
+    <field name="Frequency" abbrev="frequency" type="int32_t" unit="Hz">
+      <description>
+        Frequency of the sent/received sonar pulse.
+      </description>
+    </field>
+    <field name="Pulse Length" abbrev="pulse_length" type="int32_t" unit="ms">
+      <description>
+        Pulse Length of the sonar pulse.
+      </description>
+    </field>
+    <field name="Time Delay" abbrev="time_delay" type="int32_t" unit="ms">
+      <description>
+        Time Delay of the sonar pulse.
+      </description>
+    </field>
+    <field name="Simulated Speed" abbrev="simulated_speed" type="int32_t" unit="m/s">
+      <description>
+        Doppler shift added to the sonar pulse in retransmission
+      </description>
+    </field>
   </message>
 </messages>
