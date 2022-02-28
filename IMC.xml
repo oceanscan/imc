@@ -349,7 +349,7 @@
       <message-type abbrev="MoveTask"/>
       <message-type abbrev="TaskStatus"/>
     </message-group>
-    
+
   </message-groups>
 
   <flags>
@@ -6339,6 +6339,15 @@
   </message>
 
   <!-- CCU Messages (Internal and between CCUs) -->
+
+
+  <message id="604" name="MapPoint" abbrev="MapPoint" source="ccu" category="CCU">
+    <description>This message represents a point in the world.</description>
+    <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad"/>
+    <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad"/>
+    <field name="Altitude" abbrev="alt" type="fp32_t" unit="m"/>
+  </message>
+
   <message id="606" name="CCU Event" abbrev="CcuEvent" source="ccu" category="CCU">
     <description>
       This message is used to signal events among running CCUs.
