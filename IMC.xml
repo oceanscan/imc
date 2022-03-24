@@ -6432,6 +6432,13 @@
     <field name="Attributes" abbrev="attributes" type="message-list" message-type="TrexAttribute" />
   </message>
 
+  <!-- Maneuvering 2 -->
+  <message id="719" name="Maneuver Done" abbrev="ManeuverDone" source="ccu, vehicle" category="Maneuvering">
+    <description>
+      Notification of completion of a maneuver (optional use).
+    </description>
+  </message>
+
   <!-- Development -->
   <message id="801" name="EntityParameter" abbrev="EntityParameter" source="ccu,vehicle" category="Core">
     <description>
