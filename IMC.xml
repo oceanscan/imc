@@ -7436,15 +7436,16 @@
     </field>
     <field name="Status" abbrev="status" type="uint16_t" unit="Enumerated" prefix="ST">
       <description>Health status of the entity</description>
-      <value id="0" name="OK" abbrev="OK"></value>
-      <value id="1" name="Loading" abbrev="IN PROGRESS"></value>
-      <value id="2" name="Failed to establish connection" abbrev="CONN_ERROR"></value>
-      <value id="3" name="Failure sending data" abbrev="SEND_ERROR"></value>
-      <value id="4" name="Failure reading data" abbrev="READ_ERROR"></value>
-      <value id="5" name="Device error" abbrev="DEV_ERROR"></value>
-      <value id="6" name="Disconnect Error" abbrev="DISC_ERROR"></value>
-      <value id="7" name="Task Inactive" abbrev="INACTIVE"></value>
-      <value id="8" name="Not implemented" abbrev="NOT_IMP"></value>
+      <value id="0" name="Finished OK" abbrev="FINISHED_OK"></value>
+      <value id="1" name="Finished with errors" abbrev="FINISHED_ERROR"></value>
+      <value id="2" name="In Progress" abbrev="IN_PROGRESS"></value>
+      <value id="3" name="Not implemented" abbrev="NOT_IMP"></value>
+      <value id="4" name="Abort" abbrev="ABORT"></value>
+      <value id="5" name="Failed to establish connection" abbrev="CONN_ERROR"></value>
+      <value id="6" name="Failure sending data" abbrev="SEND_ERROR"></value>
+      <value id="7" name="Failure reading data" abbrev="READ_ERROR"></value>
+      <value id="8" name="Device error" abbrev="DEV_ERROR"></value>
+      <value id="9" name="Disconnect Error" abbrev="DISC_ERROR"></value>
     </field>
     <field name="Text" abbrev="text" type="plaintext">
       <description>Textual description of the health status</description>
