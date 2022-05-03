@@ -7232,69 +7232,19 @@
         Default value of the parameter.
       </description>
     </field>
-    <field name="Units" abbrev="units" type="uint8_t" unit="Enumerated" prefix="UNITS">
-      <value abbrev="MeterPerSquareSecond" name="MeterPerSquareSecond" id="0"/>
-      <value abbrev="DecibelPerMeter" name="DecibelPerMeter" id="1"/>
-      <value abbrev="Degree" name="Degree" id="2"/>
-      <value abbrev="Radian" name="Radian" id="3"/>
-      <value abbrev="RadianPerSecond" name="RadianPerSecond" id="4"/>
-      <value abbrev="DegreePerSecond" name="DegreePerSecond" id="5"/>
-      <value abbrev="SquareMeter" name="SquareMeter" id="6"/>
-      <value abbrev="KilogramPerCubicMeter" name="KilogramPerCubicMeter" id="7"/>
-      <value abbrev="Bit" name="Bit" id="8"/>
-      <value abbrev="Byte" name="Byte" id="9"/>
-      <value abbrev="Kibibyte" name="Kibibyte" id="10"/>
-      <value abbrev="Mibibyte" name="Mibibyte" id="11"/>
-      <value abbrev="Gibibyte" name="Gibibyte" id="12"/>
-      <value abbrev="BitPerSecond" name="BitPerSecond" id="13"/>
-      <value abbrev="Pixel" name="Pixel" id="14"/>
-      <value abbrev="Meter" name="Meter" id="15"/>
-      <value abbrev="Centimeter" name="Centimeter" id="16"/>
-      <value abbrev="Kilometer" name="Kilometer" id="17"/>
-      <value abbrev="KilogramPerSecond" name="KilogramPerSecond" id="18"/>
-      <value abbrev="KilogramPerMeter" name="KilogramPerMeter" id="19"/>
-      <value abbrev="Coulomb" name="Coulomb" id="20"/>
-      <value abbrev="AmpereHour" name="AmpereHour" id="21"/>
-      <value abbrev="MilliampereHour" name="MilliampereHour" id="22"/>
-      <value abbrev="Ampere" name="Ampere" id="23"/>
-      <value abbrev="Milliampere" name="Milliampere" id="24"/>
-      <value abbrev="Volt" name="Volt" id="25"/>
-      <value abbrev="Millivolt" name="Millivolt" id="26"/>
-      <value abbrev="WattHour" name="WattHour" id="27"/>
-      <value abbrev="KillowattHour" name="KillowattHour" id="28"/>
-      <value abbrev="Newton" name="Newton" id="29"/>
-      <value abbrev="Hertz" name="Hertz" id="30"/>
-      <value abbrev="Kilohertz" name="Kilohertz" id="31"/>
-      <value abbrev="Megahertz" name="Megahertz" id="32"/>
-      <value abbrev="Decibel" name="Decibel" id="33"/>
-      <value abbrev="Gauss" name="Gauss" id="34"/>
-      <value abbrev="Gram" name="Gram" id="35"/>
-      <value abbrev="Kilogram" name="Kilogram" id="36"/>
-      <value abbrev="KilogramSquareMeter" name="KilogramSquareMeter" id="37"/>
-      <value abbrev="Watt" name="Watt" id="38"/>
-      <value abbrev="Milliwatt" name="Milliwatt" id="39"/>
-      <value abbrev="Atmosphere" name="Atmosphere" id="40"/>
-      <value abbrev="Pascal" name="Pascal" id="41"/>
-      <value abbrev="Kilopascal" name="Kilopascal" id="42"/>
-      <value abbrev="Bar" name="Bar" id="43"/>
-      <value abbrev="RPM" name="RPM" id="44"/>
-      <value abbrev="DegreeCelsius" name="DegreeCelsius" id="45"/>
-      <value abbrev="Second" name="Second" id="46"/>
-      <value abbrev="Millisecond" name="Millisecond" id="47"/>
-      <value abbrev="Microsecond" name="Microsecond" id="48"/>
-      <value abbrev="Nanosecond" name="Nanosecond" id="49"/>
-      <value abbrev="Minute" name="Minute" id="50"/>
-      <value abbrev="NetwonMeter" name="NetwonMeter" id="51"/>
-      <value abbrev="NetwonMeterPerRadian" name="NetwonMeterPerRadian" id="52"/>
-      <value abbrev="MeterPerSecond" name="MeterPerSecond" id="53"/>
-      <value abbrev="Knot" name="Knot" id="54"/>
-      <value abbrev="CubicMeter" name="CubicMeter" id="55"/>
-      <value abbrev="Percentage" name="Percentage" id="56"/>
-      <value abbrev="None" name="None" id="57"/>
+    <field name="Units" abbrev="units" type="plaintext">
+      <description>
+        The units of the field, if applicable
+      </description>
     </field>
     <field name="Description" abbrev="description" type="plaintext">
       <description>
         Description of the parameter
+      </description>
+    </field>
+    <field name="Values" abbrev="values" type="plaintext">
+      <description>
+        Comma-separated list of possible values
       </description>
     </field>
     <field name="Min Value" abbrev="min_value" type="fp32_t">
@@ -7315,6 +7265,11 @@
     <field name="List Max Size" abbrev="list_max_size" type="uint32_t">
       <description>
         When the parameter is a list, list_max_size indicates the maximum size of the list
+      </description>
+    </field>
+    <field name="Values If List" abbrev="values_if_list" type="message-list" message-type="ValuesIf">
+      <description>
+        A list of ValuesIf messages
       </description>
     </field>
     <field name="Visibility" abbrev="visibility" type="uint8_t" unit="Enumerated" prefix="VISIBILITY">
@@ -7424,5 +7379,18 @@
     <field name="Wifi Channel" abbrev="channel" type="uint8_t"/>
     <field name="Wifi Frequency" abbrev="freq" type="fp32_t"/>
     <field name="Security" abbrev="security" type="plaintext"/>
+  </message>
+
+  <message id="2014" name="Values If" abbrev="ValuesIf" source="ccu,vehicle" category="Networking">
+    <description>This message is used to describe the ValuesIf content of a TypedEntityParameter.</description>    
+    <field name="Param" abbrev="param" type="plaintext">
+      <description>Name of parameter to compare</description>      
+    </field>
+    <field name="Value" abbrev="value" type="plaintext">
+      <description>Value to compare</description>      
+    </field>
+    <field name="Values" abbrev="values" type="plaintext">
+      <description>List of possible values if param=value</description>
+    </field>
   </message>
 </messages>
