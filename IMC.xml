@@ -7425,4 +7425,20 @@
     <field name="Wifi Frequency" abbrev="freq" type="fp32_t"/>
     <field name="Security" abbrev="security" type="plaintext"/>
   </message>
+
+  <message id="2013" name="Address List" abbrev="AddressList" source="vehicle" category="Sensors">
+    <description>
+      List containing addresses from a given section, e.g. Micromodem Addresses, GSM Numbers, etc
+    </description>
+    <field name="Section Name" abbrev="section" type="plaintext">
+      <description>
+	      Name of the address section, e.g. "Micromodem Addresses - OMST"
+      </description>
+    </field>
+    <field name="Addresses" abbrev="addresses" type="plaintext" unit="TupleList">
+      <description>
+        Example: "lauv-omst-1=10;lauv-omst-2=11"
+      </description>
+    </field>
+  </message>
 </messages>
