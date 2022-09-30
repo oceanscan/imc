@@ -7408,7 +7408,7 @@
   </message>
 
 
-  <message id="2006" name="Sonar Pulse" abbrev="SonarPulse" source="vehicle" category="Sensors">
+  <message id="2013" name="Sonar Pulse" abbrev="SonarPulse" source="vehicle" category="Sensors">
     <description>
       Information regarding a sent/received Sonar pulse.
     </description>
