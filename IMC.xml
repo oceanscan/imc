@@ -2796,6 +2796,15 @@
     </field>
   </message>
 
+  <message id="317" name="Set Servo Power" abbrev="SetServoPower" source="Vehicle" category="Actuation">
+    <description>Enable or disable current to the servos. This can be used to prevent damage to the servos</description>
+    <field name="Enable" abbrev="enable" type="uint8_t" prefix="SSP" unit="Enumerated">
+      <value id="0" abbrev="DISABLE" name="Disable"/>
+      <value id="1" abbrev="ENABLE"  name="Enable"/>
+    </field>
+    <field name="Servo ID" abbrev="servo" type="uint8_t"></field>
+  </message>
+
   <!-- Navigation -->
   <message id="350" name="Estimated State" abbrev="EstimatedState" source="vehicle" flags="periodic" category="Navigation">
     <description>
