@@ -715,6 +715,7 @@
   <message id="20" name="Message List" abbrev="MsgList" category="Core">
     <field name="Messages" abbrev="msgs" type="message-list"/>
   </message>
+  
 
   <!-- Simulation -->
   <message id="50" name="Simulated State" abbrev="SimulatedState" source="vehicle" category="Simulation">
@@ -7430,6 +7431,17 @@
     <field name="Simulated Speed" abbrev="simulated_speed" type="int32_t" unit="m/s">
       <description>
         Doppler shift added to the sonar pulse in retransmission
+      </description>
+    </field>
+  </message>
+
+  <message id="2014" name="Memory Usage" abbrev="MemUsage" source="vehicle" flags="periodic" category="Core">
+    <description>
+      Report of memory usage.
+    </description>
+    <field name="Value" abbrev="value" type="uint16_t" unit="MiB">
+      <description>
+        The memory usage, in MiB.
       </description>
     </field>
   </message>
