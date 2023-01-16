@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.25">
+          version="5.4.27">
 
   <description>
     This document describes the communications protocol associated
@@ -7235,7 +7235,7 @@
         Description of the parameter
       </description>
     </field>
-    <field name="Values" abbrev="values" type="plaintext">
+    <field name="Values List" abbrev="values_list" type="plaintext">
       <description>
         Comma-separated list of possible values
       </description>
@@ -7408,7 +7408,7 @@
     <field name="Value" abbrev="value" type="plaintext">
       <description>Value to compare</description>      
     </field>
-    <field name="Values" abbrev="values" type="plaintext">
+    <field name="Values List" abbrev="values_list" type="plaintext">
       <description>List of possible values if param=value</description>
     </field>
   </message>
