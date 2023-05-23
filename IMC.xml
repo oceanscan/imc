@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.29">
+          version="5.4.30">
 
   <description>
     This document describes the communications protocol associated
@@ -2800,14 +2800,30 @@
     </field>
   </message>
 
-  <message id="315" name="Charging State" abbrev="ChargingState" category="Sensors" source="Vehicle">
-    <description>Reports if the vehicle is charging or not</description>
-    <field name="Is Charging" abbrev="is_charging" type="uint8_t" unit="Enumerated" prefix="CSTATE">
-      <value id="0" name="Not Charging" abbrev="NOT_CHARGING"></value>
-      <value id="1" name="Is Charging" abbrev="IS_CHARGING"></value>
+  <message id="315" name="Set PWM" abbrev="SetPWM" source="vehicle" category="Actuation">
+    <description>
+      Set properties of a PWM signal channel.
+    </description>
+    <field name="Channel Identifier" abbrev="id" type="uint8_t">
+      <description>
+        PWM channel identifier.
+      </description>
+    </field>
+    <field name="Period" abbrev="period" type="uint32_t" unit="µs">
+      <description>
+        The total period of the PWM signal (sum of active and inactive
+        time of the PWM).
+      </description>
+    </field>
+    <field name="Duty Cycle" abbrev="duty_cycle" type="uint32_t" unit="µs">
+      <description>
+        The active time of the PWM signal. The duty cycle value must
+        be less or equal to the period.
+      </description>
     </field>
   </message>
 
+  
   <!-- Navigation -->
   <message id="350" name="Estimated State" abbrev="EstimatedState" source="vehicle" flags="periodic" category="Navigation">
     <description>
@@ -7303,6 +7319,15 @@
       </description>
     </field>
   </message>
+
+  <message id="2014" name="Charging State" abbrev="ChargingState" category="Sensors" source="Vehicle">
+    <description>Reports if the vehicle is charging or not</description>
+    <field name="Is Charging" abbrev="is_charging" type="uint8_t" unit="Enumerated" prefix="CSTATE">
+      <value id="0" name="Not Charging" abbrev="NOT_CHARGING"></value>
+      <value id="1" name="Is Charging" abbrev="IS_CHARGING"></value>
+    </field>
+  </message>
+
   
   <message id="2015" name="HealthCheck" abbrev="HealthCheck" source="ccu" category="Sensors">
     <description>Used to request/reply a health check of a system</description>
