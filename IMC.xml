@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.30">
+          version="5.4.31">
 
   <description>
     This document describes the communications protocol associated
@@ -7473,6 +7473,42 @@
     </field>
     <field name="Values List" abbrev="values_list" type="plaintext">
       <description>List of possible values if param=value</description>
+    </field>
+  </message>
+
+  <message id="2019" name="Mechanical Sonar Data" abbrev="MechSonarData" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      This message contains the data acquired by a single sonar measurement.
+    </description>
+    <field name="Frequency" abbrev="frequency" type="uint32_t" unit="Hz">
+      <description>
+        Operating frequency.
+      </description>
+    </field>
+    <field name="Bearing" abbrev="bearing" type="fp32_t" unit="rad">
+      <description>
+        Bearing of the current ping
+      </description>
+    </field>
+    <field name="Minimum Range" abbrev="min_range" type="uint16_t" unit="m">
+      <description>
+        Minimum range.
+      </description>
+    </field>
+    <field name="Maximum Range" abbrev="max_range" type="uint16_t" unit="m">
+      <description>
+        Maximum range.
+      </description>
+    </field>
+    <field name="Bits Per Data Point" abbrev="bits_per_point" type="uint8_t" unit="bit">
+      <description>
+        Size of the data unit. (Should be multiple of 8)
+      </description>
+    </field>
+    <field name="Data" abbrev="data" type="rawdata">
+      <description>
+        Data acquired by the measurement.
+      </description>
     </field>
   </message>
 </messages>
