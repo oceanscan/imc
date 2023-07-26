@@ -7476,36 +7476,16 @@
     </field>
   </message>
 
-  <message id="2019" name="Mechanical Sonar Data" abbrev="MechSonarData" source="vehicle" flags="periodic" category="Sensors">
+  <message id="2019" name="Directional Sonar Data" abbrev="DirSonarData" source="vehicle" flags="periodic" category="Sensors">
     <description>
-      This message contains the data acquired by a single sonar measurement.
+      This message contains the data acquired by a single sonar measurement whose angle can be controlled.
     </description>
-    <field name="Frequency" abbrev="frequency" type="uint32_t" unit="Hz">
+    <field name="Relative Pose" abbrev="pose" type="message" message-type="DeviceState">
       <description>
-        Operating frequency.
+        Pose of this sonar measurement, in relation to the body frame.
       </description>
     </field>
-    <field name="Bearing" abbrev="bearing" type="fp32_t" unit="rad">
-      <description>
-        Bearing of the current ping
-      </description>
-    </field>
-    <field name="Minimum Range" abbrev="min_range" type="uint16_t" unit="m">
-      <description>
-        Minimum range.
-      </description>
-    </field>
-    <field name="Maximum Range" abbrev="max_range" type="uint16_t" unit="m">
-      <description>
-        Maximum range.
-      </description>
-    </field>
-    <field name="Bits Per Data Point" abbrev="bits_per_point" type="uint8_t" unit="bit">
-      <description>
-        Size of the data unit. (Should be multiple of 8)
-      </description>
-    </field>
-    <field name="Data" abbrev="data" type="rawdata">
+    <field name="Measurement" abbrev="measurement" type="message" message-type="SonarData">
       <description>
         Data acquired by the measurement.
       </description>
