@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.4.30">
+          version="5.4.32">
 
   <description>
     This document describes the communications protocol associated
@@ -2186,6 +2186,7 @@
       <value id="0" name="Sidescan" abbrev="SIDESCAN"/>
       <value id="1" name="Echo Sounder" abbrev="ECHOSOUNDER"/>
       <value id="2" name="Multibeam" abbrev="MULTIBEAM"/>
+      <value id="3" name="Pencil Beam" abbrev="PENCILBEAM"/>
     </field>
     <field name="Frequency" abbrev="frequency" type="uint32_t" unit="Hz">
       <description>
@@ -7473,6 +7474,22 @@
     </field>
     <field name="Values List" abbrev="values_list" type="plaintext">
       <description>List of possible values if param=value</description>
+    </field>
+  </message>
+
+  <message id="2019" name="Directional Sonar Data" abbrev="DirSonarData" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      This message contains the data acquired by a single sonar measurement whose angle can be controlled.
+    </description>
+    <field name="Relative Pose" abbrev="pose" type="message" message-type="DeviceState">
+      <description>
+        Pose of this sonar measurement, in relation to the body frame.
+      </description>
+    </field>
+    <field name="Measurement" abbrev="measurement" type="message" message-type="SonarData">
+      <description>
+        Data acquired by the measurement.
+      </description>
     </field>
   </message>
 </messages>
