@@ -456,27 +456,6 @@
     </field>
   </footer>
 
-  <categories>
-    <category name="Core"/>
-    <category name="Acoustic Communication"/>
-    <category name="Acoustic Networking"/>
-    <category name="Actuation"/>
-    <category name="Autonomy"/>
-    <category name="CCU"/>
-    <category name="Development"/>
-    <category name="Guidance"/>
-    <category name="Maneuvering"/>
-    <category name="Navigation"/>
-    <category name="Networking"/>
-    <category name="Plan Supervision"/>
-    <category name="Sensors"/>
-    <category name="Simulation"/>
-    <category name="Storage"/>
-    <category name="Vehicle Supervision"/>
-    <category name="Vision"/>
-    <category name="Custom"/>
-    <category name="External"/>
-  </categories>
 
   <!-- Core -->
   <message id="1" name="Entity State" abbrev="EntityState" source="vehicle" category="Core">
