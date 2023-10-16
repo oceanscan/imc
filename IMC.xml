@@ -2102,6 +2102,11 @@
         Defines if LBL Beacon is fixed or mobile. If set to 0, LBL Beacon is fixed. Otherwise, it's the time, in seconds, that the current position is considered valid.
       </description>
     </field>
+    <field name="Timestamp" abbrev="htime" type="fp64_t" unit="s">
+      <description>
+        Timestamp (Epoch time).
+      </description>
+    </field>
     <field name="Ground Velocity X (North)" abbrev="vx" type="fp32_t" unit="m/s">
       <description>
         For mobile LBL Beacons. Ground Velocity xx axis velocity component.
