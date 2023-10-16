@@ -2102,19 +2102,19 @@
         Defines if LBL Beacon is fixed or mobile. If set to 0, LBL Beacon is fixed. Otherwise, it's the time, in seconds, that the current position is considered valid.
       </description>
     </field>
-    <field name="Body-Fixed xx Velocity" abbrev="u" type="fp32_t" unit="m/s">
+    <field name="Ground Velocity X (North)" abbrev="vx" type="fp32_t" unit="m/s">
       <description>
-        For mobile LBL Beacons. Current body-fixed frame xx axis velocity component.
+        For mobile LBL Beacons. Ground Velocity xx axis velocity component.
       </description>
     </field>
-    <field name="Body-Fixed yy Velocity" abbrev="v" type="fp32_t" unit="m/s">
+    <field name="Ground Velocity Y (East)" abbrev="vy" type="fp32_t" unit="m/s">
       <description>
-        For mobile LBL Beacons. Current body-fixed frame yy axis velocity component.
+        For mobile LBL Beacons. Ground Velocity yy axis velocity component.
       </description>
     </field>
-    <field name="Body-Fixed zz Velocity" abbrev="w" type="fp32_t" unit="m/s">
+    <field name="Ground Velocity Z (Down)" abbrev="vz" type="fp32_t" unit="m/s">
       <description>
-        For mobile LBL Beacons. Current body-fixed frame zz axis velocity component.
+        For mobile LBL Beacons. Ground Velocity zz axis velocity component.
       </description>
     </field>
   </message>
