@@ -2097,14 +2097,16 @@
         Transponder delay.
       </description>
     </field>
-    <field name="Time to live" abbrev="ttl" type="uint16_t" unit="s">
+    <field name="Configuration Timestamp" abbrev="ctime" type="fp64_t" unit="s">
       <description>
-        Defines if LBL Beacon is fixed or mobile. If set to 0, LBL Beacon is fixed. Otherwise, it's the time, in seconds, that the current position is considered valid.
+        Epoch time of this beacon configuration. For *ttl* seconds after this instant, position is estimated 
+        to vary according to *vx*, *vy* and *vz*.
       </description>
     </field>
-    <field name="Timestamp" abbrev="htime" type="fp64_t" unit="s">
+    <field name="Time to live" abbrev="ttl" type="uint16_t" unit="s">
       <description>
-        Timestamp (Epoch time).
+        Defines if LBL Beacon is fixed or mobile. If set to 0, LBL Beacon is fixed. Otherwise, it's the time, 
+        in seconds, that the current position is considered valid.
       </description>
     </field>
     <field name="Ground Velocity X (North)" abbrev="vx" type="fp32_t" unit="m/s">
