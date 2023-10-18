@@ -2140,7 +2140,12 @@
       <value abbrev="GET_CFG" name="Retrieve LBL Configuration" id="1">
         <description>Request the vehicle to send its current beacons configuration.</description>
       </value>
-      <value abbrev="CUR_CFG" name="Reply to a GET command" id="2"></value>
+      <value abbrev="CUR_CFG" name="Reply to a GET command" id="2">
+        <description>Reply from vehicle with its current beacons configuration.</description>
+      </value>
+      <value abbrev="POS_CFG" name="Update LBL Configuration (beacons position)" id="3">
+        <description>Update the beacons position aboard the vehicle.</description>
+      </value>
     </field>
     <field name="Beacons" abbrev="beacons" type="message-list" message-type="LblBeaconExtended">
       <description>
