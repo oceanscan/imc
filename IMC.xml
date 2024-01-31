@@ -11696,6 +11696,7 @@
       <description>List of possible values if param=value</description>
     </field>
   </message>
+  
   <message id="2019" name="Directional Sonar Data" abbrev="DirSonarData" source="vehicle" flags="periodic" category="Sensors">
     <description>
       This message contains the data acquired by a single sonar measurement whose angle can be controlled.
@@ -11712,7 +11713,7 @@
     </field>
   </message>
 
-  <message id="2019" name="Maneuver Resumed" abbrev="ManeuverResumed" source="vehicle" category="Maneuvering">
+  <message id="2020" name="Maneuver Resumed" abbrev="ManeuverResumed" source="vehicle" category="Maneuvering">
     <description>
       This message is sent when a maneuver is stoped, describing how it could be resumed to completion later.
     </description>
