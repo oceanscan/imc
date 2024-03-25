@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.1">
+          version="5.5.4.2">
 
   <description>
     This document describes the communications protocol associated
@@ -11344,6 +11344,17 @@
       <description>
         Autocorrelation of returning ping for the beam.
       </description>
+    </field>
+  </message>
+
+  <message id="1102" name="File Sample Event" abbrev="FileSampleEvent" source="vehicle" category="Vision">
+    <description>Notification that a file has been created</description>
+    <field name="Absolute File Path" abbrev="filename" type="plaintext"/>
+    <field name="File type" abbrev="fstype" type="uint8_t" unit="Enumerated" prefix="TYPE">
+      <value abbrev="FSTYPE_IMAGE" name="Image file" id="0"/>
+      <value abbrev="FSTYPE_AUDIO" name="Sound file" id="1"/>
+      <value abbrev="FSTYPE_SONAR" name="Sonar file" id="2"/>
+      <value abbrev="FSTYPE_OTHER" name="Other" id="255"/>
     </field>
   </message>
 
