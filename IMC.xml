@@ -11358,6 +11358,11 @@
     </field>
   </message>
 
+  <message id="1103" name="Query GSM Credit" abbrev="QueryGsmCredit" category="Networking">
+    <description>Request to check gsm credit</description>
+    <field name="Request ID" abbrev="req_id" type="uint16_t"></field>
+  </message>
+
   <message id="2000" name="GPIO State" abbrev="GpioState" source="vehicle" category="Actuation">
     <description>
       Current state of a GPIO.
