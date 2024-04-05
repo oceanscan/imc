@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.2">
+          version="5.5.4.3">
 
   <description>
     This document describes the communications protocol associated
@@ -11347,14 +11347,23 @@
     </field>
   </message>
 
-  <message id="1102" name="File Sample Event" abbrev="FileSampleEvent" source="vehicle" category="Vision">
-    <description>Notification that a file has been created</description>
-    <field name="Absolute File Path" abbrev="filename" type="plaintext"/>
-    <field name="File type" abbrev="fstype" type="uint8_t" unit="Enumerated" prefix="TYPE">
-      <value abbrev="FSTYPE_IMAGE" name="Image file" id="0"/>
-      <value abbrev="FSTYPE_AUDIO" name="Sound file" id="1"/>
-      <value abbrev="FSTYPE_SONAR" name="Sonar file" id="2"/>
-      <value abbrev="FSTYPE_OTHER" name="Other" id="255"/>
+  <message id="1102" name="File Sample Event" abbrev="FileSampleEvent" source="vehicle" category="Networking">
+    <description>
+      Report a sample stored to disk.
+    </description>
+    <field name="File Type" abbrev="fstype" type="uint8_t" unit="Enumerated" prefix="FSTYPE">
+      <description>
+        Type of event.
+      </description>
+      <value id="0" name="Image" abbrev="IMAGE"/>
+      <value id="1" name="Audio" abbrev="AUDIO"/>
+      <value id="2" name="Sonar" abbrev="SONAR"/>
+      <value id="255" name="Other" abbrev="OTHER"/>
+    </field>
+    <field name="File name" abbrev="filename" type="plaintext">
+      <description>
+        File name this event is related to.
+      </description>
     </field>
   </message>
 
