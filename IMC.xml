@@ -11376,6 +11376,7 @@
     <description>Signals that an object has been detected by any of the vehicle's sensors</description>
     <field name="Original Filepath" abbrev="original_filepath" type="plaintext"/>
     <field name="Resized Filepath" abbrev="resized_filepath" type="plaintext"/>
+    <field name="Classification Prediction" abbrev="class_prediction" type="plaintext"/>
     <field name="Confidence Value" abbrev="confidence" type="uint8_t" max="100"/>
     <field name="File Type" abbrev="fstype" type="uint8_t" unit="Enumerated" prefix="FSTYPE">
       <description>
