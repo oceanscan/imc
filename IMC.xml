@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.4">
+          version="5.5.4-BDI">
 
   <description>
     This document describes the communications protocol associated
@@ -175,6 +175,7 @@
       chapters.
     </description>
     <unit abbrev="A" name="Ampere"/>
+    <unit abbrev="Ah" name="Ampere Hour"/>
     <unit abbrev="bit" name="Bit"/>
     <unit abbrev="bps" name="Bits per second"/>
     <unit abbrev="byte" name="Byte"/>
@@ -197,6 +198,7 @@
     <unit abbrev="m/s" name="Meter per second"/>
     <unit abbrev="m/s/s" name="Meter per square second"/>
     <unit abbrev="Mbps" name="Megabits per second"/>
+    <unit abbrev="mAh" name="Milliampere Hour"/>
     <unit abbrev="ms" name="Millisecond"/>
     <unit abbrev="µs" name="Microsecond"/>
     <unit abbrev="ns" name="Nanosecond"/>
@@ -11809,6 +11811,46 @@
       <description>
         Description of the entity.
       </description>
+    </field>
+  </message>
+
+  <message id="2022" name="Battery Debug Info" abbrev="BDI" source="vehicle" flags="periodic" category="Sensors">
+    <description>Used to debug the state of a BMS</description>
+    <field name="State of Health" abbrev="soh" type="int16_t" unit="%">
+      <description>State of health as a percentage (0-100%)</description>
+    </field>
+    <field name="Is Fully Discharged" abbrev="is_fd" type="uint8_t" unit="Enumerated" prefix="DSTATE">
+      <description>Indicates if the battery is fully discharged</description>
+      <value id="0" name="Not Fully Discharged" abbrev="NOT_FULLY_DISCHARGED"/>
+      <value id="1" name="Fully Discharged" abbrev="FULLY_DISCHARGED"/>
+      <value id="2" name="Unknown" abbrev="UNKNOWN"/>
+    </field>
+    <field name="Is Fully Charged" abbrev="is_fc" type="uint8_t" unit="Enumerated" prefix="CSTATE">
+      <description>Indicates if the battery is fully charged</description>
+      <value id="0" name="Not Fully Charged" abbrev="NOT_FULLY_CHARGED"/>
+      <value id="1" name="Fully Charged" abbrev="FULLY_CHARGED"/>
+      <value id="2" name="Unknown" abbrev="UNKNOWN"/>
+    </field>
+    <field name="REST" abbrev="rest" type="uint8_t" unit="Enumerated" prefix="REST_STATE">
+      <description>Indicates if the REST flag of the BMS is set</description>
+      <value id="0" name="REST_NOT_SET" abbrev="REST_NOT_SET"/>
+      <value id="1" name="REST_SET" abbrev="REST_SET"/>
+      <value id="2" name="Unknown" abbrev="UNKNOWN"/>
+    </field>
+    <field name="VDQ" abbrev="vdq" type="uint8_t" unit="Enumerated" prefix="VDQ_STATE">
+      <description>Indicates if VDQ flag of the BMS is set</description>
+      <value id="0" name="VDQ_NOT_SET" abbrev="VDQ_NOT_SET"/>
+      <value id="1" name="VDQ_SET" abbrev="VDQ_SET"/>
+      <value id="2" name="Unknown" abbrev="UNKNOWN"/>
+    </field>
+    <field name="Cycle Count" abbrev="cycle_count" type="int32_t">
+      <description>Number of discharge cycles the battery has experienced.</description>
+    </field>
+     <field name="Full Charge Capacity" abbrev="full_capacity" type="int32_t" unit="mAh">
+      <description>The full charge capacity under system-use conditions.</description>
+    </field>
+    <field name="Remaining Capacity" abbrev="rem_capacity" type="int32_t" unit="mAh">
+      <description>The predicted remaining battery capacity</description>
     </field>
   </message>
 </messages>
