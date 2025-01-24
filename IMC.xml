@@ -1375,15 +1375,16 @@
       <value id="4" name="Redox" abbrev="REDOX"/>
       <value id="5" name="Chlorophyll" abbrev="CHLOROPHYLL"/>
       <value id="6" name="Turbidity" abbrev="TURBIDITY"/>
+      <value id="7" name="Current Velocity" abbrev="CURRENT_VELOCITY"/>
     </field>
     <field name="Number of Samples" abbrev="numSamples" type="uint8_t"/>
     <field name="Samples" abbrev="samples" type="message-list" message-type="ProfileSample"/>
-    <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad">
+    <field name="Latitude" abbrev="lat" type="fp64_t" unit="°">
       <description>
         Latitude where the profile was calculated.
       </description>
     </field>
-    <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad" >
+    <field name="Longitude" abbrev="lon" type="fp64_t" unit="°" >
     	<description>
         	Longitude where the profile was calculated.
         </description>
@@ -2473,7 +2474,8 @@
       <value id="100" abbrev="BUSY" name="Busy"/>
       <value id="101" abbrev="INPUT_FAILURE" name="Input Error"/>
       <value id="102" abbrev="ERROR" name="Error trying to send acoustic text"/>
-      <value id="666" abbrev="UNSUPPORTED" name="Message Type is not defined or is unsupported"/>
+      <value id="103" abbrev="INV_ADDR" name="Invalid address"/>
+      <value id="255" abbrev="UNSUPPORTED" name="Message Type is not defined or is unsupported"/>
     </field>
     <field name="Information" abbrev="info" type="plaintext">
       <description> Status description.</description>
@@ -2483,6 +2485,21 @@
 	        The meaning of this field depends on the operation and is
 	        explained in the operation's description.
 	      </description>
+    </field>
+  </message>
+
+  <message id="217" name="Acoustic Release Request" abbrev="AcousticRelease" category="Acoustic Communication">
+    <description>
+      Request a system (local or remote) to activate its acoustic release.
+    </description>
+    <field name="System" abbrev="system" type="plaintext">
+      <description>
+        The name of the system that should execute an acoustic release.
+        </description>
+    </field>
+    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="AROP">
+      <value id="0" name="Open" abbrev="OPEN"/>
+      <value id="1" name="Close" abbrev="CLOSE"/>
     </field>
   </message>
 
@@ -3151,9 +3168,9 @@
       +--------+------------------+-----+
       | Section| Flag Label       | Bit |
       +========+==================+=====+
-      | H4.1   | Intensities flag | 0   |
+      | H3.1   | Intensities flag | 0   |
       +--------+------------------+-----+
-      | H4.2   | Angle step flag  | 1   |
+      | H3.2   | Angle step flag  | 1   |
       +--------+------------------+-----+
 
       .. figure:: ../images/imc_multibeam.png
@@ -3842,6 +3859,13 @@
       </description>
       <value abbrev="REPORT" name="Report" id="0"/>
       <value abbrev="QUERY" name="Query" id="1"/>
+      <value abbrev="REGISTER" name="Register" id="2">
+        <description>
+          This will serve as a registration of an additional action.
+          It should be used by an internal system entity to register an action to a central
+          registration. This way only one will responde to a QUERY request.
+        </description>
+      </value>
     </field>
     <field name="Actions" abbrev="actions" type="plaintext" unit="TupleList">
       <description>
@@ -7505,7 +7529,7 @@
     </field>
   </message>
 
-  <message id="489" name="Sample Maneuver" abbrev="Sample" source="ccu" category="Maneuvering">
+   <message id="489" name="Sample Maneuver" abbrev="Sample" source="ccu" category="Maneuvering">
     <description>
       A "Sample" is a maneuver specifying a movement of the vehicle to a
       target waypoint. The waypoint is described by the WGS-84
@@ -8703,6 +8727,7 @@
       <value id="101" abbrev="INPUT_FAILURE" name="Input Error"/>
       <value id="102" abbrev="TEMPORARY_FAILURE" name="Temporary Error"/>
       <value id="103" abbrev="PERMANENT_FAILURE" name="Permanent Failure"/>
+      <value id="104" abbrev="INV_ADDR" name="Invalid Address"/>
     </field>
     <field name="Range" abbrev="range" type="fp32_t" unit="m">
       <description>
@@ -11798,7 +11823,7 @@
         <description>
           Request the entity list.
         </description>
-      </value>     
+      </value>
     </field>
     <field name="Version" abbrev="version" type="plaintext" >
       <description>
