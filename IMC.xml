@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.5">
+          version="5.5.4.6">
 
   <description>
     This document describes the communications protocol associated
@@ -11844,6 +11844,47 @@
     <field name="Value" abbrev="value" type="fp32_t" unit="rad">
       <description>
         Cumulative heading value, in radians.
+      </description>
+    </field>
+  </message>
+
+  <message id="2023" name="Satellites in View" abbrev="SatellitesInView" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      This message is used to report the number of satellites in view per constellation.
+    </description>
+    <field name="GPS" abbrev="gps" type="uint8_t">
+      <description>
+        Number of GPS satellites in view.
+      </description>
+    </field>
+    <field name="GLONASS" abbrev="glonass" type="uint8_t">
+      <description>
+        Number of GLONASS satellites in view.
+      </description>
+    </field>
+    <field name="BEIDOU" abbrev="beidou" type="uint8_t">
+      <description>
+        Number of BEIDOU satellites in view.
+      </description>
+    </field>
+    <field name="GALILEO" abbrev="galileo" type="uint8_t">
+      <description>
+        Number of GALILEO satellites in view.
+      </description>
+    </field>
+    <field name="QZSS" abbrev="qzss" type="uint8_t">
+      <description>
+        Number of QZSS satellites in view.
+      </description>
+      </field>
+    <field name="SBAS" abbrev="sbas" type="uint8_t">
+      <description>
+        Number of SBAS satellites in view.
+      </description>
+    </field>
+    <field name="NAVIC" abbrev="navic" type="uint8_t">
+      <description>
+        Number of NAVIC satellites in view.
       </description>
     </field>
   </message>
