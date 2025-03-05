@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.6">
+          version="5.5.4.7">
 
   <description>
     This document describes the communications protocol associated
@@ -11888,4 +11888,64 @@
       </description>
     </field>
   </message>
+
+  <message id="2024" name="GNSS Hardware Monitor" abbrev="GnssHwMon" source="vehicle" flags="periodic" category="Sensors">
+    <description>GNSS debug information</description>
+    <field name="Jamming Probability" abbrev="jamming_prob" type="uint8_t" unit="%" max="100">
+      <description>
+        Probability of jamming, provided by the GNSS jamming indicator
+      </description>
+    </field>
+    <field name="Jamming Status" abbrev="jam_stat" type="uint8_t" unit="Enumerated" prefix="JS">
+      <description>
+        Jamming Status
+      </description>
+      <value id="0" name="Unknown" abbrev="UNKNOWN">
+        <description>Jamming/interference monitor not enabled, uninitializedor antenna disconnected
+        </description>
+      </value>
+      <value id="1" name="Ok" abbrev="OK">
+      <description>no interference detected</description>
+      </value>
+      <value id="2" name="Warning" abbrev="WAR">
+      <description>position ok but interference is visible (above thethresholds)</description>
+      </value>
+      <value id="3" name="Critical" abbrev="CRIT">
+      <description>no reliable position fix and interference is visible (above the thresholds); interference is probable reason why there is no fix</description>
+      </value>
+    </field>
+    <field name="RF noise" abbrev="rf_noise" type="uint16_t">
+      <description>RF noise level as seen by the GNSS core</description>
+    </field>
+    <field name="Antenna Status" abbrev="ant_stat" type="uint8_t" unit="Enumerated" prefix="AS">
+      <description>Status of the antenna</description>
+      <value id="0" name="Initializing" abbrev="INIT">
+      <description>Initializing</description>
+      </value>
+      <value id="1" name="Unknown" abbrev="UNKNOWN">
+      <description>Unknown</description>
+      </value>
+      <value id="2" name="Ok" abbrev="OK">
+      <description>OK</description>
+      </value>
+      <value id="3" name="Short" abbrev="SHORT">
+      <description>Short</description>
+      </value>
+      <value id="4" name="Open" abbrev="OPEN">
+      <description>Open</description>
+      </value>
+    </field>
+    <field name="Antenna Power" abbrev="ant_pwr" type="uint8_t" unit="Enumerated" prefix="AP">
+      <description>Status of the antenna power</description>
+      <value id="0" name="Off" abbrev="OFF">
+      <description>Antenna powered off</description>
+      </value>
+      <value id="1" name="On" abbrev="ON">
+      <description>Antenna powered on</description>
+      </value>
+      <value id="2" name="Unknown" abbrev="UNKNOWN">
+      <description>Antenna state unknown</description>
+      </value>
+    </field>
+    </message>
 </messages>
