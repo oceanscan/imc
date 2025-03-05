@@ -10,7 +10,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.7">
+          version="5.5.4.8">
 
   <description>
     This document describes the communications protocol associated
@@ -11850,46 +11850,17 @@
 
   <message id="2023" name="Satellites in View" abbrev="SatellitesInView" source="vehicle" flags="periodic" category="Sensors">
     <description>
-      This message is used to report the number of satellites in view per constellation.
+      This message is used to report the number of satellites in view per constellation. The constellation should be provided by the Entity label.
     </description>
-    <field name="GPS" abbrev="gps" type="uint8_t">
+    <field name="Number of satellites" abbrev="nsat" type="uint8_t">
       <description>
-        Number of GPS satellites in view.
-      </description>
-    </field>
-    <field name="GLONASS" abbrev="glonass" type="uint8_t">
-      <description>
-        Number of GLONASS satellites in view.
-      </description>
-    </field>
-    <field name="BEIDOU" abbrev="beidou" type="uint8_t">
-      <description>
-        Number of BEIDOU satellites in view.
-      </description>
-    </field>
-    <field name="GALILEO" abbrev="galileo" type="uint8_t">
-      <description>
-        Number of GALILEO satellites in view.
-      </description>
-    </field>
-    <field name="QZSS" abbrev="qzss" type="uint8_t">
-      <description>
-        Number of QZSS satellites in view.
-      </description>
-      </field>
-    <field name="SBAS" abbrev="sbas" type="uint8_t">
-      <description>
-        Number of SBAS satellites in view.
-      </description>
-    </field>
-    <field name="NAVIC" abbrev="navic" type="uint8_t">
-      <description>
-        Number of NAVIC satellites in view.
+        Number of satellites in view.
       </description>
     </field>
   </message>
 
-  <message id="2024" name="GNSS Hardware Monitor" abbrev="GnssHwMon" source="vehicle" flags="periodic" category="Sensors">
+  <message id="2024" name="GNSS Hardware Monitor" abbrev="GnssHwMon" source="vehicle"
+    flags="periodic" category="Sensors">
     <description>GNSS debug information</description>
     <field name="Jamming Probability" abbrev="jamming_prob" type="uint8_t" unit="%" max="100">
       <description>
@@ -11904,14 +11875,14 @@
         <description>Jamming/interference monitor not enabled, uninitializedor antenna disconnected
         </description>
       </value>
-      <value id="1" name="Ok" abbrev="OK">
-      <description>no interference detected</description>
+      <value id="1" name="OK" abbrev="OK">
+        <description>no interference detected</description>
       </value>
       <value id="2" name="Warning" abbrev="WAR">
-      <description>position ok but interference is visible (above thethresholds)</description>
+        <description>position ok but interference is visible (above thethresholds)</description>
       </value>
       <value id="3" name="Critical" abbrev="CRIT">
-      <description>no reliable position fix and interference is visible (above the thresholds); interference is probable reason why there is no fix</description>
+        <description>no reliable position fix and interference is visible (above the thresholds); interference is probable reason why there is no fix</description>
       </value>
     </field>
     <field name="RF noise" abbrev="rf_noise" type="uint16_t">
@@ -11920,32 +11891,32 @@
     <field name="Antenna Status" abbrev="ant_stat" type="uint8_t" unit="Enumerated" prefix="AS">
       <description>Status of the antenna</description>
       <value id="0" name="Initializing" abbrev="INIT">
-      <description>Initializing</description>
+        <description>Initializing</description>
       </value>
       <value id="1" name="Unknown" abbrev="UNKNOWN">
-      <description>Unknown</description>
+        <description>Unknown</description>
       </value>
-      <value id="2" name="Ok" abbrev="OK">
-      <description>OK</description>
+      <value id="2" name="OK" abbrev="OK">
+        <description>OK</description>
       </value>
       <value id="3" name="Short" abbrev="SHORT">
-      <description>Short</description>
+        <description>Short</description>
       </value>
       <value id="4" name="Open" abbrev="OPEN">
-      <description>Open</description>
+        <description>Open</description>
       </value>
     </field>
     <field name="Antenna Power" abbrev="ant_pwr" type="uint8_t" unit="Enumerated" prefix="AP">
       <description>Status of the antenna power</description>
       <value id="0" name="Off" abbrev="OFF">
-      <description>Antenna powered off</description>
+        <description>Antenna powered off</description>
       </value>
       <value id="1" name="On" abbrev="ON">
-      <description>Antenna powered on</description>
+        <description>Antenna powered on</description>
       </value>
       <value id="2" name="Unknown" abbrev="UNKNOWN">
-      <description>Antenna state unknown</description>
+        <description>Antenna state unknown</description>
       </value>
     </field>
-    </message>
+  </message>
 </messages>
