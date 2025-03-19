@@ -5,6 +5,8 @@
 + Departamento de Engenharia Electrotécnica e de Computadores                +
 + Rua Dr. Roberto Frias, 4200-465 Porto, Portugal                            +
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Copyright 2025 OceanScan - Marine Systems & Technology, Lda.               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 -->
 <messages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="IMC.xsd"
@@ -13,37 +15,43 @@
           version="5.5.4.8">
 
   <description>
-    This document describes the communications protocol associated
-    with the LSTS software framework. Concepts such as *message*,
-    *field* and *packet* are explained in detail in the subsequent
-    chapters.
+    This document describes the Inter Module Communication (IMC) protocol (originally developed by
+    LSTS: https://github.com/lsts/imc) as adopted and extended by OceanScan-MST (OMST) for
+    seamless integration across its maritime
+    robotic systems. IMC defines a structured messaging framework for exchanging self-contained data
+    fields among system components.
 
-    Inter module communication is achieved by the exchange of messages
-    that can be recognized and interpreted by all participating
-    modules. A message is a self-contained collection of data fields
-    conveying relevant information about a given subject. The mean by
-    which the messages are exchanged is not described in this
-    document, but the reader can assume that at least the UDP Internet
-    protocol is available at all ends of the communications channel.
+    Given OMST's diverse operational environments, the protocol is agnostic to the communication
+    channel and includes CRC checks for reliable data transfer for effective
+    coordination across hardware and software components.
 
-    The Neptus Command and Control Unit (CCU), currently being used at
-    LSTS, supports mission planning and control, using the described
-    messaging API. This software entity can be used to define a plan
-    before execution and monitor the plan's execution by presenting an
-    operating console. For further details on this software contact
-    the LSTS.
+    OMST leverages IMC for mission planning, vehicle command and
+    control, real-time monitoring and log analysis. For instance, a Command and Control Unit (CCU)
+    may take on
+    planning tasks, supervise operations, and interface with other IMC-compliant systems - including
+    those developed by third parties - through a standardized set of messages. By following IMC
+    specifications, integrators can extend system functionality, exchange sensor data, and command
+    multiple types of vehicles and sensors with minimal adjustments.
 
-    A CCU exercises authority over a vehicle (real or
-    simulated). Usually this term is applied to software in the class
-    of LSTS Neptus, but can also be applied to software modules
-    extending the vehicle core control software.
+    # IMC Versioning and Message ID Allocation:
 
-    The LSTS reserves itself the right to use message identification
-    numbers up to 999. Thus if a third party needs to extend this API
-    it must use identification numbers starting at 1000. The
-    identification number 65535 has a special meaning and must not be
-    used to extend the IMC protocol.
-  </description>
+    OMST latest systems follow IMC version 5.5.x, ensuring compatibility with LSTS-developed
+    systems. Each IMC message has a unique identification number (ID) that dictates its
+    interpretation:
+
+    - IDs [0,999]: Reserved by LSTS.
+    - IDs [2000,2999]: Reserved for OMST-developed messages, shared with LSTS.
+    - IDs 3000+: Available for further protocol extensions.
+    - ID 65535: Reserved and cannot be used for extensions.
+
+    # Open-Source Development and Community Contributions
+
+    The OMST IMC protocol is open-source and actively maintained at OMST's GitHub repository
+    (https://github.com/oceanscan/imc). OMST
+    is committed to sharing its extensions with the community by synchronizing the feature/unify
+    branches of the OMST and LSTS IMC repositories. Contributions are encouraged through pull
+    requests to help improve and evolve the protocol.
+    </description>
 
   <types>
     <description>
