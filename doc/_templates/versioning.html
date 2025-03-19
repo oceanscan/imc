@@ -1,0 +1,31 @@
+{% if versions %}
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>{{ _('Versions') }}</h2>
+    <div class="versions">
+      <div class="version-select-container">
+        <select class="version-select" onchange="window.location.href=this.value">
+          {%- for item in versions %}
+          <option value="{{ item.url }}"
+            {% if item.name == current_version %}selected="selected"{% endif %}>
+            {{ item.name }}
+          </option>
+          {%- endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .version-select-container {
+    padding: 5px;
+  }
+  .version-select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+</style>

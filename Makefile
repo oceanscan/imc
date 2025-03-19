@@ -21,8 +21,12 @@ doc:
 	@echo "* Generating documentation..."
 	@python doc/generate.py --commit HEAD
 
+doc-versions:
+	@echo "* Generating versioned documentation for all tags..."
+	@python doc/generate.py --commit HEAD --build-versions
+
 clean:
 	@echo "* Cleaning sources..."
 	@$(RM) -rf doc/__pycache__ doc/reference
 
-.PHONY: validate doc clean
+.PHONY: validate doc doc-versions clean
