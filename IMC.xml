@@ -12,7 +12,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.4.8">
+          version="5.5.4.9">
 
   <description>
     This document describes the Inter Module Communication (IMC) protocol (originally developed by
@@ -11925,6 +11925,17 @@
       <value id="2" name="Unknown" abbrev="UNKNOWN">
         <description>Antenna state unknown</description>
       </value>
+    </field>
+  </message>
+  <message id="2025" name="Pulse Width" abbrev="PulseWidth" source="vehicle" category="Actuation">
+    <description>
+      Logs the commanded pulse width for motors or servos.
+      Use the entity label to identify the channel.
+    </description>
+    <field name="Value" abbrev="value" type="uint16_t" unit="µs">
+      <description>
+        The commanded pulse width in microseconds.
+      </description>
     </field>
   </message>
 </messages>
