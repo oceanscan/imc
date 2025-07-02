@@ -220,6 +220,7 @@
     <unit abbrev="PSU" name="Pratical Salinity Unit"/>
     <unit abbrev="1/m" name="Inverse Meter"/>
     <unit abbrev="px" name="Pixel"/>
+    <unit abbrev="mg/L" name="Milligram per liter"/>
     <unit abbrev="µg/L" name="Microgram per liter"/>
     <unit abbrev="µM" name="Micromolar"/>
     <unit abbrev="rad" name="Radian"/>
@@ -11939,4 +11940,104 @@
       </description>
     </field>
   </message>
+
+  <message id="2026" name="Specific Conductance" abbrev="SpecificConductance" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Report of specific conductance.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="S/m">
+      <description>
+        The value of the specific conductance (temperature compensated conductivity).
+      </description>
+    </field>
+  </message>
+
+  <message id="2027" name="Ammonia" abbrev="Ammonia" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Ammonia (NH3) measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Ammonia (NH3) reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2028" name="Ammonium" abbrev="Ammonium" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Ammonium (NH4) measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Ammonium (NH4) reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2029" name="Nitrate" abbrev="Nitrate" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Nitrate (NO3) measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Nitrate (NO3) reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2030" name="Nitrate-N" abbrev="NitrateN" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Nitrate-N (NO3-N) measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Nitrate-N (NO3-N) reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2031" name="Chloride" abbrev="Chloride" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Chloride measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Chloride reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2032" name="Total Dissolved Solids" abbrev="TDS" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Total Dissolved Solids measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Total Dissolved Solids reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2033" name="Total Suspended Solids" abbrev="TSS" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Total Suspended Solids measurement.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="mg/L">
+      <description>
+        Total Suspended Solids reading.
+      </description>
+    </field>
+  </message>
+
+  <message id="2034" name="Non-linear Function Conductivity" abbrev="NLF" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Non-linear Function Conductivity (nLF).
+    </description>
+    <field name="nLF" abbrev="value" type="fp32_t" unit="S/m">
+      <description>
+        The value of the non-linear function conductivity.
+      </description>
+    </field>
+  </message>
+  
 </messages>
