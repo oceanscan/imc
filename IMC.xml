@@ -12517,4 +12517,80 @@
     </field>
   </message>
   
+    <message id="2036" name="Magnetic Parameters" abbrev="MagneticParameters" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Hard and soft irons parameters for the magnetometer model.
+    </description>
+    <field name="Device Time" abbrev="time" type="fp64_t" unit="s">
+      <description>
+        The device time.
+      </description>
+    </field>
+    <field name="Latitude (WGS-84)" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        WGS-84 Latitude.
+      </description>
+    </field>
+    <field name="Longitude (WGS-84)" abbrev="lon" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        WGS-84 Longitude.
+      </description>
+    </field>
+    <field name="Height (WGS-84)" abbrev="height" type="fp32_t" unit="m">
+      <description>
+        Height above the WGS-84 ellipsoid.
+      </description>
+    </field>
+    <field name="Hard Irons - x Direction" abbrev="hard_x" type="fp32_t">
+      <description>
+        Hard iron offset in the x direction.
+      </description>
+    </field>
+    <field name="Hard Irons - y Direction" abbrev="hard_y" type="fp32_t">
+      <description>
+        Hard iron offset in the y direction.
+      </description>
+    </field>
+    <field name="Hard Irons - z Direction" abbrev="hard_z" type="fp32_t">
+      <description>
+        Hard iron offset in the z direction.
+      </description>
+    </field>
+    <field name="Soft Irons - xx Scale Factor" abbrev="soft_xx" type="fp32_t">
+      <description>
+        Soft iron scale factor in the x direction.
+      </description>
+    </field>
+    <field name="Soft Irons - yy Scale Factor" abbrev="soft_yy" type="fp32_t">
+      <description>
+        Soft iron scale factor in the y direction.
+      </description>
+    </field>
+    <field name="Soft Irons - zz Scale Factor" abbrev="soft_zz" type="fp32_t">
+      <description>
+        Soft iron scale factor in the z direction.
+      </description>
+    </field>
+    <field name="Soft Irons - xy Cross Scale Factor" abbrev="soft_xy" type="fp32_t">
+      <description>
+        Soft iron cross scale factor in the xy plane.
+      </description>
+    </field>
+    <field name="Soft Irons - xz Cross Scale Factor" abbrev="soft_xz" type="fp32_t">
+      <description>
+        Soft iron cross scale factor in the xz plane.
+      </description>
+    </field>
+    <field name="Soft Irons - yz Cross Scale Factor" abbrev="soft_yz" type="fp32_t">
+      <description>
+        Soft iron cross scale factor in the yz plane.
+      </description>
+    </field>
+    <field name="Magnetic Field Strength" abbrev="mag_strength" type="fp32_t">
+      <description>
+        Strength of the local magnetic field when the calibration was performed
+      </description>
+    </field>
+  </message>
+
 </messages>
