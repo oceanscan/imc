@@ -12517,7 +12517,15 @@
     </field>
   </message>
   
-    <message id="2036" name="Magnetic Calibration" abbrev="MagneticCalibration" source="vehicle" flags="periodic" category="Sensors">
+  <message id="2036" name="Magnetic Calibration Query" abbrev="MagneticCalibrationQuery" source="ccu,vehicle" category="Sensors">
+    <description>
+      Request magnetic calibration parameters. The
+      recipient of this message shall reply with a MagneticCalibration
+      message.
+    </description>
+  </message>
+  
+  <message id="2037" name="Magnetic Calibration" abbrev="MagneticCalibration" source="vehicle" flags="periodic" category="Sensors">
     <description>
       Hard and soft irons parameters for the magnetometer model.
     </description>
