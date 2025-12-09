@@ -12,7 +12,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.5.0">
+          version="5.5.6.0">
 
   <description>
     This document describes the Inter Module Communication (IMC) protocol (originally developed by
@@ -4224,6 +4224,22 @@
       <description>
         The active time of the PWM signal. The duty cycle value is
         less or equal to the period.
+      </description>
+    </field>
+  </message>
+
+  <message id="317" name="Desired Servo Position" abbrev="DesiredServoPosition" source="vehicle" category="Actuation">
+    <description>
+      Desired position of a fin.
+    </description>
+    <field name="Servo Identifier" abbrev="id" type="uint8_t">
+      <description>
+        Servo identifier.
+      </description>
+    </field>
+    <field name="Position" abbrev="position" type="fp32_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        Desired servo position.
       </description>
     </field>
   </message>
