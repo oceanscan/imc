@@ -12657,37 +12657,37 @@
         </description>
       </value>
     </field>
-    <field name="Admissable Zones" abbrev="admissable_zones" type="message-list" message-type="Volume">
+    <field name="Admissible Zones" abbrev="admissible_zones" type="message-list" message-type="Zone">
       <description>
-        List of polygons defining the admissable zones for navigation.
+        List of polygons defining the admissible zones for navigation.
       </description>
     </field>
-    <field name="Forbidden Zones" abbrev="forbidden_zones" type="message-list" message-type="Volume">
+    <field name="Forbidden Zones" abbrev="forbidden_zones" type="message-list" message-type="Zone">
       <description>
         List of polygons defining forbidden zones for navigation.
       </description>
     </field>
   </message>
 
-  <message id="2038" name="Volume" abbrev="Volume" source="ccu,vehicle" category="Autonomy">  
-    <field name="Polygon" abbrev="polygon" type="message-list" message-type="Point">
+  <message id="2038" name="Zone" abbrev="Zone" source="ccu,vehicle" category="Autonomy">  
+    <field name="Zone" abbrev="zone" type="message-list" message-type="GeoCoordinates">
       <description>
         Polygon defining the volume.
       </description>
     </field>
-    <field name="Min Depth" abbrev="min_depth" type="fp32_t" unit="m">
+    <field name="Minimum Depth" abbrev="min_depth" type="fp32_t" unit="m">
       <description>
         Minimum depth of the volume.
       </description>
     </field>
-    <field name="Max Depth" abbrev="max_depth" type="fp32_t" unit="m">
+    <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m">
       <description>
         Maximum depth of the volume.
       </description>
     </field>
   </message>
 
-  <message id="2039" name="Point" abbrev="Point" source="vehicle" category="Autonomy">
+  <message id="2039" name="GeoCoordinates" abbrev="GeoCoordinates" source="vehicle" category="Autonomy">
     <description>
       Point defined by latitude and longitude.
     </description>
