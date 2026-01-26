@@ -385,9 +385,37 @@
       <message-type abbrev="RemoteCommand"/>
       <message-type abbrev="HistoricSample"/>
     </message-group>
+
+    <message-group name="TypedEntityParametersOptions" abbrev="TypedEntityParametersOptions">
+      <message-type abbrev="TypedEntityParameter"/>
+      <message-type abbrev="TypedEntityParameterEditor"/>
+    </message-group>
+
   </message-groups>
 
-  <flags>
+  <flags>  <message id="2016" name="Query Typed Entity Parameters" abbrev="QueryTypedEntityParameters" source="vehicle" category="CCU">
+    <description>This message can be used to query/report the entities and respective parameters in the system</description>
+    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
+      <description>
+        Operation to perform.
+      </description>
+      <value id="0" name="Request" abbrev="REQUEST" />
+      <value id="1" name="Reply" abbrev="REPLY" />
+    </field>
+    <field name="Request identitier" abbrev="request_id" type="uint32_t">
+      <description>Echoes the request_id in the request</description>
+    </field>
+    <field name="Entity Name" abbrev="entity_name" type="plaintext">
+      <description>Entity Label of the task that's replying to the request</description>
+    </field>
+    <field name="Parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParametersOptions">
+      <description>
+        Contains an optionally defined List of TypedEntityParameter as a response to a TypedEntityParamaters Request.
+        Additionally, if the entity has a custom editor, this message will contain the information to load it with a
+        single TypedEntityParameterOptions message in the list.
+      </description>
+    </field>
+  </message>
     <flag abbrev="periodic" name="Periodic"/>
     <flag abbrev="deprecated" name="Deprecated"/>
   </flags>
@@ -12187,7 +12215,8 @@
       <description>Textual description of the health status</description>
     </field>
   </message>
-  <message id="2016" name="Query Typed Entity Parameters" abbrev="QueryTypedEntityParameters" source="vehicle" category="CCU">
+
+    <message id="2016" name="Query Typed Entity Parameters" abbrev="QueryTypedEntityParameters" source="vehicle" category="CCU">
     <description>This message can be used to query/report the entities and respective parameters in the system</description>
     <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
       <description>
@@ -12202,8 +12231,12 @@
     <field name="Entity Name" abbrev="entity_name" type="plaintext">
       <description>Entity Label of the task that's replying to the request</description>
     </field>
-    <field name="Parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParameter">
-      <description>Contains an optionally defined List of TypedEntityParameter as a response to a TypedEntityParamaters Request.</description>
+    <field name="Parameters" abbrev="parameters" type="message-list" message-type="TypedEntityParametersOptions">
+      <description>
+        Contains an optionally defined List of TypedEntityParametersOptions as a response to a TypedEntityParamaters Request.
+        Additionally, if the entity has a custom editor, this message will contain the information to load it with a
+        single TypedEntityParameterOptions message in the list.
+      </description>
     </field>
   </message>
 
@@ -12591,5 +12624,82 @@
       <description>The predicted remaining battery capacity</description>
     </field>
   </message>
-  
+
+  <message id="2036" name="Typed Entity Parameter Editor" abbrev="TypedEntityParameterEditor" source="ccu,vehicle" category="CCU">
+    <description>This message is used to describe the ValuesIf content of a TypedEntityParameter.</description>
+    <field name="Value" abbrev="value" type="plaintext">
+      <description>
+        String name of the editor to be used for this entity parameters.
+        This value is advisory only. The receiving end should try to honor it,
+        for the edition respect more complicated logic that Values-If can provide.
+      </description>
+    </field>
+  </message>
+
+  <message abbrev="NavigationalArea" id="2037" name="Navigational Area" source="ccu,vehicle" category="Autonomy">
+    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
+      <description>
+        Operation to perform.
+      </description>
+      <value id="0" name="Set" abbrev="SET">
+        <description>
+          Set the navigational area.
+        </description>
+      </value>
+       <value id="1" name="Get" abbrev="GET">
+        <description>
+          Get the navigational area.
+        </description>
+      </value>
+      <value id="2" name="Clear" abbrev="CLEAR">
+        <description>
+          Clear the navigational area.
+        </description>
+      </value>
+    </field>
+    <field name="Admissable Zones" abbrev="admissable_zones" type="message-list" message-type="Volume">
+      <description>
+        List of polygons defining the admissable zones for navigation.
+      </description>
+    </field>
+    <field name="Forbidden Zones" abbrev="forbidden_zones" type="message-list" message-type="Volume">
+      <description>
+        List of polygons defining forbidden zones for navigation.
+      </description>
+    </field>
+  </message>
+
+  <message id="2038" name="Volume" abbrev="Volume" source="ccu,vehicle" category="Autonomy">  
+    <field name="Polygon" abbrev="polygon" type="message-list" message-type="Point">
+      <description>
+        Polygon defining the volume.
+      </description>
+    </field>
+    <field name="Min Depth" abbrev="min_depth" type="fp32_t" unit="m">
+      <description>
+        Minimum depth of the volume.
+      </description>
+    </field>
+    <field name="Max Depth" abbrev="max_depth" type="fp32_t" unit="m">
+      <description>
+        Maximum depth of the volume.
+      </description>
+    </field>
+  </message>
+
+  <message id="2039" name="Point" abbrev="point" source="vehicle" category="Autonomy">
+    <description>
+      Point defined by latitude and longitude.
+    </description>
+    <field name="Latitude" abbrev="latitude" type="fp64_t" unit="rad">
+      <description>
+        Latitude of the point.
+      </description>
+    </field>
+    <field name="Longitude" abbrev="longitude" type="fp64_t" unit="rad">
+      <description>
+        Longitude of the point.
+      </description>
+    </field>
+  </message>
 </messages>
