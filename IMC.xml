@@ -12687,7 +12687,7 @@
     </field>
   </message>
 
-  <message id="2039" name="Point" abbrev="point" source="vehicle" category="Autonomy">
+  <message id="2039" name="Point" abbrev="Point" source="vehicle" category="Autonomy">
     <description>
       Point defined by latitude and longitude.
     </description>
