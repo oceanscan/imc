@@ -12,7 +12,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.6.0">
+          version="5.5.6.1">
 
   <description>
     This document describes the Inter Module Communication (IMC) protocol (originally developed by
@@ -12700,6 +12700,29 @@
       <description>
         Longitude of the point.
       </description>
+    </field>
+  </message>
+
+  <message id="2040" name="Acknowledged Message" abbrev="AckMsg" source="vehicle,ccu" category="Networking">
+    <description>
+      Generic acknowledgment message for request-response communication patterns.
+      Can be used by any task to acknowledge receipt and result of a command or request.
+    </description>
+    <field name="Original Message" abbrev="original" type="message">
+      <description>The original message being acknowledged.</description>
+    </field>
+    <field name="text" abbrev="text" type="plaintext">
+      <description>Optional human-readable description or error message.</description>
+    </field>
+
+    <field name="StatusEnum" abbrev="status" type="uint8_t" unit="Enumerated" prefix="ST">
+      <description>Result status of the request.</description>
+      <value id="0" name="Success" abbrev="SUCCESS" />
+      <value id="1" name="Failure" abbrev="FAILURE" />
+      <value id="2" name="In Progress" abbrev="IN_PROGRESS" />
+      <value id="3" name="Timeout" abbrev="TIMEOUT" />
+      <value id="4" name="Invalid Request" abbrev="INVALID" />
+      <value id="5" name="Not Supported" abbrev="NOT_SUPPORTED" />
     </field>
   </message>
 </messages>
