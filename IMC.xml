@@ -12978,4 +12978,28 @@
     </field>
   </message>
 
+  <message id="2045" name="Polygonal Limits" abbrev="PolygonalLimits" source="ccu,vehicle" category="Vehicle Supervision">  
+    <description>
+      Definition of polygonal operational limits.
+    </description>
+    <field name="Field Indicator Mask" abbrev="mask" type="uint8_t" unit="Bitfield" bitfield-def="OpLimitsMask"/>
+    <field name="Minimum Depth" abbrev="min_depth" type="fp32_t" unit="m" min="0"/>    
+    <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m" min="0"/>
+    <field name="Minimum Altitude" abbrev="min_altitude" type="fp32_t" unit="m" min="0"/>
+    <field name="Maximum Altitude" abbrev="max_altitude" type="fp32_t" unit="m" min="0"/>
+    <field name="Minimum Speed" abbrev="min_speed" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Maximum Vertical Rate" abbrev="max_vrate" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Safe Point" abbrev="safe_points" type="message-list" message-type="GeoCoordinates">
+      <description>
+        List of safe points to return to in case certain types of breaching happen.
+      </description>
+    </field>
+    <field name="Navigational Area" abbrev="nav_area" type="message" message-type="NavigationalArea">
+      <description>
+        An inline navigational area definition defining the area limits.
+      </description>
+    </field>
+  </message>
+  
 </messages>
