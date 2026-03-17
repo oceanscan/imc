@@ -12982,6 +12982,26 @@
     <description>
       Definition of polygonal operational limits.
     </description>
+    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
+      <description>
+        Operation to perform.
+      </description>
+      <value id="0" name="Set" abbrev="SET">
+        <description>
+          Set polygonal limits.
+        </description>
+      </value>
+       <value id="1" name="Get" abbrev="GET">
+        <description>
+          Get polygonal limits.
+        </description>
+      </value>
+      <value id="2" name="Clear" abbrev="CLEAR">
+        <description>
+          Clear polygonal limits.
+        </description>
+      </value>
+    </field>
     <field name="Field Indicator Mask" abbrev="mask" type="uint8_t" unit="Bitfield" bitfield-def="OpLimitsMask"/>
     <field name="Minimum Depth" abbrev="min_depth" type="fp32_t" unit="m" min="0"/>    
     <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m" min="0"/>
@@ -12995,9 +13015,14 @@
         List of safe points to return to in case certain types of breaching happen.
       </description>
     </field>
-    <field name="Navigational Area" abbrev="nav_area" type="message" message-type="NavigationalArea">
+    <field name="Admissible Zones" abbrev="admissible_zones" type="message-list" message-type="Zone">
       <description>
-        An inline navigational area definition defining the area limits.
+        List of polygons defining the admissible zones for navigation.
+      </description>
+    </field>
+    <field name="Forbidden Zones" abbrev="forbidden_zones" type="message-list" message-type="Zone">
+      <description>
+        List of polygons defining forbidden zones for navigation.
       </description>
     </field>
   </message>
