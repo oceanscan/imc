@@ -12615,26 +12615,42 @@
     </field>
   </message>
 
-  <message abbrev="NavigationalArea" id="2037" name="Navigational Area" source="ccu,vehicle" category="Autonomy">
+  <message id="2037" name="Polygonal Limits" abbrev="PolygonalLimits" source="ccu,vehicle" category="Vehicle Supervision">  
+    <description>
+      Definition of polygonal operational limits.
+    </description>
     <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
       <description>
         Operation to perform.
       </description>
       <value id="0" name="Set" abbrev="SET">
         <description>
-          Set the navigational area.
+          Set polygonal limits.
         </description>
       </value>
        <value id="1" name="Get" abbrev="GET">
         <description>
-          Get the navigational area.
+          Get polygonal limits.
         </description>
       </value>
       <value id="2" name="Clear" abbrev="CLEAR">
         <description>
-          Clear the navigational area.
+          Clear polygonal limits.
         </description>
       </value>
+    </field>
+    <field name="Field Indicator Mask" abbrev="mask" type="uint8_t" unit="Bitfield" bitfield-def="OpLimitsMask"/>
+    <field name="Minimum Depth" abbrev="min_depth" type="fp32_t" unit="m" min="0"/>
+    <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m" min="0"/>
+    <field name="Minimum Altitude" abbrev="min_altitude" type="fp32_t" unit="m" min="0"/>
+    <field name="Maximum Altitude" abbrev="max_altitude" type="fp32_t" unit="m" min="0"/>
+    <field name="Minimum Speed" abbrev="min_speed" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Maximum Vertical Rate" abbrev="max_vrate" type="fp32_t" unit="m/s" min="0"/>
+    <field name="Safe Point" abbrev="safe_points" type="message-list" message-type="GeoCoordinates">
+      <description>
+        List of safe points to return to.
+      </description>
     </field>
     <field name="Admissible Zones" abbrev="admissible_zones" type="message-list" message-type="Zone">
       <description>
@@ -12662,6 +12678,16 @@
     <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m">
       <description>
         Maximum depth of the volume.
+      </description>
+    </field>
+    <field name="Minimum Altitude" abbrev="min_altitude" type="fp32_t" unit="m">
+      <description>
+        Minimum altitude of the volume.
+      </description>
+    </field>
+    <field name="Maximum Altitude" abbrev="max_altitude" type="fp32_t" unit="m">
+      <description>
+        Maximum altitude of the volume.
       </description>
     </field>
   </message>
@@ -12975,55 +13001,6 @@
     </field>
     <field name="Value" abbrev="value" type="rawdata">
       <description>Raw register value (length depends on register).</description>
-    </field>
-  </message>
-
-  <message id="2045" name="Polygonal Limits" abbrev="PolygonalLimits" source="ccu,vehicle" category="Vehicle Supervision">  
-    <description>
-      Definition of polygonal operational limits.
-    </description>
-    <field name="Operation" abbrev="op" type="uint8_t" unit="Enumerated" prefix="OP">
-      <description>
-        Operation to perform.
-      </description>
-      <value id="0" name="Set" abbrev="SET">
-        <description>
-          Set polygonal limits.
-        </description>
-      </value>
-       <value id="1" name="Get" abbrev="GET">
-        <description>
-          Get polygonal limits.
-        </description>
-      </value>
-      <value id="2" name="Clear" abbrev="CLEAR">
-        <description>
-          Clear polygonal limits.
-        </description>
-      </value>
-    </field>
-    <field name="Field Indicator Mask" abbrev="mask" type="uint8_t" unit="Bitfield" bitfield-def="OpLimitsMask"/>
-    <field name="Minimum Depth" abbrev="min_depth" type="fp32_t" unit="m" min="0"/>    
-    <field name="Maximum Depth" abbrev="max_depth" type="fp32_t" unit="m" min="0"/>
-    <field name="Minimum Altitude" abbrev="min_altitude" type="fp32_t" unit="m" min="0"/>
-    <field name="Maximum Altitude" abbrev="max_altitude" type="fp32_t" unit="m" min="0"/>
-    <field name="Minimum Speed" abbrev="min_speed" type="fp32_t" unit="m/s" min="0"/>
-    <field name="Maximum Speed" abbrev="max_speed" type="fp32_t" unit="m/s" min="0"/>
-    <field name="Maximum Vertical Rate" abbrev="max_vrate" type="fp32_t" unit="m/s" min="0"/>
-    <field name="Safe Point" abbrev="safe_points" type="message-list" message-type="GeoCoordinates">
-      <description>
-        List of safe points to return to in case certain types of breaching happen.
-      </description>
-    </field>
-    <field name="Admissible Zones" abbrev="admissible_zones" type="message-list" message-type="Zone">
-      <description>
-        List of polygons defining the admissible zones for navigation.
-      </description>
-    </field>
-    <field name="Forbidden Zones" abbrev="forbidden_zones" type="message-list" message-type="Zone">
-      <description>
-        List of polygons defining forbidden zones for navigation.
-      </description>
     </field>
   </message>
   
