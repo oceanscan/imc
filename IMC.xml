@@ -12664,6 +12664,8 @@
     </field>
     <field name="Admissible Offset" abbrev="admissible_offset" type="fp32_t" unit="m" min="0"/>
     <field name="Forbidden Offset" abbrev="forbidden_offset" type="fp32_t" unit="m" min="0"/>
+    <field name="Admissible Clip Factor" abbrev="admissible_clip_factor" type="fp32_t" unit="m" min="0"/>
+    <field name="Forbidden Clip Factor" abbrev="forbidden_clip_factor" type="fp32_t" unit="m" min="0"/>
   </message>
 
   <message id="2038" name="Zone" abbrev="Zone" source="ccu,vehicle" category="Autonomy">  
