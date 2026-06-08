@@ -4253,6 +4253,22 @@
     </field>
   </message>
 
+  <message id="318" name="Desired Thruster Actuation" abbrev="DesiredThrusterActuation" source="vehicle" category="Actuation">
+    <description>
+      Desired actuation of a thruster.
+    </description>
+    <field name="Thruster Number" abbrev="id" type="uint8_t">
+      <description>
+        The identification number of the destination thruster.
+      </description>
+    </field>
+    <field name="Actuation Value" abbrev="value" type="fp32_t" min="-1" max="1">
+      <description>
+        Actuation magnitude.
+      </description>
+    </field>
+  </message>
+
   <!-- Navigation -->
   <message id="350" name="Estimated State" abbrev="EstimatedState" source="vehicle" flags="periodic" category="Navigation">
     <description>
