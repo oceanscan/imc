@@ -8757,7 +8757,7 @@
       <value id="3" abbrev="GSM" name="GSM"/>
       <value id="4" abbrev="ANY" name="Any"/>
       <value id="5" abbrev="ALL" name="All"/>
-	  <value id="6" abbrev="UHF" name="UHF"/>
+	    <value id="6" abbrev="UHF" name="UHF"/>
     </field>
     <field name="Destination System" abbrev="destination" type="plaintext">
 	  <description>
@@ -8955,6 +8955,8 @@
       <value id="2" name="Satellite" abbrev="SATELLITE"/>
       <value id="3" name="Acoustic" abbrev="ACOUSTIC"/>
       <value id="4" name="SMS" abbrev="SMS"/>
+      <value id="5" name="AIS" abbrev="AIS"/>
+      <value id="6" name="UHF" abbrev="UHF"/>
     </field>
     <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad" />
     <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad" />
