@@ -12,7 +12,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.8">
+          version="5.5.9">
 
   <description>
     This document describes the Inter Module Communication (IMC) protocol (originally developed by
@@ -12994,6 +12994,85 @@
     </field>
     <field name="Value" abbrev="value" type="rawdata">
       <description>Raw register value (length depends on register).</description>
+    </field>
+  </message>
+
+  <message id="2045" name="Signal Quality Info" abbrev="SignalQualityInfo" source="vehicle" category="Networking">
+    <description>
+      Signal quality information of a cellular radio modem.  Fields that are
+      not applicable to the active radio access technology are set to their
+      'not present' sentinel: NaN for floating-point fields, an empty string
+      for the Radio Access Technology and -1 for the band and channel number
+      fields.
+    </description>
+    <field name="RSSI" abbrev="rssi" type="fp32_t" min="0" max="31">
+      <description>
+        Received Signal Strength Indicator.  Value in the 0-31 range
+        (3GPP), corresponding to -113 to -51 dBm.
+      </description>
+    </field>
+    <field name="Bit Error Rate" abbrev="ber" type="uint8_t" min="0" max="7">
+      <description>
+        Bit Error Rate.
+      </description>
+    </field>
+    <field name="RSRP" abbrev="rsrp" type="fp32_t" unit="dBm" min="-140" max="-44">
+      <description>
+        Reference Signal Received Power (LTE/5G).  Set to NaN if not
+        available.
+      </description>
+    </field>
+    <field name="RSRQ" abbrev="rsrq" type="fp32_t" unit="dB" min="-19.5" max="-3">
+      <description>
+        Reference Signal Received Quality (LTE/5G).  Set to NaN if not
+        available.
+      </description>
+    </field>
+    <field name="SINR" abbrev="sinr" type="fp32_t" unit="dB" min="-20" max="30">
+      <description>
+        Signal to Interference plus Noise Ratio (LTE/5G).  Set to NaN if not
+        available.
+      </description>
+    </field>
+    <field name="RSCP" abbrev="rscp" type="fp32_t" unit="dBm" min="-120" max="-25">
+      <description>
+        Received Signal Code Power (WCDMA).  Set to NaN if not available.
+      </description>
+    </field>
+    <field name="Ec/Io" abbrev="ecio" type="fp32_t" unit="dB" min="-24" max="0">
+      <description>
+        Energy per chip over the interference spectral density (WCDMA).
+        Set to NaN if not available.
+      </description>
+    </field>
+    <field name="Radio Access Technology" abbrev="rat" type="plaintext">
+      <description>
+        Radio Access Technology, e.g. "GSM", "WCDMA", "LTE", "NR5G-NSA" or
+        "NR5G-SA".  Empty string if not available.
+      </description>
+    </field>
+    <field name="Band Number" abbrev="band" type="int16_t" min="-1" max="255">
+      <description>
+        Band number.  Set to -1 if not available.
+      </description>
+    </field>
+    <field name="EARFCN" abbrev="earfcn" type="int32_t" min="-1" max="262143">
+      <description>
+        E-UTRA Absolute Radio Frequency Channel Number (LTE).  Set to -1 if
+        not available.
+      </description>
+    </field>
+    <field name="ARFCN" abbrev="arfcn" type="int32_t" min="-1" max="3279165">
+      <description>
+        Absolute Radio Frequency Channel Number (5G NR).  Set to -1 if not
+        available.
+      </description>
+    </field>
+    <field name="UARFCN" abbrev="uarfcn" type="int32_t" min="-1" max="16383">
+      <description>
+        UTRA Absolute Radio Frequency Channel Number (WCDMA).  Set to -1 if
+        not available.
+      </description>
     </field>
   </message>
 
