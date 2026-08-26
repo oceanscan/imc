@@ -12082,6 +12082,8 @@
       <value abbrev="ACOUSTIC" name="Acoustic" id="0x02" />
       <value abbrev="WIFI" name="WiFi" id="0x04" />
       <value abbrev="GSM" name="GSM" id="0x08" />
+      <value abbrev="AIS" name="AIS" id="0x10" />
+      <value abbrev="UHF" name="UHF" id="0x20" />
     </field>
     <field name="Reason" abbrev="reason" type="plaintext">
       <description>Textual description for why this restriction is needed.</description>
