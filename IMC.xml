@@ -365,6 +365,7 @@
       <message-type abbrev="RowsCoverage"/>
       <message-type abbrev="Sample"/>
       <message-type abbrev="ScheduledGoto"/>
+      <message-type abbrev="SetPose"/>
       <message-type abbrev="StationKeeping"/>
       <message-type abbrev="StationKeepingExtended"/>
       <message-type abbrev="Takeoff"/>
