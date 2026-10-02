@@ -13185,11 +13185,12 @@
           Distance along the beam.
         </description>
       </value>
-      <value id="1" name="Axial" abbrev="AXIAL">
+      <value id="1" name="Projected" abbrev="PROJECTED">
         <description>
-          Distance along the sensor's +x axis to the point where the beam meets the
-          return, as Janus DVLs report per-beam values. The slant range is the value divided
-          by the cosine of the angle between the beam and the axis.
+          Slant range projected onto the sensor's +x axis: the distance along that axis to
+          the point where the beam meets the return, as Janus DVLs report per-beam values.
+          The slant range is the value divided by the cosine of the angle between the beam
+          and the axis.
         </description>
       </value>
     </field>
@@ -13275,6 +13276,13 @@
     <field name="Obstacle Top" abbrev="top" type="fp32_t" unit="m">
       <description>
         Depth of the shallowest return above the seabed. Valid if the TOP flag is set.
+      </description>
+    </field>
+    <field name="Obstacle Top Standard Deviation" abbrev="top_sigma" type="fp32_t" unit="m" min="0">
+      <description>
+        One standard deviation of the obstacle top's depth, including the uncertainty of the
+        water level. It grows with range and beam width, since an echo can come from anywhere
+        across the beam; only returns precise enough confirm a top. Zero if unknown.
       </description>
     </field>
     <field name="Free Depth" abbrev="free" type="fp32_t" unit="m">
