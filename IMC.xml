@@ -12,7 +12,7 @@
           xsi:noNamespaceSchemaLocation="IMC.xsd"
           name="IMC"
           long-name="Inter Module Communication"
-          version="5.5.10">
+          version="5.5.11">
 
   <description>
     This document describes the Inter Module Communication (IMC) protocol (originally developed by
@@ -13157,6 +13157,342 @@
     <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
         Custom settings for maneuver.
+      </description>
+    </field>
+  </message>
+
+  <!-- Seabed and terrain map messages -->
+  <message id="2047" name="Soundings" abbrev="Soundings" source="vehicle" flags="periodic" category="Sensors">
+    <description>
+      Range measurements from one ping of a sensor with one or more beams: DVL beams, altimeters,
+      echo sounders, forward-looking sonars and sidescan first returns. Unlike Distance, every
+      beam carries its own direction and uncertainty, and a beam that saw nothing up to the
+      maximum range is reported as such, so a map can record the water as free.
+      The ping time is the message's timestamp.
+    </description>
+    <field name="Location" abbrev="location" type="message" message-type="DeviceState">
+      <description>
+        Pose of the sensor in the vehicle's body frame. The sensor's +x axis is its reference
+        axis: the beam directions below are relative to it.
+      </description>
+    </field>
+    <field name="Range Type" abbrev="range_type" type="uint8_t" unit="Enumerated" prefix="RT">
+      <description>
+        What the ranges measure.
+      </description>
+      <value id="0" name="Slant" abbrev="SLANT">
+        <description>
+          Distance along the beam.
+        </description>
+      </value>
+      <value id="1" name="Axial" abbrev="AXIAL">
+        <description>
+          Distance along the sensor's +x axis to the point where the beam meets the
+          return, as Janus DVLs report per-beam values. The slant range is the value divided
+          by the cosine of the angle between the beam and the axis.
+        </description>
+      </value>
+    </field>
+    <field name="Beam Width" abbrev="beam_width" type="fp32_t" unit="rad" min="0" max="3.141592653589793">
+      <description>
+        Full width of each beam at -3 dB, which sets its footprint on the seabed. Zero if unknown.
+      </description>
+    </field>
+    <field name="Maximum Range" abbrev="max_range" type="fp32_t" unit="m" min="0">
+      <description>
+        Largest range the sensor could have measured on this ping, in the units of the range
+        type. A beam with no return saw free water up to here.
+      </description>
+    </field>
+    <field name="Soundings" abbrev="soundings" type="message-list" message-type="Sounding">
+      <description>
+        One entry per beam that produced a measurement or a confirmed absence of return. Beams
+        whose data is invalid are left out.
+      </description>
+    </field>
+  </message>
+
+  <message id="2048" name="Sounding" abbrev="Sounding" source="vehicle" category="Sensors">
+    <description>
+      One beam of a Soundings message.
+    </description>
+    <field name="Beam Yaw" abbrev="yaw" type="fp32_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        Rotation of the beam about the sensor's z axis, from its +x axis towards +y.
+      </description>
+    </field>
+    <field name="Beam Pitch" abbrev="pitch" type="fp32_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        Rotation of the beam about the sensor's y axis, applied after the yaw, positive towards
+        -z, as for pitch in the body frame. The beam's unit vector in the sensor frame is
+        (cos(pitch) cos(yaw), cos(pitch) sin(yaw), -sin(pitch)).
+      </description>
+    </field>
+    <field name="Range" abbrev="range" type="fp32_t" unit="m" min="0">
+      <description>
+        Measured range, in the units of the message's range type. Ignored if the beam had no
+        return.
+      </description>
+    </field>
+    <field name="Range Standard Deviation" abbrev="sigma" type="fp32_t" unit="m" min="0">
+      <description>
+        One standard deviation of the range, as the sensor estimates it. Zero if the sensor
+        does not report one: the consumer then applies its own noise model.
+      </description>
+    </field>
+    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="SNDF">
+      <description>
+        Sounding flags.
+      </description>
+      <value id="0x01" name="No Return" abbrev="NO_RETURN">
+        <description>
+          The beam saw nothing up to the message's maximum range.
+        </description>
+      </value>
+    </field>
+  </message>
+
+  <message id="2049" name="Terrain Sample" abbrev="TerrainSample" source="vehicle" category="Navigation">
+    <description>
+      What the vehicle's world map holds about one cell, as an entry of a TerrainProfile or a
+      TerrainReply. Depths are below the sea surface now.
+    </description>
+    <field name="Distance" abbrev="distance" type="fp32_t" unit="m" min="0">
+      <description>
+        Horizontal distance from the start of the profile or segment to where it enters the cell.
+      </description>
+    </field>
+    <field name="Seabed Depth" abbrev="seabed" type="fp32_t" unit="m">
+      <description>
+        Estimated seabed depth. Valid if the SEABED flag is set.
+      </description>
+    </field>
+    <field name="Seabed Standard Deviation" abbrev="seabed_sigma" type="fp32_t" unit="m" min="0">
+      <description>
+        One standard deviation of the seabed depth, including the uncertainty of the water level.
+      </description>
+    </field>
+    <field name="Obstacle Top" abbrev="top" type="fp32_t" unit="m">
+      <description>
+        Depth of the shallowest return above the seabed. Valid if the TOP flag is set.
+      </description>
+    </field>
+    <field name="Free Depth" abbrev="free" type="fp32_t" unit="m">
+      <description>
+        Depth down to which the water has been seen free. Valid if the FREE flag is set.
+      </description>
+    </field>
+    <field name="Age" abbrev="age" type="fp32_t" unit="s" min="0">
+      <description>
+        Time since the newest evidence in the cell.
+      </description>
+    </field>
+    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="TSF">
+      <description>
+        Which estimates are valid, and their state.
+      </description>
+      <value id="0x01" name="Seabed" abbrev="SEABED"/>
+      <value id="0x02" name="Obstacle Top" abbrev="TOP"/>
+      <value id="0x04" name="Confirmed" abbrev="CONFIRMED">
+        <description>
+          The obstacle top was seen by enough returns to be confirmed.
+        </description>
+      </value>
+      <value id="0x08" name="Conflict" abbrev="CONFLICT">
+        <description>
+          Free water was seen below a confirmed obstacle top: the cell's evidence disagrees.
+        </description>
+      </value>
+      <value id="0x10" name="Free" abbrev="FREE"/>
+    </field>
+  </message>
+
+  <message id="2050" name="Terrain Profile" abbrev="TerrainProfile" source="vehicle" flags="periodic" category="Navigation">
+    <description>
+      The world map along a straight line ahead of the vehicle, published periodically for bottom
+      tracking and obstacle avoidance.
+    </description>
+    <field name="Latitude" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        Latitude of the start of the profile (WGS-84).
+      </description>
+    </field>
+    <field name="Longitude" abbrev="lon" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        Longitude of the start of the profile (WGS-84).
+      </description>
+    </field>
+    <field name="Direction" abbrev="direction" type="fp32_t" unit="rad" min="0" max="6.283185307179586">
+      <description>
+        Direction of the profile, clockwise from true north.
+      </description>
+    </field>
+    <field name="Direction Reference" abbrev="reference" type="uint8_t" unit="Enumerated" prefix="TPR">
+      <description>
+        What the direction follows.
+      </description>
+      <value id="0" name="Heading" abbrev="HEADING">
+        <description>
+          The vehicle's heading.
+        </description>
+      </value>
+      <value id="1" name="Course" abbrev="COURSE">
+        <description>
+          The vehicle's course over ground.
+        </description>
+      </value>
+      <value id="2" name="Path" abbrev="PATH">
+        <description>
+          The path being followed, from PathControlState.
+        </description>
+      </value>
+    </field>
+    <field name="Length" abbrev="length" type="fp32_t" unit="m" min="0">
+      <description>
+        Length of the profile.
+      </description>
+    </field>
+    <field name="Water Level" abbrev="water_level" type="fp32_t" unit="m">
+      <description>
+        Water level estimate, relative to the datum of the map's store, already added to every
+        depth in the samples.
+      </description>
+    </field>
+    <field name="Water Level Standard Deviation" abbrev="water_level_sigma" type="fp32_t" unit="m" min="0">
+      <description>
+        One standard deviation of the water level estimate.
+      </description>
+    </field>
+    <field name="Samples" abbrev="samples" type="message-list" message-type="TerrainSample">
+      <description>
+        One sample per cell crossed that holds evidence, by distance. Cells without evidence are
+        left out: the gap between distances says where they are.
+      </description>
+    </field>
+  </message>
+
+  <message id="2051" name="Terrain Query" abbrev="TerrainQuery" source="vehicle,ccu" category="Navigation">
+    <description>
+      A request to the world map. The map answers with a TerrainReply carrying the same request id,
+      addressed to the sender.
+    </description>
+    <field name="Request Id" abbrev="req_id" type="uint16_t">
+      <description>
+        Chosen by the requester, and echoed in the reply.
+      </description>
+    </field>
+    <field name="Kind" abbrev="kind" type="uint8_t" unit="Enumerated" prefix="TQK">
+      <description>
+        What is asked.
+      </description>
+      <value id="0" name="Point" abbrev="POINT">
+        <description>
+          The cell under point A: one sample. Point B is ignored.
+        </description>
+      </value>
+      <value id="1" name="Segment" abbrev="SEGMENT">
+        <description>
+          The clearance of the straight segment from A to B, without samples.
+        </description>
+      </value>
+      <value id="2" name="Profile" abbrev="PROFILE">
+        <description>
+          The clearance of the segment from A to B, and one sample per cell crossed.
+        </description>
+      </value>
+    </field>
+    <field name="Latitude A" abbrev="lat_a" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966"/>
+    <field name="Longitude A" abbrev="lon_a" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793"/>
+    <field name="Depth A" abbrev="depth_a" type="fp32_t" unit="m"/>
+    <field name="Latitude B" abbrev="lat_b" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966"/>
+    <field name="Longitude B" abbrev="lon_b" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793"/>
+    <field name="Depth B" abbrev="depth_b" type="fp32_t" unit="m">
+      <description>
+        Depths at either end of the segment, below the sea surface; the clearance is measured
+        from the straight line between them.
+      </description>
+    </field>
+    <field name="Maximum Age" abbrev="max_age" type="fp32_t" unit="s" min="0">
+      <description>
+        Oldest evidence to consider. Zero: no limit.
+      </description>
+    </field>
+  </message>
+
+  <message id="2052" name="Terrain Reply" abbrev="TerrainReply" source="vehicle" category="Navigation">
+    <description>
+      The world map's answer to a TerrainQuery.
+    </description>
+    <field name="Request Id" abbrev="req_id" type="uint16_t">
+      <description>
+        Request id of the query answered.
+      </description>
+    </field>
+    <field name="Status" abbrev="status" type="uint8_t" unit="Enumerated" prefix="TRS">
+      <value id="0" name="Success" abbrev="OK">
+        <description>
+          The query was answered.
+        </description>
+      </value>
+      <value id="1" name="Unknown Terrain" abbrev="UNKNOWN">
+        <description>
+          The map holds no evidence where the query asked.
+        </description>
+      </value>
+      <value id="2" name="No Map" abbrev="NO_MAP">
+        <description>
+          The map is not running, or cannot reach the store for that position.
+        </description>
+      </value>
+      <value id="3" name="Invalid Query" abbrev="INVALID">
+        <description>
+          The query was malformed: an unknown kind, a non-finite value, or a segment too long.
+        </description>
+      </value>
+    </field>
+    <field name="Minimum Clearance" abbrev="clearance" type="fp32_t" unit="m">
+      <description>
+        Smallest vertical distance between the segment and the obstacle tops it crosses, or the
+        seabed where there is no top. Negative: the segment meets the terrain. Valid if the
+        CLEARANCE flag is set.
+      </description>
+    </field>
+    <field name="Clearance Distance" abbrev="clearance_at" type="fp32_t" unit="m" min="0">
+      <description>
+        Horizontal distance from point A to the minimum clearance.
+      </description>
+    </field>
+    <field name="Unknown Fraction" abbrev="unknown" type="fp32_t" min="0" max="1">
+      <description>
+        Fraction of the segment's horizontal length over cells without evidence at its depth.
+      </description>
+    </field>
+    <field name="Cells" abbrev="cells" type="uint16_t">
+      <description>
+        Number of cells crossed.
+      </description>
+    </field>
+    <field name="Conflicts" abbrev="conflicts" type="uint16_t">
+      <description>
+        Number of cells crossed whose evidence disagrees.
+      </description>
+    </field>
+    <field name="Water Level" abbrev="water_level" type="fp32_t" unit="m">
+      <description>
+        As in TerrainProfile.
+      </description>
+    </field>
+    <field name="Water Level Standard Deviation" abbrev="water_level_sigma" type="fp32_t" unit="m" min="0"/>
+    <field name="Flags" abbrev="flags" type="uint8_t" unit="Bitfield" prefix="TRF">
+      <value id="0x01" name="Clearance" abbrev="CLEARANCE">
+        <description>
+          The minimum clearance is valid.
+        </description>
+      </value>
+    </field>
+    <field name="Samples" abbrev="samples" type="message-list" message-type="TerrainSample">
+      <description>
+        One sample for a point query, one per cell with evidence for a profile, none for a segment.
       </description>
     </field>
   </message>
