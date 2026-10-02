@@ -13256,7 +13256,8 @@
   <message id="2049" name="Terrain Sample" abbrev="TerrainSample" source="vehicle" category="Navigation">
     <description>
       What the vehicle's world map holds about one cell, as an entry of a TerrainProfile or a
-      TerrainReply. Depths are below the sea surface now.
+      TerrainReply. Depths are below the sea surface now, except in a TerrainReply whose
+      reference is DATUM.
     </description>
     <field name="Distance" abbrev="distance" type="fp32_t" unit="m" min="0">
       <description>
@@ -13409,6 +13410,24 @@
         </description>
       </value>
     </field>
+    <field name="Depth Reference" abbrev="reference" type="uint8_t" unit="Enumerated" prefix="TQR">
+      <description>
+        What the query's depths, and the reply's, are measured from.
+      </description>
+      <value id="0" name="Surface" abbrev="SURFACE">
+        <description>
+          Below the sea surface now: the depths a vehicle's pressure sensor gives. The map adds
+          its water level estimate.
+        </description>
+      </value>
+      <value id="1" name="Datum" abbrev="DATUM">
+        <description>
+          Below the datum of the map's store: stable over time, for planning and comparisons.
+          The datum is the water level when the store was created, not a chart datum, so it
+          differs between stores and between vehicles.
+        </description>
+      </value>
+    </field>
     <field name="Latitude A" abbrev="lat_a" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966"/>
     <field name="Longitude A" abbrev="lon_a" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793"/>
     <field name="Depth A" abbrev="depth_a" type="fp32_t" unit="m"/>
@@ -13455,6 +13474,21 @@
       <value id="3" name="Invalid Query" abbrev="INVALID">
         <description>
           The query was malformed: an unknown kind, a non-finite value, or a segment too long.
+        </description>
+      </value>
+    </field>
+    <field name="Depth Reference" abbrev="reference" type="uint8_t" unit="Enumerated" prefix="TRR">
+      <description>
+        What the depths in the samples are measured from, as the query asked.
+      </description>
+      <value id="0" name="Surface" abbrev="SURFACE">
+        <description>
+          Below the sea surface now.
+        </description>
+      </value>
+      <value id="1" name="Datum" abbrev="DATUM">
+        <description>
+          Below the datum of the map's store.
         </description>
       </value>
     </field>
