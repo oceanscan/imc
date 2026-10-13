@@ -366,6 +366,7 @@
       <message-type abbrev="Sample"/>
       <message-type abbrev="ScheduledGoto"/>
       <message-type abbrev="SetPose"/>
+      <message-type abbrev="SpeedCalibration"/>
       <message-type abbrev="StationKeeping"/>
       <message-type abbrev="StationKeepingExtended"/>
       <message-type abbrev="Takeoff"/>
@@ -10155,6 +10156,89 @@
     </field>
     <field name="Speed Units" abbrev="speed_units" type="uint8_t" unit="Enumerated" enum-def="SpeedUnits">
       <description>Indicates the units used for the speed value.</description>
+    </field>
+    <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
+      <description>
+        Custom settings for maneuver.
+      </description>
+    </field>
+  </message>
+
+  <message id="722" name="Speed Calibration Maneuver" abbrev="SpeedCalibration" source="ccu" category="Maneuvering">
+    <description>
+      At the surface, the vehicle runs a straight leg each way, a tight
+      loop and a wide turn at each of several propeller speeds, rotating
+      the legs between speeds. GPS velocity over these legs and turns
+      gives the vehicle's speed through the water at each speed, the
+      speed it loses in turns and the water current.
+    </description>
+    <field name="Timeout" abbrev="timeout" type="uint16_t" unit="s">
+      <description>
+        The timeout indicates the time that an error should occur if
+        exceeded.
+      </description>
+    </field>
+    <field name="Latitude WGS-84" abbrev="lat" type="fp64_t" unit="rad" min="-1.5707963267948966" max="1.5707963267948966">
+      <description>
+        WGS-84 Latitude of the centre of the legs.
+      </description>
+    </field>
+    <field name="Longitude WGS-84" abbrev="lon" type="fp64_t" unit="rad" min="-3.141592653589793" max="3.141592653589793">
+      <description>
+        WGS-84 Longitude of the centre of the legs.
+      </description>
+    </field>
+    <field name="Minimum Speed" abbrev="speed_min" type="fp32_t">
+      <description>
+        Lowest speed, in the units given by speed_units.
+      </description>
+    </field>
+    <field name="Maximum Speed" abbrev="speed_max" type="fp32_t">
+      <description>
+        Highest speed, in the units given by speed_units.
+      </description>
+    </field>
+    <field name="Speed Units" abbrev="speed_units" type="uint8_t" value="0" unit="Enumerated" enum-def="SpeedUnits">
+      <description>
+        Speed units: RPM or percentage, which keep the propeller
+        steady. Metres per second are refused, since the speed in metres
+        per second at each propeller speed is what the maneuver measures.
+      </description>
+    </field>
+    <field name="Speed Levels" abbrev="levels" type="uint8_t" min="1">
+      <description>
+        Number of speeds, evenly spaced from the minimum to the maximum.
+      </description>
+    </field>
+    <field name="Bearing" abbrev="bearing" type="fp64_t" unit="rad" min="0" max="6.283185307179586">
+      <description>
+        Direction of the legs at the first speed.
+      </description>
+    </field>
+    <field name="Length" abbrev="length" type="fp32_t" unit="m">
+      <description>
+        Shortest length of the straight legs. Faster speeds get longer
+        legs, so that each lasts long enough.
+      </description>
+    </field>
+    <field name="Loop Radius" abbrev="radius_small" type="fp32_t" unit="m">
+      <description>
+        Smallest radius of the tight loop. Faster speeds get wider loops,
+        so that the vehicle can turn them.
+      </description>
+    </field>
+    <field name="Turn Radius" abbrev="radius_large" type="fp32_t" unit="m">
+      <description>
+        Smallest radius of the wide turn.
+      </description>
+    </field>
+    <field name="Dive Depth" abbrev="dive_depth" type="fp32_t" unit="m" min="0">
+      <description>
+        Depth of the dive legs: after the surface legs and turns at each
+        speed, the vehicle dives along the legs and back, surfacing in
+        between, so that GPS fixes before and after each dive give its
+        speed underwater. Zero for no dives.
+      </description>
     </field>
     <field name="Custom settings for maneuver" abbrev="custom" unit="TupleList" type="plaintext">
       <description>
