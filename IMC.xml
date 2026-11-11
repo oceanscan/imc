@@ -13161,4 +13161,16 @@
     </field>
   </message>
 
+  <message id="2053" name="Duty Cycle" abbrev="DutyCycle" source="vehicle" category="Actuation">
+    <description>
+      Measured PWM duty cycle of a motor drive or other PWM output.
+      Use the entity label to identify the channel.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="%" min="0" max="100">
+      <description>
+        The duty cycle, from 0 % (always off) to 100 % (always on).
+      </description>
+    </field>
+  </message>
+
 </messages>
