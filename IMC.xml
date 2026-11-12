@@ -13161,4 +13161,29 @@
     </field>
   </message>
 
+  <message id="2053" name="Duty Cycle" abbrev="DutyCycle" source="vehicle" category="Actuation">
+    <description>
+      Measured PWM duty cycle of a motor drive or other PWM output.
+      Use the entity label to identify the channel.
+    </description>
+    <field name="Value" abbrev="value" type="fp32_t" unit="%" min="0" max="100">
+      <description>
+        The duty cycle, from 0 % (always off) to 100 % (always on).
+      </description>
+    </field>
+  </message>
+
+  <message id="2054" name="Rpm Demand" abbrev="RpmDemand" source="vehicle" category="Actuation">
+    <description>
+      Speed setpoint a motor drive is following, such as the output of its
+      speed ramp, which can differ from the commanded speed.
+      Use the entity label to identify the channel.
+    </description>
+    <field name="Value" abbrev="value" type="int16_t" unit="rpm">
+      <description>
+        The demanded speed in revolutions per minute.
+      </description>
+    </field>
+  </message>
+
 </messages>
